@@ -1,4 +1,4 @@
-package com.example.twitterclone;
+package com.example.twitterclone.controller;
 
 import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.repos.MessageRepository;
@@ -17,26 +17,23 @@ public class GreetingController {
 	@Autowired
 	private MessageRepository messageRepository;
 
-	@GetMapping("/greeting")
-	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-		model.addAttribute("name", name);
+	@GetMapping("/")
+	public String greeting() {
 		return "greeting";
 	}
 
-	@GetMapping
+	@GetMapping("main")
 	public String main(Model model){
 		Iterable<Message> messages = messageRepository.findAll();
 		model.addAttribute("messages", messages);
 		return "main";
 	}
 
-	@PostMapping
+	@PostMapping("main")
 	public String addMessage(@RequestParam String text, @RequestParam String tag, Model model){
 		Message message = new Message(text, tag);
 		messageRepository.save(message);
 
-		Iterable<Message> messages = messageRepository.findAll();
-		model.addAttribute("messages", messages);
 		return "main";
 	}
 
