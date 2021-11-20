@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main</title>
+</head>
+<body>
+<div>
+    <form method="post">
+        <input type="text" name= "text" placeholder="Enter a message">
+        <input type="text" name= "tag" placeholder="Enter a tag">
+        <button type="submit">Добавить</button>
+    </form>
+    <form action="filter" method="post">
+        <input type="text" name="filter">
+        <button type="submit">Найти</button>
+    </form>
+</div>
+
+<div>Список сообщений</div>
+{{#messages}}
+    <b>{{id}}</b>
+    <b>{{tag}}</b>
+    <span>{{text}}</span>
+{{/messages}}
+</body>
+</html>
