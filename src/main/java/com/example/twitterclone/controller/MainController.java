@@ -25,9 +25,12 @@ public class MainController {
 	}
 
 	@GetMapping("main")
-	public String main(Model model){
+	public String main(@AuthenticationPrincipal User user, Model model){
+		//Создаем список и передаем туда все сообщения найденные с соответствующей таблицы
 		Iterable<Message> messages = messageRepository.findAll();
+		//Передаем список в модель, для отображения на странице
 		model.addAttribute("messages", messages);
+		model.addAttribute("user", user);
 		return "main";
 	}
 

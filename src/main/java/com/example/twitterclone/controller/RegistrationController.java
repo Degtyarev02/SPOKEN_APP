@@ -26,6 +26,14 @@ public class RegistrationController {
 		return "registration";
 	}
 
+
+	/**
+	 * Получаем пользователя после регистрации, если такой пользователь существует, то выводим соответствующее сообщение
+	 * <br>
+	 * Для проверки используем UserRepo, с собственным методом, который ищет пользователя в бд по имени
+	 * @param user  С помощью сеттеров из переданной в html форме информации собирается пользователь
+	 * @param model Стандартная модель, передаем туда сообщение если юзер существует
+	 */
 	@PostMapping("/registration")
 	public String addUser(User user, Model model) {
 		User userFromDB = userRepo.findByUsername(user.getUsername());

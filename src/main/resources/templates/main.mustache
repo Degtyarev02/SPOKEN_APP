@@ -9,6 +9,14 @@
 </head>
 <body>
 <div>
+    <div>
+        {{#user.isAdmin}}
+          <h2>Hello admin</h2>
+        {{/user.isAdmin}}
+        {{^user.isAdmin}}
+            <h2>Hello user</h2>
+        {{/user.isAdmin}}
+    </div>
     <form action="/logout" method="post">
         <button type="submit">Sign out</button>
     </form>
@@ -26,7 +34,6 @@
 <div>Список сообщений</div>
 {{#messages}}
     <div>
-        <b>{{id}}</b>
         <b>{{tag}}</b>
         <span>{{text}}</span>
         <i>{{author.getUsername}}</i>
