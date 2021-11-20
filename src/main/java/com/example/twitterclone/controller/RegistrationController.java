@@ -22,20 +22,21 @@ public class RegistrationController {
 	private UserRepo userRepo;
 
 	@GetMapping("/registration")
-	public String registration(){
+	public String registration() {
 		return "registration";
 	}
 
 	@PostMapping("/registration")
-	public String addUser(User user, Model model){
+	public String addUser(User user, Model model) {
 		User userFromDB = userRepo.findByUsername(user.getUsername());
-		if(userFromDB != null) {
+		if (userFromDB != null) {
 			model.addAttribute("message", "user is already exist");
-		} else {
-			user.setActive(true);
-			user.setRoles(Collections.singleton(Role.USER));
-			userRepo.save(user);
+			return "registration";
 		}
+		user.setActive(true);
+		user.setRoles(Collections.singleton(Role.USER));
+		userRepo.save(user);
+
 		return "redirect:/login";
 
 	}
