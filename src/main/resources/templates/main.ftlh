@@ -1,17 +1,19 @@
 <#import "parts/common.ftlh" as c>
 <@c.mainpage>
-    <div>
-        <div>
-            <#if user.isAdmin()>
-                <p>Hello admin</p>
-            <#else>
-                <p>Hello user</p>
-            </#if>
-        </div>
-        <form action="/logout" method="post">
-            <button type="submit">Sign out</button>
+    <header>
+        <form action="/logout" method="post" class="logout">
+            <button type="submit">X</button>
         </form>
+        <div class="header">
+            <form action="filter" method="post" class="filter">
+                <input type="text" name="filter" placeholder="Search by tag">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
 
+
+    <div class="section">
         <form method="post">
             <input type="text" name="text" placeholder="Enter a message">
             <#if textError??>
@@ -27,21 +29,15 @@
             </#if>
             <button type="submit">Добавить</button>
         </form>
-
-        <form action="filter" method="post">
-            <input type="text" name="filter">
-            <button type="submit">Найти</button>
-        </form>
+        <div>Список сообщений</div>
+        <#list messages as message>
+            <div>
+                <i>${message.author.username}</i>
+                <b>${message.tag}</b>
+                <span>${message.text}</span>
+            </div>
+        <#else>
+            <div>No messages</div>
+        </#list>
     </div>
-
-    <div>Список сообщений</div>
-    <#list messages as message>
-        <div>
-            <i>${message.author.username}</i>
-            <b>${message.tag}</b>
-            <span>${message.text}</span>
-        </div>
-    <#else>
-        <div>No messages</div>
-    </#list>
 </@c.mainpage>

@@ -37,6 +37,7 @@ public class RegistrationController {
 	 * Получаем пользователя после регистрации, если такой пользователь существует, то выводим соответствующее сообщение
 	 * <br>
 	 * Для проверки используем UserRepo, с собственным методом, который ищет пользователя в бд по имени
+	 *
 	 * @param user  С помощью сеттеров из переданной в html форме информации собирается пользователь
 	 * @param model Стандартная модель, передаем туда сообщение если юзер существует
 	 */
@@ -45,17 +46,17 @@ public class RegistrationController {
 
 		//Если пароль у пользователя существует и не равен паролю для подтверждения,
 		//то добавляем в модель ошибку
-		if(user.getPassword() != null && !user.getPassword().equals(user.getPassword2())){
+		if (user.getPassword() != null && !user.getPassword().equals(user.getPassword2())) {
 			model.addAttribute("passwordEqualsError", "Passwords are not equals");
 			return "registration";
 		}
 		//Если BindingResult вернулся с ошибками, то заполняем список ошибками и в цикле передаем все ошибки в модель
-		if(result.hasErrors()){
+		if (result.hasErrors()) {
 			List<FieldError> errorList = result.getFieldErrors();
-			for(FieldError error:errorList){
+			for (FieldError error : errorList) {
 				//В качестве названия элемента модели используем имя поля, где произошла ошибка и добавляем к ней Error,
 				// в качестве сообщения передаем message ошибки определенный в domain
-				model.addAttribute(error.getField()+"Error", error.getDefaultMessage());
+				model.addAttribute(error.getField() + "Error", error.getDefaultMessage());
 			}
 			return "registration";
 		}
@@ -64,7 +65,7 @@ public class RegistrationController {
 		User userFromDB = userRepo.findByUsername(user.getUsername());
 		//Если в бд такой пользователь существует, то выдаем сообщение об ошибке
 		if (userFromDB != null) {
-			model.addAttribute("message", "user is already exist");
+			model.addAttribute("message", "User is already exist");
 			return "registration";
 		}
 		user.setActive(true);
