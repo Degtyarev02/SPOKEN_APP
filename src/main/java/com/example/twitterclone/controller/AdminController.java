@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +17,12 @@ public class AdminController {
 	@Autowired
 	private UserRepo userRepo;
 
+	/**
+	 * В WebSecurityConfig прописано, что доступ по этому URl разрешен только пользователям ADMIN.
+	 * Здесь мы получаем текущего пользователя, получаем список из всех пользователей и добавляем этот список в model для отображения на экране
+	 */
 	@GetMapping("/")
-	public String adminDash(@AuthenticationPrincipal User user, Model model){
+	public String adminDash(@AuthenticationPrincipal User user, Model model) {
 		model.addAttribute("user", user);
 		Iterable<User> usersList = userRepo.findAll();
 		model.addAttribute("userlist", usersList);
@@ -34,5 +35,11 @@ public class AdminController {
 		List<User> userList = userRepo.findAllByUsername(filter);
 		model.addAttribute("userlist", userList);
 		return "admin_dashboard";
+	}
+
+	@GetMapping("/edit/{user}")
+	public String editUser(@PathVariable User user, Model model) {
+		model.addAttribute("user", user);
+		return "edit_user";
 	}
 }
