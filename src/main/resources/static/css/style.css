@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', cursive;
+}
+*:focus {
+  outline: none;
+}
+.main {
+  width: 100%;
+  height: 100vh;
+  background: url(../img/5118962.jpg) no-repeat center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main h2 {
+  font-size: 80px;
+  text-align: center;
+  font-family: 'Titan One', cursive;
+  text-transform: uppercase;
+  color: #eaf7ff;
+  -webkit-text-stroke: 2px #008cff;
+}
+.main a {
+  padding: 30px 50px;
+  color: #eaf7ff;
+  background: #008cff;
+  text-decoration: none;
+  margin-top: 47px;
+  border-radius: 20px;
+  font-weight: 300;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+/*Страница логина*/
+.sign-in-label {
+  font-size: 80px;
+  text-align: center;
+  font-family: 'Titan One', cursive;
+  text-transform: uppercase;
+  color: #eaf7ff;
+  -webkit-text-stroke: 2px #008cff;
+  padding-top: 50px;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: url(../img/5118962.jpg) no-repeat center;
+}
+.init-form {
+  height: 85vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 150px;
+}
+.login-form > * {
+  margin-bottom: 20px;
+}
+.login-form input {
+  width: 400px;
+  height: 70px;
+  padding-left: 15px;
+  background: white;
+  border: 2px solid #008cff;
+  color: #464646;
+  border-radius: 20px;
+  font-size: 17px;
+}
+.login-form .submit {
+  height: 50px !important;
+  background: #008cff;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  padding-left: 0;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+.login-form .submit:hover {
+  background: #0070cc;
+}
+.login-form a {
+  width: 400px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-radius: 20px;
+  background: #5e5e5e;
+  border: none;
+  text-transform: uppercase;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s linear;
+}
+.login-form a:hover {
+  background: #454545;
+}
+/*# sourceMappingURL=style.css.map */
