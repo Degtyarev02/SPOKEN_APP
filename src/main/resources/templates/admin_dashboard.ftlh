@@ -7,16 +7,19 @@
         </form>
         <#list userlist as user_from_list>
             <div class="user">
-                <div class="header">
+                <div class="user-header">
                     <span>${user_from_list.id}</span>
                     <span>${user_from_list.username}</span>
                 </div>
-                <div class="role">
+                <div class="user-role">
                     <#list user_from_list.roles as role>
                     <span>${role} </span>
                     </#list>
                     <a href="/admin/edit/${user_from_list.id}">EDIT</a>
                 </div>
+                <form action="/admin/${user_from_list.id}" method="post">
+                    <input type="submit" value="delete">
+                </form>
             </div>
         <#else>
             <h3>No users</h3>

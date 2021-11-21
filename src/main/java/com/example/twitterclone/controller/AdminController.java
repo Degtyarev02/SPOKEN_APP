@@ -1,7 +1,9 @@
 package com.example.twitterclone.controller;
 
 import com.example.twitterclone.domain.User;
+import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,10 @@ public class AdminController {
 
 	@Autowired
 	private UserRepo userRepo;
+
+	@Autowired
+	private MessageRepository messageRepo;
+
 
 	/**
 	 * В WebSecurityConfig прописано, что доступ по этому URl разрешен только пользователям ADMIN.
@@ -41,5 +47,14 @@ public class AdminController {
 	public String editUser(@PathVariable User user, Model model) {
 		model.addAttribute("user", user);
 		return "edit_user";
+	}
+
+	@PostMapping("/{user}")
+	public String editUser(@PathVariable User user){
+		if(user != null){
+			messageRepo.deleteAllByAuthor(user);
+			userRepo.deleteById(user.getId());
+		}
+		return "redirect:/admin/";
 	}
 }
