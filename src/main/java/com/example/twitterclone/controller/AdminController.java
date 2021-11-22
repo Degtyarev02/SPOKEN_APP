@@ -1,5 +1,6 @@
 package com.example.twitterclone.controller;
 
+import com.example.twitterclone.domain.Role;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
@@ -10,7 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin")
@@ -46,7 +51,31 @@ public class AdminController {
 	@GetMapping("/edit/{user}")
 	public String editUser(@PathVariable User user, Model model) {
 		model.addAttribute("user", user);
+		model.addAttribute("roles", Role.values());
 		return "edit_user";
+	}
+
+	//Добавить комментарии
+
+	@PostMapping("/edit/{user}")
+	public String editUser(@RequestParam String username,
+						   @RequestParam Map<String, String> form,
+						   @PathVariable User user) {
+		user.setUsername(username);
+
+		Set<String> roles = Arrays.stream(Role.values())
+				.map(Role::name)
+				.collect(Collectors.toSet());
+
+		user.getRoles().clear();
+
+		for (String key : form.keySet()) {
+			if (roles.contains(key)) {
+				user.getRoles().add(Role.valueOf(key));
+			}
+		}
+		userRepo.save(user);
+		return "redirect:/admin/";
 	}
 
 	/**
@@ -59,7 +88,7 @@ public class AdminController {
 	 * В результате происходит редирект на панель админа
 	 */
 	@PostMapping("/{user}")
-	public String editUser(@PathVariable User user) {
+	public String deleteUser(@PathVariable User user) {
 		if (user != null) {
 			messageRepo.deleteAllByAuthor(user);
 			userRepo.deleteById(user.getId());
