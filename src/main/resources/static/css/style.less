@@ -1,3 +1,9 @@
+//Variables
+@primary:         #008cff;
+@secondary-grey:  #5e5e5e;
+@secondary-white: #ffffff;
+
+
 * {
   margin:      0;
   padding:     0;
@@ -29,22 +35,22 @@ a {
     text-align:          center;
     font-family:         'Titan One', cursive;
     text-transform:      uppercase;
-    color:               #eaf7ff;
-    -webkit-text-stroke: 2px #008cff;
+    color:               @secondary-white;
+    -webkit-text-stroke: 2px @primary;
   }
 
   a {
     padding:        0;
     text-align:     center;
     background:     rgba(255, 255, 255, 0);
-    color:          #ffffff;
+    color:          @secondary-white;
     text-transform: uppercase;
     font-size:      20px;
 
     &:after,
     &:before {
       backface-visibility: hidden;
-      border:              2px solid rgba(#008cff, 0);
+      border:              2px solid rgba(@primary, 0);
       bottom:              0;
       content:             " ";
       display:             block;
@@ -58,7 +64,7 @@ a {
 
     &:hover:after,
     &:hover:before {
-      border-color: #008cff;
+      border-color: @primary;
       transition:   width .5s ease-in-out;
       width:        189.36px;
     }
@@ -78,8 +84,8 @@ a {
   text-align:          center;
   font-family:         'Titan One', cursive;
   text-transform:      uppercase;
-  color:               #eaf7ff;
-  -webkit-text-stroke: 2px #008cff;
+  color:               @secondary-white;
+  -webkit-text-stroke: 2px @primary;
   padding-top:         50px;
 
 }
@@ -111,26 +117,26 @@ a {
     width:         400px;
     height:        70px;
     padding-left:  15px;
-    background:    white;
-    border:        2px solid #008cff;
-    color:         #5e5e5e;
+    background:    @secondary-white;
+    border:        2px solid @primary;
+    color:         @secondary-grey;
     border-radius: 20px;
     font-size:     17px;
   }
 
   .submit {
     height:         50px !important;
-    background:     #008cff;
+    background:     @primary;
     border:         none;
     text-transform: uppercase;
-    color:          white;
+    color:          @secondary-white;
     font-weight:    500;
     font-size:      15px;
     padding-left:   0;
     cursor:         pointer;
 
     &:hover {
-      background: darken(#008cff, 10%);
+      background: darken(@primary, 10%);
     }
   }
 
@@ -139,17 +145,17 @@ a {
     padding-top:     16px;
     padding-bottom:  16px;
     border-radius:   20px;
-    background:      #5e5e5e;
+    background:      @secondary-grey;
     border:          none;
     text-transform:  uppercase;
-    color:           white;
+    color:           @secondary-white;
     font-size:       15px;
     font-weight:     500;
     text-align:      center;
     text-decoration: none;
 
     &:hover {
-      background: darken(#5e5e5e, 10%);
+      background: darken(@secondary-grey, 10%);
     }
   }
 }
@@ -158,14 +164,26 @@ a {
 header {
   width:      100vw;
   background: url(../img/5118962.jpg) no-repeat center;
+  box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
 }
 
 .header {
-  height:          70vh;
+  height:          60vh;
   display:         flex;
   flex-direction:  column;
   justify-content: center;
   align-items:     center;
+
+  h2 {
+    font-size:           80px;
+    text-align:          center;
+    font-family:         'Titan One', cursive;
+    text-transform:      uppercase;
+    color:               @secondary-white;
+    -webkit-text-stroke: 2px @primary;
+    position:            absolute;
+    top:                 10%;
+  }
 }
 
 .logout {
@@ -175,29 +193,30 @@ header {
     padding:       5px 15px;
     margin-top:    20px;
     border-radius: 25%;
-    border:        #008cff 2px solid;
-    color:         #008cff;
+    border:        @primary 2px solid;
+    color:         @primary;
     background:    rgba(0, 0, 0, 0);
     cursor:        pointer;
 
     &:hover {
-      background: #008cff;
-      color:      white;
+      background: @primary;
+      color:      @secondary-white;
     }
   }
 }
 
 .filter {
-  width: fit-content;
+  width:      fit-content;
+  margin-top: 110px;
 
   input {
     width:         50vw;
     height:        50px;
     padding:       15px;
-    border:        2px #008cff solid;
+    border:        2px @primary solid;
     border-radius: 15px 0 0 15px;
-    color:         #5e5e5e;
-    background:    white;
+    color:         @secondary-grey;
+    background:    @secondary-white;
     border-right:  none;
     font-size:     17px;
   }
@@ -205,13 +224,78 @@ header {
   button {
     height:        50px;
     padding-right: 15px;
-    border:        2px #008cff solid;
+    border:        2px @primary solid;
     border-radius: 0 15px 15px 0;
-    background:    white;
+    background:    @secondary-white;
     border-left:   none;
     margin-left:   -4px;
-    color:         #008cff;
+    color:         @primary;
     font-size:     17px;
     cursor:        pointer;
   }
 }
+
+.main-message-page {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  margin-top:     80px;
+}
+
+.add-message-field {
+  input {
+    width:         300px;
+    height:        50px;
+    padding-left:  15px;
+    background:    @secondary-white;
+    border:        2px solid @primary;
+    color:         @secondary-grey;
+    border-radius: 10px;
+    font-size:     17px;
+  }
+
+  .tag {
+    width: 100px;
+  }
+
+  button {
+    background:    @primary;
+    color:         @secondary-white;
+    border:        none;
+    height:        50px;
+    padding:       10px;
+    border-radius: 10px;
+    cursor:        pointer;
+
+    &:hover {
+      background: darken(@primary, 10%);
+    }
+  }
+}
+
+.message {
+  margin-top:    40px;
+  width:         40%;
+  border-radius: 20px;
+  border:        2px solid @primary;
+  box-shadow:    0 0 82px -19px rgba(34, 60, 80, 0.4);
+
+  span {
+    display: block;
+    padding: 20px;
+  }
+
+  .message-author {
+    border-radius: 15px 15px 0 0;
+    font-size:     20px;
+    background:    @primary;
+    color:         @secondary-white;
+    overflow:      hidden;
+  }
+
+  .message-tag {
+    font-style: italic;
+  }
+}
+
+

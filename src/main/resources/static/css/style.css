@@ -25,7 +25,7 @@ a {
   text-align: center;
   font-family: 'Titan One', cursive;
   text-transform: uppercase;
-  color: #eaf7ff;
+  color: #ffffff;
   -webkit-text-stroke: 2px #008cff;
 }
 .main a {
@@ -65,7 +65,7 @@ a {
   text-align: center;
   font-family: 'Titan One', cursive;
   text-transform: uppercase;
-  color: #eaf7ff;
+  color: #ffffff;
   -webkit-text-stroke: 2px #008cff;
   padding-top: 50px;
 }
@@ -93,7 +93,7 @@ a {
   width: 400px;
   height: 70px;
   padding-left: 15px;
-  background: white;
+  background: #ffffff;
   border: 2px solid #008cff;
   color: #5e5e5e;
   border-radius: 20px;
@@ -104,7 +104,7 @@ a {
   background: #008cff;
   border: none;
   text-transform: uppercase;
-  color: white;
+  color: #ffffff;
   font-weight: 500;
   font-size: 15px;
   padding-left: 0;
@@ -121,7 +121,7 @@ a {
   background: #5e5e5e;
   border: none;
   text-transform: uppercase;
-  color: white;
+  color: #ffffff;
   font-size: 15px;
   font-weight: 500;
   text-align: center;
@@ -134,13 +134,24 @@ a {
 header {
   width: 100vw;
   background: url(../img/5118962.jpg) no-repeat center;
+  box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
 }
 .header {
-  height: 70vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.header h2 {
+  font-size: 80px;
+  text-align: center;
+  font-family: 'Titan One', cursive;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-text-stroke: 2px #008cff;
+  position: absolute;
+  top: 10%;
 }
 .logout button {
   position: absolute;
@@ -155,10 +166,11 @@ header {
 }
 .logout button:hover {
   background: #008cff;
-  color: white;
+  color: #ffffff;
 }
 .filter {
   width: fit-content;
+  margin-top: 110px;
 }
 .filter input {
   width: 50vw;
@@ -167,7 +179,7 @@ header {
   border: 2px #008cff solid;
   border-radius: 15px 0 0 15px;
   color: #5e5e5e;
-  background: white;
+  background: #ffffff;
   border-right: none;
   font-size: 17px;
 }
@@ -176,11 +188,63 @@ header {
   padding-right: 15px;
   border: 2px #008cff solid;
   border-radius: 0 15px 15px 0;
-  background: white;
+  background: #ffffff;
   border-left: none;
   margin-left: -4px;
   color: #008cff;
   font-size: 17px;
   cursor: pointer;
+}
+.main-message-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+.add-message-field input {
+  width: 300px;
+  height: 50px;
+  padding-left: 15px;
+  background: #ffffff;
+  border: 2px solid #008cff;
+  color: #5e5e5e;
+  border-radius: 10px;
+  font-size: 17px;
+}
+.add-message-field .tag {
+  width: 100px;
+}
+.add-message-field button {
+  background: #008cff;
+  color: #ffffff;
+  border: none;
+  height: 50px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.add-message-field button:hover {
+  background: #0070cc;
+}
+.message {
+  margin-top: 40px;
+  width: 40%;
+  border-radius: 20px;
+  border: 2px solid #008cff;
+  box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
+}
+.message span {
+  display: block;
+  padding: 20px;
+}
+.message .message-author {
+  border-radius: 15px 15px 0 0;
+  font-size: 20px;
+  background: #008cff;
+  color: #ffffff;
+  overflow: hidden;
+}
+.message .message-tag {
+  font-style: italic;
 }
 /*# sourceMappingURL=style.css.map */

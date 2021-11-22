@@ -13,7 +13,7 @@
                 </div>
                 <div class="user-role">
                     <#list user_from_list.roles as role>
-                    <span>${role} </span>
+                        <span>${role} </span>
                     </#list>
                     <a href="/admin/edit/${user_from_list.id}">EDIT</a>
                 </div>

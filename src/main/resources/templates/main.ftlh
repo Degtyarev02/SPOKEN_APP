@@ -5,6 +5,7 @@
             <button type="submit">X</button>
         </form>
         <div class="header">
+            <h2>SPOKEN</h2>
             <form action="filter" method="post" class="filter">
                 <input type="text" name="filter" placeholder="Search by tag">
                 <button type="submit">Search</button>
@@ -13,28 +14,36 @@
     </header>
 
 
-    <div class="section">
-        <form method="post">
-            <input type="text" name="text" placeholder="Enter a message">
-            <#if textError??>
-                <div>
-                    ${textError}
-                </div>
-            </#if>
-            <input type="text" name="tag" placeholder="Enter a tag">
+    <div class="main-message-page">
+        <form method="post" class="add-message-field">
+            <input class="tag" type="text" name="tag" placeholder="Tag">
+
+            <input class="text" type="text" name="text" placeholder="Enter a message">
+
+            <button type="submit">Добавить</button>
             <#if tagError??>
                 <div>
                     ${tagError}
                 </div>
             </#if>
-            <button type="submit">Добавить</button>
+            <#if textError??>
+                <div>
+                    ${textError}
+                </div>
+            </#if>
         </form>
-        <div>Список сообщений</div>
+
         <#list messages as message>
-            <div>
-                <i>${message.author.username}</i>
-                <b>${message.tag}</b>
-                <span>${message.text}</span>
+            <div class="message">
+                <span class="message-author">${message.author.username}</span>
+                <#if message.author.id == user.id>
+                    <form action="/main/${message.id}" method="post">
+                        <button type="submit">X</button>
+                    </form>
+                </#if>
+                <span class="message-text">${message.text}</span>
+                <span class="message-tag">#${message.tag}</span>
+
             </div>
         <#else>
             <div>No messages</div>

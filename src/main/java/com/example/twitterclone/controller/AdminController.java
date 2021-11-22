@@ -49,9 +49,18 @@ public class AdminController {
 		return "edit_user";
 	}
 
+	/**
+	 * Post метод, который удаляет пользователя
+	 * <br>
+	 * Доступ только у админа
+	 * <br>
+	 * В пути передается id, по этому id удаляются сначала все сообщения пользователя,
+	 * потом и сам пользователь
+	 * В результате происходит редирект на панель админа
+	 */
 	@PostMapping("/{user}")
-	public String editUser(@PathVariable User user){
-		if(user != null){
+	public String editUser(@PathVariable User user) {
+		if (user != null) {
 			messageRepo.deleteAllByAuthor(user);
 			userRepo.deleteById(user.getId());
 		}

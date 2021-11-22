@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,24 +48,32 @@ public class MainController {
 		if (bindingResult.hasErrors()) {
 			List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
 			for (FieldError error : fieldErrorList) {
-				System.out.println(error.getField()+"Error" + " " + error.getDefaultMessage());
-				model.addAttribute(error.getField()+"Error", error.getDefaultMessage());
+				System.out.println(error.getField() + "Error" + " " + error.getDefaultMessage());
+				model.addAttribute(error.getField() + "Error", error.getDefaultMessage());
 				return main(user, model);
 			}
 		} else {
 			message.setAuthor(user);
 			messageRepository.save(message);
 		}
-			Iterable<Message> messages = messageRepository.findAll();
-			model.addAttribute("messages", messages);
-			return "redirect:/main";
+		Iterable<Message> messages = messageRepository.findAll();
+		model.addAttribute("messages", messages);
+		return "redirect:/main";
 
 	}
 
-		@PostMapping("filter")
-		public String filter (@RequestParam String filter, Model model){
-			List<Message> byTag = messageRepository.findByTag(filter);
-			model.addAttribute("messages", byTag);
-			return "main";
+	@PostMapping("filter")
+	public String filter(@RequestParam String filter, Model model) {
+		List<Message> byTag = messageRepository.findByTag(filter);
+		model.addAttribute("messages", byTag);
+		return "main";
+	}
+
+	@PostMapping("/main/{message}")
+	public String deleteMessage(@PathVariable Message message, Model model) {
+		if(message != null){
+			messageRepository.delete(message);
 		}
+		return "redirect:/main";
 	}
+}
