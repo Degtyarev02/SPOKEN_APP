@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
 	List<Message> findByTag(String tag);
+	List<Message> findByAuthor(User user);
 
 	@Transactional
 	void deleteAllByAuthor(User user);

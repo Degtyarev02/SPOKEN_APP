@@ -280,9 +280,30 @@ header {
   border:        2px solid @primary;
   box-shadow:    0 0 82px -19px rgba(34, 60, 80, 0.4);
 
+  .delete {
+    display: inline-block;
+    float:   right;
+
+    button {
+      background: none;
+      border:     none;
+      cursor:     pointer;
+      color:      @secondary-white;
+      font-size:  15px;
+    }
+  }
+
   span {
     display: block;
     padding: 20px;
+
+    a {
+      color: @secondary-white;
+
+      &:visited {
+        color: @secondary-white;
+      }
+    }
   }
 
   .message-author {

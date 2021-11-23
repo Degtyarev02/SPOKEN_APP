@@ -233,9 +233,26 @@ header {
   border: 2px solid #008cff;
   box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
 }
+.message .delete {
+  display: inline-block;
+  float: right;
+}
+.message .delete button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+}
 .message span {
   display: block;
   padding: 20px;
+}
+.message span a {
+  color: #ffffff;
+}
+.message span a:visited {
+  color: #ffffff;
 }
 .message .message-author {
   border-radius: 15px 15px 0 0;

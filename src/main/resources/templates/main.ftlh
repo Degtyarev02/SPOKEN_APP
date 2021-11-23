@@ -35,12 +35,13 @@
 
         <#list messages as message>
             <div class="message">
-                <span class="message-author">${message.author.username}</span>
+                <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a>
                 <#if message.author.id == user.id>
-                    <form action="/main/${message.id}" method="post">
+                    <form class="delete" action="/main/${message.id}" method="post">
                         <button type="submit">X</button>
                     </form>
                 </#if>
+                    </span>
                 <span class="message-text">${message.text}</span>
                 <span class="message-tag">#${message.tag}</span>
 

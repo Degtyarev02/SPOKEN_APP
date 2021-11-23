@@ -70,10 +70,20 @@ public class MainController {
 	}
 
 	@PostMapping("/main/{message}")
-	public String deleteMessage(@PathVariable Message message, Model model) {
+	public String deleteMessage(@PathVariable Message message) {
 		if(message != null){
 			messageRepository.delete(message);
 		}
 		return "redirect:/main";
 	}
+
+	@GetMapping("/main/user/{user}")
+	public String userProfilePage(@PathVariable User user, Model model){
+		model.addAttribute("user", user);
+		List<Message> byUser = messageRepository.findByAuthor(user);
+		model.addAttribute("messages", byUser);
+		return "user_profile";
+	}
+
+
 }
