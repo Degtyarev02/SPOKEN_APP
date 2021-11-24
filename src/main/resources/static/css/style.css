@@ -264,4 +264,34 @@ header {
 .message .message-tag {
   font-style: italic;
 }
+.admin-header {
+  background: url(../img/5118962.jpg) no-repeat center;
+  box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+.admin-header h2 {
+  font-size: 80px;
+  text-align: center;
+  font-family: 'Titan One', cursive;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-text-stroke: 2px #008cff;
+  padding-bottom: 70px;
+}
+.admin-header input {
+  width: 50vw;
+  height: 50px;
+  padding: 15px;
+  border: 2px #008cff solid;
+  border-radius: 15px;
+  color: #5e5e5e;
+  background: #ffffff;
+  font-size: 17px;
+}
 /*# sourceMappingURL=style.css.map */
