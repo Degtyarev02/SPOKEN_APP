@@ -13,17 +13,17 @@
             <#list userlist as user_from_list>
                 <div class="user">
                     <div class="user-header">
-                        <span>${user_from_list.id}</span>
-                        <span>${user_from_list.username}</span>
+                        <span class="id">ID: ${user_from_list.id}</span>
+                        <span>Имя: ${user_from_list.username}</span>
                     </div>
                     <div class="user-role">
                         <#list user_from_list.roles as role>
-                            <span>${role} </span>
+                            <span>Roles: ${role} </span>
                         </#list>
-                        <a href="/admin/edit/${user_from_list.id}">EDIT</a>
                     </div>
-                    <form action="/admin/${user_from_list.id}" method="post">
-                        <input type="submit" value="delete">
+                    <form class="delete-edit-user" action="/admin/${user_from_list.id}" method="post">
+                        <a href="/admin/edit/${user_from_list.id}">EDIT</a>
+                        <input type="submit" value="DELETE">
                     </form>
                 </div>
             <#else>

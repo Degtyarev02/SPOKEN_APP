@@ -14,7 +14,7 @@ a {
 .main {
   width: 100%;
   height: 100vh;
-  background: url(../img/5118962.jpg) no-repeat center;
+  background: url(../img/main-background.jpg) no-repeat center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,7 +72,7 @@ a {
 .container {
   width: 100vw;
   height: 100vh;
-  background: url(../img/5118962.jpg) no-repeat center;
+  background: url(../img/main-background.jpg) no-repeat center;
 }
 .init-form {
   height: 85vh;
@@ -133,7 +133,7 @@ a {
 /*Главная страница*/
 header {
   width: 100vw;
-  background: url(../img/5118962.jpg) no-repeat center;
+  background: url(../img/main-background.jpg) no-repeat center;
   box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
 }
 .header {
@@ -265,7 +265,7 @@ header {
   font-style: italic;
 }
 .admin-header {
-  background: url(../img/5118962.jpg) no-repeat center;
+  background: url(../img/secondary-background.jpg) no-repeat center;
   box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
   width: 100%;
   height: fit-content;
@@ -293,5 +293,52 @@ header {
   color: #5e5e5e;
   background: #ffffff;
   font-size: 17px;
+}
+.user-list-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+.user-list-container .users-list {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.user {
+  max-width: 33%;
+  flex: 33%;
+  border: #008cff 2px solid;
+  border-radius: 15px;
+  margin-left: 10px;
+}
+.user .user-header {
+  background: #008cff;
+  color: #ffffff;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+}
+.user .user-header .id {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.user .user-role {
+  padding: 10px;
+}
+.user .delete-edit-user {
+  padding: 10px;
+}
+.user .delete-edit-user a {
+  color: green;
+}
+.user .delete-edit-user a:visited {
+  color: green;
+}
+.user .delete-edit-user input {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  color: darkred;
 }
 /*# sourceMappingURL=style.css.map */
