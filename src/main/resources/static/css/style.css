@@ -233,6 +233,9 @@ header {
   border: 2px solid #008cff;
   box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
 }
+.message:hover {
+  transform: scale(1.2);
+}
 .message .delete {
   display: inline-block;
   float: right;
@@ -306,11 +309,12 @@ header {
   flex-wrap: wrap;
 }
 .user {
-  max-width: 33%;
-  flex: 33%;
+  max-width: 30%;
+  flex: 30%;
   border: #008cff 2px solid;
   border-radius: 15px;
   margin-left: 10px;
+  margin-bottom: 20px;
 }
 .user .user-header {
   background: #008cff;

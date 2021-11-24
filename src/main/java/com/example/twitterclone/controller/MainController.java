@@ -3,6 +3,7 @@ package com.example.twitterclone.controller;
 import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
+import com.mysql.cj.xdevapi.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -31,9 +34,17 @@ public class MainController {
 	@GetMapping("main")
 	public String main(@AuthenticationPrincipal User user, Model model) {
 		//Создаем список и передаем туда все сообщения найденные с соответствующей таблицы
+		//!(ВАЖНО) Элементы в messages забираются из БД в порядке от старых к новым!!!!!! Дальше это исправим
 		Iterable<Message> messages = messageRepository.findAll();
+
+		//Создаем простой список и добавляем туда все элементы из messages
+		ArrayList<Message> list = new ArrayList();
+		//добавляем все из messages
+		messages.forEach(list::add);
+		//Разворачиваем наш список, чтобы сперва отображились последние добавленные сообщения (от новых с старым)
+		Collections.reverse(list);
 		//Передаем список в модель, для отображения на странице
-		model.addAttribute("messages", messages);
+		model.addAttribute("messages", list);
 		model.addAttribute("user", user);
 		return "main";
 	}
@@ -71,14 +82,15 @@ public class MainController {
 
 	@PostMapping("/main/{message}")
 	public String deleteMessage(@PathVariable Message message) {
-		if(message != null){
+		if (message != null) {
 			messageRepository.delete(message);
 		}
 		return "redirect:/main";
 	}
 
 	@GetMapping("/main/user/{user}")
-	public String userProfilePage(@PathVariable User user, Model model){
+	public String userProfilePage(@PathVariable User user, @AuthenticationPrincipal User currentUser, Model model) {
+		model.addAttribute("currentuser", currentUser);
 		model.addAttribute("user", user);
 		List<Message> byUser = messageRepository.findByAuthor(user);
 		model.addAttribute("messages", byUser);

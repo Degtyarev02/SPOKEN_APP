@@ -4,7 +4,7 @@
         <#list messages as message>
             <div class="message">
                 <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a></span>
-                <#if message.author.id == user.id>
+                <#if message.author.id == currentuser.id>
                     <form action="/main/${message.id}" method="post">
                         <button type="submit">X</button>
                     </form>
