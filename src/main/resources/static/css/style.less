@@ -243,7 +243,10 @@ header {
 }
 
 .add-message-field {
+  display: flex;
+
   input {
+    margin-right:  5px;
     width:         300px;
     height:        50px;
     padding-left:  15px;
@@ -256,6 +259,29 @@ header {
 
   .tag {
     width: 100px;
+  }
+
+  #file {
+    height:   0;
+    width:    0;
+    overflow: hidden;
+    display:  none;
+  }
+
+  [type="file"] + label {
+    width:          50px;
+    height:         50px;
+    background:     @secondary-white;
+    border:         none;
+    border-radius:  10px;
+    cursor:         pointer;
+    outline:        none;
+    position:       relative;
+    transition:     all 0.3s;
+    margin-right:   5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   button {
@@ -279,7 +305,8 @@ header {
   border-radius: 20px;
   border:        2px solid @primary;
   box-shadow:    0 0 82px -19px rgba(34, 60, 80, 0.4);
-  &:hover{
+
+  &:hover {
     transform: scale(1.2);
   }
 
@@ -293,6 +320,19 @@ header {
       cursor:     pointer;
       color:      @secondary-white;
       font-size:  15px;
+    }
+  }
+
+  .content-container {
+    display:         flex;
+    justify-content: center;
+    padding:         5px;
+
+    img {
+      width:      100%;
+      height:     100%;
+      max-width:  300px;
+      max-height: 260px;
     }
   }
 
@@ -401,6 +441,7 @@ header {
 
     a {
       color: green;
+
       &:visited {
         color: green;
       }
@@ -408,10 +449,10 @@ header {
 
     input {
       background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 17px;
-      color: darkred;
+      border:     none;
+      cursor:     pointer;
+      font-size:  17px;
+      color:      darkred;
     }
   }
 }

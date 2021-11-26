@@ -7,7 +7,7 @@
         <div class="header">
             <h2>SPOKEN</h2>
             <form action="filter" method="post" class="filter">
-                <input type="text" name="filter" placeholder="Search by tag">
+                <input type="text" name="filter" placeholder="Search by tag" value="${filter!}">
                 <button type="submit">Search</button>
             </form>
         </div>
@@ -15,11 +15,10 @@
 
 
     <div class="main-message-page">
-        <form method="post" class="add-message-field">
+        <form method="post" class="add-message-field" enctype="multipart/form-data">
             <input class="tag" type="text" name="tag" placeholder="Tag">
-
             <input class="text" type="text" name="text" placeholder="Enter a message">
-
+            <input id="file" type="file" name="file"> <label for="file"><img width="50" height="50" src="../static/img/photo.png" alt=""></label>
             <button type="submit">Добавить</button>
             <#if tagError??>
                 <div>
@@ -42,6 +41,11 @@
                     </form>
                 </#if>
                     </span>
+                <div class="content-container">
+                    <#if  message.filename??>
+                        <img src="../static/img/server_img/${message.filename}">
+                    </#if>
+                </div>
                 <span class="message-text">${message.text}</span>
                 <span class="message-tag">#${message.tag}</span>
 

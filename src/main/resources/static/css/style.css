@@ -201,7 +201,11 @@ header {
   align-items: center;
   margin-top: 80px;
 }
+.add-message-field {
+  display: flex;
+}
 .add-message-field input {
+  margin-right: 5px;
   width: 300px;
   height: 50px;
   padding-left: 15px;
@@ -213,6 +217,27 @@ header {
 }
 .add-message-field .tag {
   width: 100px;
+}
+.add-message-field #file {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  display: none;
+}
+.add-message-field [type="file"] + label {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: all 0.3s;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .add-message-field button {
   background: #008cff;
@@ -246,6 +271,17 @@ header {
   cursor: pointer;
   color: #ffffff;
   font-size: 15px;
+}
+.message .content-container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+.message .content-container img {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  max-height: 260px;
 }
 .message span {
   display: block;

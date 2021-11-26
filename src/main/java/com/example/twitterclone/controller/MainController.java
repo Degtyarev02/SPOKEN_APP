@@ -5,6 +5,7 @@ import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
 import com.mysql.cj.xdevapi.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class MainController {
@@ -30,6 +35,9 @@ public class MainController {
 	public String greeting() {
 		return "greeting";
 	}
+
+	@Value("${upload.path}")
+	private String uploadPath;
 
 	@GetMapping("main")
 	public String main(@AuthenticationPrincipal User user, Model model) {
@@ -54,7 +62,8 @@ public class MainController {
 	public String addMessage(@AuthenticationPrincipal User user,
 							 @Valid Message message,
 							 BindingResult bindingResult,
-							 Model model) {
+							 Model model,
+							 @RequestParam("file") MultipartFile file) throws IOException {
 
 		if (bindingResult.hasErrors()) {
 			List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
@@ -65,8 +74,28 @@ public class MainController {
 			}
 		} else {
 			message.setAuthor(user);
+
+			//Получаем в форме файл и проверяем существует ли он
+			if (file != null) {
+				//Создаем путь до папки, в которую будут сохраняться файлы
+				File uploadDir = new File(uploadPath);
+				//Если эта папка не существует, то создадим ее
+				if (!uploadDir.exists()) {
+					uploadDir.mkdir();
+				}
+				//Обезопасим коллизию и создадим уникальное имя для файла
+				String uuidFile = UUID.randomUUID().toString();
+				String fileName = uuidFile + "." + file.getOriginalFilename();
+				//Перемещаем файл в папку
+				file.transferTo(new File(uploadPath + "/" + fileName));
+				//Устанавливаем имя файла для объекта message
+				message.setFilename(fileName);
+			}
+
 			messageRepository.save(message);
 		}
+
+
 		Iterable<Message> messages = messageRepository.findAll();
 		model.addAttribute("messages", messages);
 		return "redirect:/main";
