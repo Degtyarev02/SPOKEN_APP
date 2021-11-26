@@ -91,11 +91,9 @@ public class MainController {
 				//Устанавливаем имя файла для объекта message
 				message.setFilename(fileName);
 			}
-
+			model.addAttribute("message", null);
 			messageRepository.save(message);
 		}
-
-
 		Iterable<Message> messages = messageRepository.findAll();
 		model.addAttribute("messages", messages);
 		return "redirect:/main";

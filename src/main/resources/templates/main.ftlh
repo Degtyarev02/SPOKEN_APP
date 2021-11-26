@@ -43,7 +43,7 @@
                     </span>
                 <div class="content-container">
                     <#if  message.filename??>
-                        <img src="../static/img/server_img/${message.filename}">
+                        <img src="/img/${message.filename}">
                     </#if>
                 </div>
                 <span class="message-text">${message.text}</span>
