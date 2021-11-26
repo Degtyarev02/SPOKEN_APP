@@ -76,7 +76,7 @@ public class MainController {
 			message.setAuthor(user);
 
 			//Получаем в форме файл и проверяем существует ли он
-			if (file != null) {
+			if (file != null && !file.getOriginalFilename().isEmpty()) {
 				//Создаем путь до папки, в которую будут сохраняться файлы
 				File uploadDir = new File(uploadPath);
 				//Если эта папка не существует, то создадим ее
@@ -112,6 +112,10 @@ public class MainController {
 	@PostMapping("/main/{message}")
 	public String deleteMessage(@PathVariable Message message) {
 		if (message != null) {
+			File file = new File(uploadPath + "/" + message.getFilename());
+			if(file.delete()) {
+				System.out.println("delete");
+			}
 			messageRepository.delete(message);
 		}
 		return "redirect:/main";
