@@ -13,6 +13,9 @@
                     Без статуса
                 </#if>
             </span>
+            <#if user?? && currentuser.id == user.id>
+            <a href="/main/edit/${user.id}">Редактировать</a>
+            </#if>
         </div>
     </div>
 

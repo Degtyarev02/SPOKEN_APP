@@ -3,6 +3,7 @@ package com.example.twitterclone.controller;
 import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
+import com.example.twitterclone.repos.UserRepo;
 import com.mysql.cj.xdevapi.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,13 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class MainController {
+
+	@Autowired
+	UserRepo userRepo;
 
 	@Autowired
 	private MessageRepository messageRepository;
@@ -111,7 +112,7 @@ public class MainController {
 	public String deleteMessage(@PathVariable Message message) {
 		if (message != null) {
 			File file = new File(uploadPath + "/" + message.getFilename());
-			if(file.delete()) {
+			if (file.delete()) {
 				System.out.println("delete");
 			}
 			messageRepository.delete(message);
@@ -129,6 +130,37 @@ public class MainController {
 		Collections.reverse(byUser);
 		model.addAttribute("messages", byUser);
 		return "user_profile";
+	}
+
+	//Контроллер для редактирования пользователя
+	@GetMapping("/main/edit/{user}")
+	public String selfEdit(@PathVariable User user, Model model) {
+		model.addAttribute("user", user);
+		return "self_edit";
+	}
+
+	@PostMapping("/main/edit/{user}")
+	public String saveEditUser(
+			@PathVariable User user,
+			//Получаем все данные из всех полей в форме
+			@RequestParam Map<String, String> form) {
+
+		//Получаем новое имя и статус пользователя
+		String newUsername = form.get("username");
+		String newStatus = form.get("status");
+
+		//Проверка на существование пользователя
+		//ЭТОТ ЖЕ ПРИНЦИП ИСПОЛЬЗУЕТСЯ В ДРУГИХ КОНТРОЛЛЕРАХ, ВЫНЕСТИ В ЮЗЕРСЕРВИС (???)
+		User existUser = userRepo.findByUsername(newUsername);
+		if (existUser != null && !newUsername.equals(user.getUsername())) {
+			return "redirect:/main/edit/" + user.getId();
+		}
+
+		//Сохраняем отредактированного пользователя 
+		user.setUsername(newUsername);
+		user.setStatus(newStatus);
+		userRepo.save(user);
+		return "redirect:/main/user/" + user.getId();
 	}
 
 

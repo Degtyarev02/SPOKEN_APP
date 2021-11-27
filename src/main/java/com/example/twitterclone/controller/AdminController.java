@@ -40,6 +40,7 @@ public class AdminController {
 		return "admin_dashboard";
 	}
 
+	//Данный фильтр ищет пользователя по имени
 	@PostMapping("filter")
 	public String searchByName(@AuthenticationPrincipal User user, @RequestParam String filter, Model model) {
 		model.addAttribute("user", user);
@@ -55,25 +56,33 @@ public class AdminController {
 		return "edit_user";
 	}
 
-	//Добавить комментарии
 
 	@PostMapping("/edit/{user}")
-	public String editUser(@RequestParam String username,
+	public String editUser(//Получаем все данные из формы
 						   @RequestParam Map<String, String> form,
 						   @PathVariable User user) {
-		user.setUsername(username);
 
+
+		//Проверяем, что такой пользователь не существует, получая пользователя из userRepo
+		User existUser = userRepo.findByUsername(form.get("username"));
+		if (existUser != null && !form.get("username").equals(user.getUsername())) {
+			return "redirect:/admin/edit/" + user.getId();
+		}
+
+		//Получаем все значения ролей из enum
 		Set<String> roles = Arrays.stream(Role.values())
 				.map(Role::name)
 				.collect(Collectors.toSet());
-
+		//Очищаем все роли у пользователя
 		user.getRoles().clear();
 
+		//Устанавливаем выбранные роли
 		for (String key : form.keySet()) {
 			if (roles.contains(key)) {
 				user.getRoles().add(Role.valueOf(key));
 			}
 		}
+		user.setUsername(form.get("username"));
 		userRepo.save(user);
 		return "redirect:/admin/";
 	}
