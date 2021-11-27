@@ -156,7 +156,7 @@ public class MainController {
 			return "redirect:/main/edit/" + user.getId();
 		}
 
-		//Сохраняем отредактированного пользователя 
+		//Сохраняем отредактированного пользователя
 		user.setUsername(newUsername);
 		user.setStatus(newStatus);
 		userRepo.save(user);

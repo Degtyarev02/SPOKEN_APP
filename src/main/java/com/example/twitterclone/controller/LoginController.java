@@ -24,7 +24,6 @@ public class LoginController extends WebMvcConfigurerAdapter {
 		if (bindingResult.hasErrors()) {
 			List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
 			for (FieldError error : fieldErrorList) {
-				System.out.println(error.getField()+"Error" + " " + error.getDefaultMessage());
 				model.addAttribute(error.getField()+"Error", error.getDefaultMessage());
 			}
 			return "login";
