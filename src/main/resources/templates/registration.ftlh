@@ -61,7 +61,7 @@
                 <a href="/login" class="registration">Sign in</a>
                 ${message!""}
             </form>
-            <img src="../static/img/share.png" alt="" width="850" height="540">
+            <img src="../static/img/serverimg/share.png" alt="" width="850" height="540">
         </div>
     </div>
 </@c.mainpage>

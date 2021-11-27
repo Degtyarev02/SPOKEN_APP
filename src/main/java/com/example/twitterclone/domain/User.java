@@ -26,13 +26,16 @@ public class User implements UserDetails {
 	@Transient
 	private String password2;
 
+	private String status;
+	private String iconname;
+
 	private boolean active;
 
 	@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-	@CollectionTable(name = "user_role", joinColumns = @JoinColumn(name="user_id"),
+	@CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
 			foreignKey = @ForeignKey(
-			name = "user_fk",
-			foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE")
+					name = "user_fk",
+					foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE")
 	)
 	@Enumerated(EnumType.STRING)
 	private Set<Role> roles;
@@ -86,8 +89,25 @@ public class User implements UserDetails {
 		this.password2 = password2;
 	}
 
-	public boolean isAdmin(){
+	public boolean isAdmin() {
 		return roles.contains(Role.ADMIN);
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getIconname() {
+		return iconname;
+	}
+
+	public void setIconname(String iconname) {
+		this.iconname = iconname;
 	}
 
 	@Override

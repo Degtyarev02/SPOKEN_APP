@@ -18,7 +18,7 @@
         <form method="post" class="add-message-field" enctype="multipart/form-data">
             <input class="tag" type="text" name="tag" placeholder="Tag">
             <input class="text" type="text" name="text" placeholder="Enter a message">
-            <input id="file" type="file" name="file"> <label for="file"><img width="50" height="50" src="../static/img/photo.png" alt=""></label>
+            <input id="file" type="file" name="file"> <label for="file"><img width="50" height="50" src="../static/img/serverimg/photo.png" alt=""></label>
             <button type="submit">Добавить</button>
             <#if tagError??>
                 <div>

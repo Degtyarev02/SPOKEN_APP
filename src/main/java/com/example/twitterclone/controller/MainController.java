@@ -119,11 +119,14 @@ public class MainController {
 		return "redirect:/main";
 	}
 
+
+	//Контроллер, который выводит информацию об отдельном пользователе
 	@GetMapping("/main/user/{user}")
 	public String userProfilePage(@PathVariable User user, @AuthenticationPrincipal User currentUser, Model model) {
 		model.addAttribute("currentuser", currentUser);
 		model.addAttribute("user", user);
 		List<Message> byUser = messageRepository.findByAuthor(user);
+		Collections.reverse(byUser);
 		model.addAttribute("messages", byUser);
 		return "user_profile";
 	}
