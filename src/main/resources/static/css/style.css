@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', cursive;
+  font-family: 'Mulish', serif;
   transition: 0.3s linear;
 }
 *:focus {
@@ -398,5 +398,12 @@ header {
   width: fit-content;
   max-width: 712px;
   padding: 30px;
+}
+.profile-info .main-info h3 {
+  font-size: 30px;
+  color: #5e5e5e;
+}
+.profile-info .main-info span {
+  color: lighter(#5e5e5e, 10%);
 }
 /*# sourceMappingURL=style.css.map */
