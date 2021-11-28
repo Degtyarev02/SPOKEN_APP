@@ -143,7 +143,8 @@ public class MainController {
 	public String saveEditUser(
 			@PathVariable User user,
 			//Получаем все данные из всех полей в форме
-			@RequestParam Map<String, String> form) {
+			@RequestParam Map<String, String> form,
+			@RequestParam("file") MultipartFile file) throws IOException {
 
 		//Получаем новое имя и статус пользователя
 		String newUsername = form.get("username");
@@ -156,6 +157,30 @@ public class MainController {
 			return "redirect:/main/edit/" + user.getId();
 		}
 
+		if (file != null && !file.getOriginalFilename().isEmpty()) {
+
+			//Если у пользователя уже стоит аватарка, то удаляем старую
+			if(user.getIconname() != null){
+				File deletable = new File(uploadPath + "/" + user.getIconname());
+				if (deletable.delete()) {
+					System.out.println("delete");
+				}
+			}
+
+			//Создаем путь до папки, в которую будут сохраняться файлы
+			File uploadDir = new File(uploadPath);
+			//Если эта папка не существует, то создадим ее
+			if (!uploadDir.exists()) {
+				uploadDir.mkdir();
+			}
+			//Обезопасим коллизию и создадим уникальное имя для файла
+			String uuidFile = UUID.randomUUID().toString();
+			String fileName = uuidFile + "." + file.getOriginalFilename();
+			//Перемещаем файл в папку
+			file.transferTo(new File(uploadPath + "/" + fileName));
+			//Устанавливаем имя файла для объекта message
+			user.setIconname(fileName);
+		}
 		//Сохраняем отредактированного пользователя
 		user.setUsername(newUsername);
 		user.setStatus(newStatus);

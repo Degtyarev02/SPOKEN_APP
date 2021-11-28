@@ -475,11 +475,21 @@ header {
 }
 
 //Профиль пользователя (дизайн списка сообщений прописан выше в стилях главной страницы)
+
+.container-profile {
+  display:         flex;
+  justify-content: center;
+}
+
 .profile-info {
   display:         flex;
   justify-content: center;
   align-items:     center;
   margin-top:      60px;
+  padding:         50px 80px;
+  box-shadow:      0 0 46px -7px rgba(154, 154, 154, 0.2);
+  width:           fit-content;
+  border-radius:   20px;
 
   .icon {
     width:         256px;
@@ -556,5 +566,78 @@ footer {
         height: 42px;
       }
     }
+  }
+}
+
+//Редактирование пользователя (профиль)
+.edit_self_profile {
+  margin-top:      100px;
+  display:         flex;
+  justify-content: center;
+
+  .editble {
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+    padding:        50px;
+    border-radius:  20px;
+    box-shadow:     0 0 46px -7px rgba(154, 154, 154, 0.2);
+
+    > * {
+      margin-bottom: 30px;
+    }
+
+    h3 {
+      font-size: 30px;
+      color:     @primary;
+    }
+
+    [type="text"] {
+      width:         400px;
+      height:        50px;
+      padding:       15px;
+      border:        2px @primary solid;
+      border-radius: 15px;
+      color:         @secondary-grey;
+      background:    @secondary-white;
+      font-size:     17px;
+    }
+
+    .status_edit_textarea {
+      height: 150px !important;
+    }
+
+    .save_btn {
+      border:         none;
+      cursor:         pointer;
+      background:     @primary;
+      color:          @secondary-white;
+      width:          400px;
+      height:         50px;
+      border-radius:  20px;
+      text-transform: uppercase;
+      font-size:      16px;
+    }
+  }
+
+  [type="file"] + label {
+    background:      @secondary-white;
+    border:          none;
+    border-radius:   10px;
+    cursor:          pointer;
+    outline:         none;
+    position:        relative;
+    transition:      all 0.3s;
+    margin-right:    5px;
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+  }
+
+  #file {
+    height:   0;
+    width:    0;
+    overflow: hidden;
+    display:  none;
   }
 }

@@ -1,11 +1,18 @@
 <#import "parts/footer.ftlh" as f>
 <#import "parts/common.ftlh" as c>
+<#assign userhasicon = user.iconname??>
 
 <@c.mainpage>
-<form action="/main/edit/${user.id}" method="post">
-    <input type="text" name="username" placeholder="Username" value="${user.username}">
-    <textarea type="text" name="status" placeholder="Status">${user.status}</textarea>
-    <button type="submit">Save</button>
-</form>
-<@f.footer></@f.footer>
+    <form class="edit_self_profile" action="/main/edit/${user.id}" method="post" enctype="multipart/form-data">
+        <div class="editble">
+            <h3>Редактирование профиля</h3>
+            <input id="file" type="file" name="file"> <label for="file"><img width="200" height="200"
+                                                                             src="/img/${userhasicon?then(user.iconname, "profile.png")}"
+                                                                             alt=""></label>
+            <input type="text" name="username" placeholder="Username" value="${user.username}">
+            <textarea class="status_edit_textarea" type="text" name="status" placeholder="Status">${user.status!""}</textarea>
+            <button class="save_btn" type="submit">Save</button>
+        </div>
+    </form>
+    <@f.footer></@f.footer>
 </@c.mainpage>

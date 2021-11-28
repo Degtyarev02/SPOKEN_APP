@@ -399,11 +399,19 @@ header {
   font-size: 17px;
   color: darkred;
 }
+.container-profile {
+  display: flex;
+  justify-content: center;
+}
 .profile-info {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 60px;
+  padding: 50px 80px;
+  box-shadow: 0 0 46px -7px rgba(154, 154, 154, 0.2);
+  width: fit-content;
+  border-radius: 20px;
 }
 .profile-info .icon {
   width: 256px;
@@ -467,5 +475,68 @@ footer .social-media a {
 footer .social-media a img {
   width: 42px;
   height: 42px;
+}
+.edit_self_profile {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+.edit_self_profile .editble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 0 46px -7px rgba(154, 154, 154, 0.2);
+}
+.edit_self_profile .editble > * {
+  margin-bottom: 30px;
+}
+.edit_self_profile .editble h3 {
+  font-size: 30px;
+  color: #008cff;
+}
+.edit_self_profile .editble [type="text"] {
+  width: 400px;
+  height: 50px;
+  padding: 15px;
+  border: 2px #008cff solid;
+  border-radius: 15px;
+  color: #444444;
+  background: #ffffff;
+  font-size: 17px;
+}
+.edit_self_profile .editble .status_edit_textarea {
+  height: 150px !important;
+}
+.edit_self_profile .editble .save_btn {
+  border: none;
+  cursor: pointer;
+  background: #008cff;
+  color: #ffffff;
+  width: 400px;
+  height: 50px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.edit_self_profile [type="file"] + label {
+  background: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: all 0.3s;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit_self_profile #file {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

@@ -3,25 +3,26 @@
 <#assign userhasicon = user.iconname??>
 <@c.mainpage>
 
-    <div class="profile-info">
-        <img class="icon" src="/img/${userhasicon?then(user.iconname, "profile.png")}" alt="">
-        <div class="main-info">
-            <h3>${user.username}</h3>
-            <span>
+    <div class="container-profile">
+        <div class="profile-info">
+            <img class="icon" src="/img/${userhasicon?then(user.iconname, "profile.png")}" alt="">
+            <div class="main-info">
+                <h3>${user.username}</h3>
+                <span>
                 <#if user.status??>
                     ${user.status}
                 <#else>
                     Без статуса
                 </#if>
             </span>
-            <#if user?? && currentuser.id == user.id>
-            <a href="/main/edit/${user.id}">Редактировать</a>
-            </#if>
+                <#if user?? && currentuser.id == user.id>
+                    <a href="/main/edit/${user.id}">Редактировать</a>
+                </#if>
+            </div>
         </div>
     </div>
 
     <div class="main-message-page">
-        <hr>
         <#list messages as message>
             <div class="message">
                 <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a>
