@@ -1,4 +1,5 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/footer.ftlh" as f>
 <@c.mainpage>
     <header>
         <form action="/logout" method="post" class="logout">
@@ -14,7 +15,7 @@
     </header>
 
 
-    <div class="main-message-page">
+    <section class="main-message-page">
         <form method="post" class="add-message-field" enctype="multipart/form-data">
             <input class="tag" type="text" name="tag" placeholder="Tag">
             <input class="text" type="text" name="text" placeholder="Enter a message">
@@ -53,5 +54,7 @@
         <#else>
             <div>No messages</div>
         </#list>
-    </div>
+    </section>
+
+    <@f.footer></@f.footer>
 </@c.mainpage>

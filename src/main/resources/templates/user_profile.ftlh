@@ -1,4 +1,5 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/footer.ftlh" as f>
 <#assign userhasicon = user.iconname??>
 <@c.mainpage>
 
@@ -19,12 +20,12 @@
         </div>
     </div>
 
-
     <div class="main-message-page">
+        <hr>
         <#list messages as message>
             <div class="message">
                 <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a>
-                <#if user?? && message.author.id == user.id>
+                <#if user?? && user.id == currentuser.id>
                     <form class="delete" action="/main/${message.id}" method="post">
                         <button type="submit">X</button>
                     </form>
@@ -42,4 +43,5 @@
             <div>No messages</div>
         </#list>
     </div>
+    <@f.footer></@f.footer>
 </@c.mainpage>

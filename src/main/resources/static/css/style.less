@@ -1,6 +1,6 @@
 //Variables
 @primary:         #008cff;
-@secondary-grey:  #5e5e5e;
+@secondary-grey:  #444444;
 @secondary-white: #ffffff;
 
 
@@ -16,8 +16,26 @@
   }
 }
 
+hr {
+  border:           none; /* Убираем границу */
+  background-color: @primary; /* Цвет линии */
+  color:            @primary; /* Цвет линии для IE6-7 */
+  height:           1px; /* Толщина линии */
+  width:            70%;
+}
+
 a {
   text-decoration: none;
+}
+
+body {
+  display:        flex;
+  flex-direction: column;
+  min-height:     100vh;
+
+  > :nth-last-child(2) {
+    margin-bottom: 100px;
+  }
 }
 
 
@@ -187,8 +205,8 @@ header {
 
 .logout {
   button {
-    position: absolute;
-    right: 30px;
+    position:      absolute;
+    right:         30px;
     padding:       5px 15px;
     margin-top:    20px;
     border-radius: 25%;
@@ -484,6 +502,59 @@ header {
     span {
       color: lighter(@secondary-grey, 10%);
     }
+
+    a {
+      display:       block;
+      padding:       20px 30px;
+      background:    @primary;
+      margin-top:    20px;
+      border-radius: 20px;
+      text-align:    center;
+      color:         @secondary-white;
+
+      &:hover {
+        background: darken(@primary, 10%);
+      }
+    }
   }
 }
 
+//Футер
+footer {
+  background:      @primary;
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  padding:         50px;
+  margin-top:      auto;
+
+
+  h2 {
+    color:         @secondary-grey;
+    margin-bottom: 60px;
+
+  }
+
+  .social-media {
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+
+    a {
+      margin-right:    10px;
+      margin-left:     10px;
+      display:         flex;
+      flex-direction:  column;
+      align-items:     center;
+      justify-content: center;
+      text-decoration: none;
+      color:           white;
+
+      img {
+        width:  42px;
+        height: 42px;
+      }
+    }
+  }
+}

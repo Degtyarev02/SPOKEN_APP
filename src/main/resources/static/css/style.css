@@ -8,8 +8,27 @@
 *:focus {
   outline: none;
 }
+hr {
+  border: none;
+  /* Убираем границу */
+  background-color: #008cff;
+  /* Цвет линии */
+  color: #008cff;
+  /* Цвет линии для IE6-7 */
+  height: 1px;
+  /* Толщина линии */
+  width: 70%;
+}
 a {
   text-decoration: none;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body > :nth-last-child(2) {
+  margin-bottom: 100px;
 }
 .main {
   width: 100%;
@@ -95,7 +114,7 @@ a {
   padding-left: 15px;
   background: #ffffff;
   border: 2px solid #008cff;
-  color: #5e5e5e;
+  color: #444444;
   border-radius: 20px;
   font-size: 17px;
 }
@@ -118,7 +137,7 @@ a {
   padding-top: 16px;
   padding-bottom: 16px;
   border-radius: 20px;
-  background: #5e5e5e;
+  background: #444444;
   border: none;
   text-transform: uppercase;
   color: #ffffff;
@@ -128,7 +147,7 @@ a {
   text-decoration: none;
 }
 .login-form a:hover {
-  background: #454545;
+  background: #2b2b2b;
 }
 /*Главная страница*/
 header {
@@ -177,7 +196,7 @@ header {
   padding: 15px;
   border: 2px #008cff solid;
   border-radius: 15px 0 0 15px;
-  color: #5e5e5e;
+  color: #444444;
   background: #ffffff;
   border-right: none;
   font-size: 17px;
@@ -210,7 +229,7 @@ header {
   padding-left: 15px;
   background: #ffffff;
   border: 2px solid #008cff;
-  color: #5e5e5e;
+  color: #444444;
   border-radius: 10px;
   font-size: 17px;
 }
@@ -328,7 +347,7 @@ header {
   padding: 15px;
   border: 2px #008cff solid;
   border-radius: 15px;
-  color: #5e5e5e;
+  color: #444444;
   background: #ffffff;
   font-size: 17px;
 }
@@ -400,9 +419,53 @@ header {
 }
 .profile-info .main-info h3 {
   font-size: 30px;
-  color: #5e5e5e;
+  color: #444444;
 }
 .profile-info .main-info span {
-  color: lighter(#5e5e5e, 10%);
+  color: lighter(#444444, 10%);
+}
+.profile-info .main-info a {
+  display: block;
+  padding: 20px 30px;
+  background: #008cff;
+  margin-top: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+.profile-info .main-info a:hover {
+  background: #0070cc;
+}
+footer {
+  background: #008cff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  margin-top: auto;
+}
+footer h2 {
+  color: #444444;
+  margin-bottom: 60px;
+}
+footer .social-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+footer .social-media a {
+  margin-right: 10px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+}
+footer .social-media a img {
+  width: 42px;
+  height: 42px;
 }
 /*# sourceMappingURL=style.css.map */
