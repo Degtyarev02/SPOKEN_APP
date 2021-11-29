@@ -30,3 +30,8 @@
 ### Основная страницы
 
 ![img](img/main_page.jpg)
+
+
+### Профиль пользователя
+
+![img](img/profile_page.jpg)
