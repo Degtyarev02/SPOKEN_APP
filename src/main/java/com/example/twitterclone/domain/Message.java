@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 public class Message {
@@ -23,6 +25,9 @@ public class Message {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User author;
+
+
+	private Calendar date;
 
 	private String filename;
 
@@ -71,8 +76,29 @@ public class Message {
 		this.filename = filename;
 	}
 
+
 	public void setAuthor(User author) {
 		this.author = author;
+	}
+
+
+	public Calendar getDate() {
+		return date;
+	}
+
+	public String returnReformatDate() {
+		StringBuilder builder = new StringBuilder();
+
+		builder
+				.append(date.get(Calendar.HOUR_OF_DAY))
+				.append(":")
+				.append(date.get(Calendar.MINUTE));
+		return builder.toString();
+
+	}
+
+	public void setDate(Calendar date) {
+		this.date = date;
 	}
 
 	@Override

@@ -320,6 +320,13 @@ header {
 }
 .message .message-tag {
   font-style: italic;
+  display: flex;
+  height: 60px;
+  align-items: center;
+}
+.message .message-time {
+  display: inline;
+  margin-left: auto;
 }
 .admin-header {
   background: url(../img/serverimg/secondary-background.jpg) no-repeat center;

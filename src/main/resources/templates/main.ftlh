@@ -19,7 +19,9 @@
         <form method="post" class="add-message-field" enctype="multipart/form-data">
             <input class="tag" type="text" name="tag" placeholder="Tag">
             <input class="text" type="text" name="text" placeholder="Enter a message">
-            <input id="file" type="file" name="file"> <label for="file"><img width="50" height="50" src="../static/img/serverimg/photo.png" alt=""></label>
+            <input id="file" type="file" name="file"> <label for="file"><img width="50" height="50"
+                                                                             src="../static/img/serverimg/photo.png"
+                                                                             alt=""></label>
             <button type="submit">Добавить</button>
             <#if tagError??>
                 <div>
@@ -36,11 +38,11 @@
         <#list messages as message>
             <div class="message">
                 <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a>
-                <#if user?? && message.author.id == user.id>
-                    <form class="delete" action="/main/${message.id}" method="post">
+                    <#if user?? && message.author.id == user.id>
+                        <form class="delete" action="/main/${message.id}" method="post">
                         <button type="submit">X</button>
                     </form>
-                </#if>
+                    </#if>
                     </span>
                 <div class="content-container">
                     <#if  message.filename??>
@@ -48,7 +50,12 @@
                     </#if>
                 </div>
                 <span class="message-text">${message.text}</span>
-                <span class="message-tag">#${message.tag}</span>
+                <span class="message-tag">#${message.tag}
+                    <#if message.getDate()??>
+                        <span class="message-time">${message.returnReformatDate()}</span>
+                    </#if>
+                </span>
+
 
             </div>
         <#else>

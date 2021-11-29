@@ -38,7 +38,10 @@
                     </#if>
                 </div>
                 <span class="message-text">${message.text}</span>
-                <span class="message-tag">#${message.tag}</span>
+                <span class="message-tag">#${message.tag}
+                    <#if message.getDate()??>
+                        <span class="message-time">${message.returnReformatDate()}</span>
+                    </#if></span>
             </div>
         <#else>
             <div>No messages</div>

@@ -77,7 +77,8 @@ public class MainController {
 			}
 		} else {
 			message.setAuthor(user);
-
+			Calendar calendar = new GregorianCalendar();
+			message.setDate(calendar);
 			//Получаем в форме файл и проверяем существует ли он
 			if (file != null && !file.getOriginalFilename().isEmpty()) {
 				//Создаем путь до папки, в которую будут сохраняться файлы
