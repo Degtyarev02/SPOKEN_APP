@@ -32,13 +32,15 @@ public class MainController {
 	@Autowired
 	private MessageRepository messageRepository;
 
+	@Value("${upload.path}")
+	private String uploadPath;
+
+
 	@GetMapping("/")
 	public String greeting() {
 		return "greeting";
 	}
 
-	@Value("${upload.path}")
-	private String uploadPath;
 
 	@GetMapping("main")
 	public String main(@AuthenticationPrincipal User user, Model model) {
@@ -104,88 +106,27 @@ public class MainController {
 	@PostMapping("filter")
 	public String filter(@RequestParam String filter, Model model) {
 		List<Message> byTag = messageRepository.findByTag(filter);
+		Collections.reverse(byTag);
 		model.addAttribute("messages", byTag);
 		return "main";
 	}
 
+
+	//Контроллер для удаления отдельной записи
+	//Работает только для постов текущего пользователя
 	@PostMapping("/main/{message}")
 	public String deleteMessage(@PathVariable Message message) {
+		//Проверяем что удаляемое сообщение существует
 		if (message != null) {
+			//если есть прикрепленная картинка, то удаляем ее тоже
 			File file = new File(uploadPath + "/" + message.getFilename());
 			if (file.delete()) {
 				System.out.println("delete");
 			}
+			//Удаляем сообщения из БД
 			messageRepository.delete(message);
 		}
 		return "redirect:/main";
-	}
-
-
-	//Контроллер, который выводит информацию об отдельном пользователе
-	@GetMapping("/main/user/{user}")
-	public String userProfilePage(@PathVariable User user, @AuthenticationPrincipal User currentUser, Model model) {
-		model.addAttribute("currentuser", currentUser);
-		model.addAttribute("user", user);
-		List<Message> byUser = messageRepository.findByAuthor(user);
-		Collections.reverse(byUser);
-		model.addAttribute("messages", byUser);
-		return "user_profile";
-	}
-
-	//Контроллер для редактирования пользователя
-	@GetMapping("/main/edit/{user}")
-	public String selfEdit(@PathVariable User user, Model model) {
-		model.addAttribute("user", user);
-		return "self_edit";
-	}
-
-	@PostMapping("/main/edit/{user}")
-	public String saveEditUser(
-			@PathVariable User user,
-			//Получаем все данные из всех полей в форме
-			@RequestParam Map<String, String> form,
-			@RequestParam("file") MultipartFile file) throws IOException {
-
-		//Получаем новое имя и статус пользователя
-		String newUsername = form.get("username");
-		String newStatus = form.get("status");
-
-		//Проверка на существование пользователя
-		//ЭТОТ ЖЕ ПРИНЦИП ИСПОЛЬЗУЕТСЯ В ДРУГИХ КОНТРОЛЛЕРАХ, ВЫНЕСТИ В ЮЗЕРСЕРВИС (???)
-		User existUser = userRepo.findByUsername(newUsername);
-		if (existUser != null && !newUsername.equals(user.getUsername())) {
-			return "redirect:/main/edit/" + user.getId();
-		}
-
-		if (file != null && !file.getOriginalFilename().isEmpty()) {
-
-			//Если у пользователя уже стоит аватарка, то удаляем старую
-			if(user.getIconname() != null){
-				File deletable = new File(uploadPath + "/" + user.getIconname());
-				if (deletable.delete()) {
-					System.out.println("delete");
-				}
-			}
-
-			//Создаем путь до папки, в которую будут сохраняться файлы
-			File uploadDir = new File(uploadPath);
-			//Если эта папка не существует, то создадим ее
-			if (!uploadDir.exists()) {
-				uploadDir.mkdir();
-			}
-			//Обезопасим коллизию и создадим уникальное имя для файла
-			String uuidFile = UUID.randomUUID().toString();
-			String fileName = uuidFile + "." + file.getOriginalFilename();
-			//Перемещаем файл в папку
-			file.transferTo(new File(uploadPath + "/" + fileName));
-			//Устанавливаем имя файла для объекта message
-			user.setIconname(fileName);
-		}
-		//Сохраняем отредактированного пользователя
-		user.setUsername(newUsername);
-		user.setStatus(newStatus);
-		userRepo.save(user);
-		return "redirect:/main/user/" + user.getId();
 	}
 
 
