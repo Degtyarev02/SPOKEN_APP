@@ -35,6 +35,7 @@
             </#if>
         </form>
 
+
         <#list messages as message>
             <div class="message">
                 <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a>
@@ -55,8 +56,6 @@
                         <span class="message-time">${message.returnReformatDate()}</span>
                     </#if>
                 </span>
-
-
             </div>
         <#else>
             <div>No messages</div>
