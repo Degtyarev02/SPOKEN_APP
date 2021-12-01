@@ -47,7 +47,7 @@
                     </span>
                 <div class="content-container">
                     <#if  message.filename??>
-                        <img src="/img/${message.filename}">
+                        <img src="https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/${message.filename}">
                     </#if>
                 </div>
                 <span class="message-text">${message.text}</span>
