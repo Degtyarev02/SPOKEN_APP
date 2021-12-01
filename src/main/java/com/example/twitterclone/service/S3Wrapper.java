@@ -41,7 +41,6 @@ public class S3Wrapper {
 		return amazonS3Client;
 	}
 
-
 	private final AmazonS3Client s3Client = amazonS3Client();
 
 	private String bucket = "spokenresourcesbucket";

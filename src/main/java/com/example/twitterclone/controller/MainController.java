@@ -1,14 +1,11 @@
 package com.example.twitterclone.controller;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.Bucket;
-import com.example.twitterclone.config.StorageConfig;
 import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
 import com.example.twitterclone.service.S3Wrapper;
-import com.mysql.cj.xdevapi.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,11 +32,6 @@ public class MainController {
 
 	@Autowired
 	private MessageRepository messageRepository;
-
-	@Autowired
-	private AmazonS3 s3Client;
-
-	private String bucket = "spokenresourcesbucket";
 
 	@Value("${upload.path}")
 	private String uploadPath;
@@ -91,24 +83,15 @@ public class MainController {
 			message.setDate(calendar);
 			//Получаем в форме файл и проверяем существует ли он
 			if (file != null && !file.getOriginalFilename().isEmpty()) {
-				//Создаем путь до папки, в которую будут сохраняться файлы
-				/*File uploadDir = new File(uploadPath);
-				//Если эта папка не существует, то создадим ее
-				if (!uploadDir.exists()) {
-					uploadDir.mkdir();
-				}*/
 				//Обезопасим коллизию и создадим уникальное имя для файла
 				String uuidFile = UUID.randomUUID().toString();
 				String fileName = uuidFile + "." + file.getOriginalFilename();
-				//Перемещаем файл в папку
-				/*file.transferTo(new File(uploadPath + "/" + fileName));*/
+				//Загружаем файл на амазоновское хранилище
 				S3Wrapper wrapperService = new S3Wrapper();
 				MultipartFile[] multipartFiles = {file};
 				wrapperService.upload(multipartFiles, fileName);
 				//Устанавливаем имя файла для объекта message
 				message.setFilename(fileName);
-
-
 			}
 			model.addAttribute("message", null);
 			messageRepository.save(message);
