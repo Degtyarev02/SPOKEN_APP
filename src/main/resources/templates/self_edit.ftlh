@@ -7,7 +7,7 @@
         <div class="editble">
             <h3>Редактирование профиля</h3>
             <input id="file" type="file" name="file"> <label for="file"><img width="200" height="200"
-                                                                             src="/img/${userhasicon?then(user.iconname, "profile.png")}"
+                                                                             src="${userhasicon?then(user.iconname, "/static/img/serverimg/profile.png")}"
                                                                              alt=""></label>
             <input type="text" name="username" placeholder="Username" value="${user.username}">
             <textarea class="status_edit_textarea" type="text" name="status" placeholder="Status">${user.status!""}</textarea>

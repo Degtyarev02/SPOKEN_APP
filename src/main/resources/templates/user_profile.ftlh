@@ -5,7 +5,8 @@
 
     <div class="container-profile">
         <div class="profile-info">
-            <img class="icon" src="/img/${userhasicon?then(user.iconname, "profile.png")}" alt="">
+            <img class="icon" src="/static/img/serverimg/profile.png" alt="">
+
             <div class="main-info">
                 <h3>${user.username}</h3>
                 <span>
