@@ -5,10 +5,7 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.services.s3.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.io.IOUtils;
@@ -45,11 +42,7 @@ public class S3Wrapper {
 
 	private String bucket = "spokenresourcesbucket";
 
-	private PutObjectResult upload(String filePath, String uploadKey) throws FileNotFoundException {
-		return upload(new FileInputStream(filePath), uploadKey);
-	}
-
-	private PutObjectResult upload(InputStream inputStream, String uploadKey) {
+	public PutObjectResult upload(InputStream inputStream, String uploadKey) {
 		PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, uploadKey, inputStream, new ObjectMetadata());
 
 		putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead);
@@ -61,19 +54,11 @@ public class S3Wrapper {
 		return putObjectResult;
 	}
 
-	public List<PutObjectResult> upload(MultipartFile[] multipartFiles, String filename) {
-		List<PutObjectResult> putObjectResults = new ArrayList<>();
-
-		Arrays.stream(multipartFiles)
-				.filter(multipartFile -> !StringUtils.isEmpty(multipartFile.getOriginalFilename()))
-				.forEach(multipartFile -> {
-					try {
-						putObjectResults.add(upload(multipartFile.getInputStream(), filename));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				});
-
-		return putObjectResults;
+	public void deleteFile(final String keyName) {
+		final DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(bucket, keyName);
+		s3Client.deleteObject(deleteObjectRequest);
 	}
+
+
+
 }

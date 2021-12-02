@@ -37,6 +37,8 @@ public class MainController {
 	private String uploadPath;
 
 
+	S3Wrapper wrapperService = new S3Wrapper();
+
 	@GetMapping("/")
 	public String greeting() {
 		return "greeting";
@@ -87,9 +89,7 @@ public class MainController {
 				String uuidFile = UUID.randomUUID().toString();
 				String fileName = uuidFile + "." + file.getOriginalFilename();
 				//Загружаем файл на амазоновское хранилище
-				S3Wrapper wrapperService = new S3Wrapper();
-				MultipartFile[] multipartFiles = {file};
-				wrapperService.upload(multipartFiles, fileName);
+				wrapperService.upload(file.getInputStream(), fileName);
 				//Устанавливаем имя файла для объекта message
 				message.setFilename(fileName);
 			}
@@ -117,10 +117,9 @@ public class MainController {
 	public String deleteMessage(@PathVariable Message message) {
 		//Проверяем что удаляемое сообщение существует
 		if (message != null) {
-			//если есть прикрепленная картинка, то удаляем ее тоже
-			File file = new File(uploadPath + "/" + message.getFilename());
-			if (file.delete()) {
-				System.out.println("delete");
+			if(message.getFilename() != null) {
+				//если есть прикрепленная картинка, то удаляем ее тоже
+				wrapperService.deleteFile(message.getFilename());
 			}
 			//Удаляем сообщения из БД
 			messageRepository.delete(message);

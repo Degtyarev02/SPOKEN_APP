@@ -5,6 +5,7 @@ import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
+import com.example.twitterclone.service.S3Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,8 +28,7 @@ import java.util.UUID;
 public class UserController {
 
 
-	@Value("${upload.path}")
-	private String uploadPath;
+
 
 
 	@Autowired
@@ -36,6 +36,8 @@ public class UserController {
 
 	@Autowired
 	private MessageRepository messageRepository;
+
+	S3Wrapper s3Wrapper = new S3Wrapper();
 
 
 	//Контроллер, который выводит информацию об отдельном пользователе
@@ -76,23 +78,14 @@ public class UserController {
 		if (file != null && !file.getOriginalFilename().isEmpty()) {
 			//Если у пользователя уже стоит аватарка, то удаляем старую
 			if (user.getIconname() != null) {
-				File deletable = new File(uploadPath + "/" + user.getIconname());
-				if (deletable.delete()) {
-					System.out.println("delete");
-				}
+				s3Wrapper.deleteFile("profile/"+user.getIconname());
 			}
 
-			//Создаем путь до папки, в которую будут сохраняться файлы
-			File uploadDir = new File(uploadPath);
-			//Если эта папка не существует, то создадим ее
-			if (!uploadDir.exists()) {
-				uploadDir.mkdir();
-			}
 			//Обезопасим коллизию и создадим уникальное имя для файла
 			String uuidFile = UUID.randomUUID().toString();
 			String fileName = uuidFile + "." + file.getOriginalFilename();
 			//Перемещаем файл в папку
-			file.transferTo(new File(uploadPath + "/" + fileName));
+			s3Wrapper.upload(file.getInputStream(), "profile/"+fileName);
 			//Устанавливаем имя файла для объекта message
 			user.setIconname(fileName);
 		}
