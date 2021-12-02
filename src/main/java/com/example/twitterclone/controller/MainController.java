@@ -1,13 +1,11 @@
 package com.example.twitterclone.controller;
 
-import com.amazonaws.services.s3.AmazonS3;
 import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
 import com.example.twitterclone.service.S3Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -33,11 +30,8 @@ public class MainController {
 	@Autowired
 	private MessageRepository messageRepository;
 
-	@Value("${upload.path}")
-	private String uploadPath;
-
-
-	S3Wrapper wrapperService = new S3Wrapper();
+	@Autowired
+	S3Wrapper wrapperService;
 
 	@GetMapping("/")
 	public String greeting() {
@@ -74,7 +68,7 @@ public class MainController {
 		if (bindingResult.hasErrors()) {
 			List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
 			for (FieldError error : fieldErrorList) {
-				System.out.println(error.getField() + "Error" + " " + error.getDefaultMessage());
+				//Добавляем в модель все ошибки
 				model.addAttribute(error.getField() + "Error", error.getDefaultMessage());
 				return main(user, model);
 			}

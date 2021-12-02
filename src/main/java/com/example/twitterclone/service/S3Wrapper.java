@@ -31,7 +31,6 @@ import java.util.List;
 @Service
 public class S3Wrapper {
 
-
 	public AmazonS3Client amazonS3Client() {
 		AmazonS3Client amazonS3Client = new AmazonS3Client(new BasicAWSCredentials("AKIAYWPKIV2DI6AYK7UY", "I0m59qS3D5O+svBqZYJeUKYxuH1D501PtwyD4dPY"));
 		amazonS3Client.setRegion(Region.getRegion(Regions.US_EAST_2));

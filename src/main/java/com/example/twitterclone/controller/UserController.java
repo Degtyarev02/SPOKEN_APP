@@ -27,17 +27,14 @@ import java.util.UUID;
 @Controller
 public class UserController {
 
-
-
-
-
 	@Autowired
 	UserRepo userRepo;
 
 	@Autowired
 	private MessageRepository messageRepository;
 
-	S3Wrapper s3Wrapper = new S3Wrapper();
+	@Autowired
+	S3Wrapper s3Wrapper;
 
 
 	//Контроллер, который выводит информацию об отдельном пользователе
