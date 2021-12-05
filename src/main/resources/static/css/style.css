@@ -298,6 +298,7 @@ header {
   height: 100%;
   max-width: 300px;
   max-height: 260px;
+  object-fit: contain;
 }
 .message span {
   display: block;
@@ -325,6 +326,49 @@ header {
 .message .message-time {
   display: inline;
   margin-left: auto;
+}
+.message .send_comment {
+  display: flex;
+  justify-content: center;
+}
+.message .send_comment .input_comment {
+  width: 50vw;
+  margin-left: 20px;
+  height: 50px;
+  padding: 15px;
+  border: 2px #008cff solid;
+  border-radius: 15px;
+  color: #444444;
+  background: #ffffff;
+  font-size: 17px;
+}
+.message .send_comment .submit_comment {
+  margin-left: 20px;
+  margin-right: 20px;
+  background: #008cff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+}
+.message .comments {
+  margin-top: 30px;
+}
+.message .comments > :nth-child(even) {
+  background: #808080 !important;
+  color: #ffffff;
+}
+.message .comments .comment_one {
+  border-radius: 20px;
+  margin: 20px;
+  background: #e6e6e6;
+}
+.message .comments .comment_one .comment_author {
+  padding-bottom: 5px;
+}
+.message .comments .comment_one .comment_text {
+  padding-top: 5px;
 }
 .admin-header {
   background: url(../img/serverimg/secondary-background.jpg) no-repeat center;
@@ -459,7 +503,7 @@ footer {
   margin-top: auto;
 }
 footer h2 {
-  color: #444444;
+  color: #ffffff;
   margin-bottom: 60px;
 }
 footer .social-media {
@@ -475,7 +519,7 @@ footer .social-media a {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: white;
+  color: #ffffff;
 }
 footer .social-media a img {
   width: 42px;

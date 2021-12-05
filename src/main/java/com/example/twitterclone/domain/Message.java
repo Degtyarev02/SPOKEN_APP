@@ -1,6 +1,7 @@
 package com.example.twitterclone.domain;
 
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -8,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Message {
@@ -27,9 +30,8 @@ public class Message {
 	@JoinColumn(name = "user_id")
 	private User author;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = javax.persistence.CascadeType.REMOVE)
 	private List<Comment> comments;
-
 
 	private Calendar date;
 
@@ -90,6 +92,14 @@ public class Message {
 		return date;
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public String returnReformatDate() {
 		StringBuilder builder = new StringBuilder();
 
@@ -105,13 +115,6 @@ public class Message {
 		this.date = date;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
 
 	@Override
 	public String toString() {

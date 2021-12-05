@@ -128,16 +128,22 @@ public class MainController {
 	@PostMapping("/main/comment/{message}")
 	public String addComment(@PathVariable Message message,
 							 @RequestParam("message") String commentText) {
+		//Получаем дату создания комментария
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
+		//Создаем новый комментарий
 		Comment comment = new Comment();
+		//Устанавливаем для комментария текст, дату
 		comment.setText(commentText);
 		comment.setDate(calendar);
+		//Связываем комментарий с сообщением и автором
 		comment.setMessage(message);
 		comment.setAuthor(message.getAuthor());
+		//Добавляем комментарий в список комментариев текущего сообщения
 		List<Comment> comments = message.getComments();
 		comments.add(comment);
 		message.setComments(comments);
+		//Сохраняем в бд
 		commentRepository.save(comment);
 		return "redirect:/main";
 	}
