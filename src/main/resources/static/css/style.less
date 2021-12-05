@@ -412,7 +412,13 @@ header {
   .comments {
     margin-top: 30px;
 
-    > :nth-child(even) {
+    h2 {
+      margin-left: 20px;
+      color:       @secondary-grey !important;
+      font-size:   20px;
+    }
+
+    .comments-list span :nth-child(even) {
       background: darken(@secondary-white, 50%) !important;
       color:      @secondary-white;
     }
@@ -429,6 +435,12 @@ header {
       .comment_text {
         padding-top: 5px;
       }
+    }
+
+    h2 {
+      font-weight: 300;
+      font-size:   16px;
+      margin:      20px;
     }
   }
 }

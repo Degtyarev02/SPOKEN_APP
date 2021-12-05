@@ -61,14 +61,17 @@
                     <button class="submit_comment" type="submit">Отправить</button>
                 </form>
                 <div class="comments">
-                    <#list message.getComments() as comment>
-                        <div class="comment_one">
-                            <span class="comment_author">${comment.author.username}</span>
-                            <span class="comment_text">${comment.text}</span>
-                        </div>
-                    <#else>
-                        <span>No comments</span>
-                    </#list>
+                    <h2>Комментарии</h2>
+                    <div class="comments-list">
+                        <#list message.getComments() as comment>
+                            <div class="comment_one">
+                                <span class="comment_author">${comment.author.username}</span>
+                                <span class="comment_text">${comment.text}</span>
+                            </div>
+                        <#else>
+                            <h2>No comments</h2>
+                        </#list>
+                    </div>
                 </div>
             </div>
         <#else>
