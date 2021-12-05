@@ -5,7 +5,8 @@
 
     <div class="container-profile">
         <div class="profile-info">
-            <img class="icon" src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
+            <img class="icon"
+                 src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
                  alt="">
 
             <div class="main-info">
@@ -43,7 +44,21 @@
                 <span class="message-tag">#${message.tag}
                     <#if message.getDate()??>
                         <span class="message-time">${message.returnReformatDate()}</span>
-                    </#if></span>
+                    </#if>
+                </span>
+                <div class="comments">
+                    <h2>Комментарии</h2>
+                    <div class="comments-list">
+                        <#list message.getComments() as comment>
+                            <div class="comment_one">
+                                <span class="comment_author">${comment.author.username}</span>
+                                <span class="comment_text">${comment.text}</span>
+                            </div>
+                        <#else>
+                            <h2>No comments</h2>
+                        </#list>
+                    </div>
+                </div>
             </div>
         <#else>
             <div>No messages</div>
