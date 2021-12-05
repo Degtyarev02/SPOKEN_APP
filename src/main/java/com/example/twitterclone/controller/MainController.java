@@ -126,7 +126,9 @@ public class MainController {
 	}
 
 	@PostMapping("/main/comment/{message}")
-	public String addComment(@PathVariable Message message,
+	public String addComment(
+			@AuthenticationPrincipal User user,
+			@PathVariable Message message,
 							 Comment comment) {
 		//Получаем дату создания комментария
 		Calendar calendar = new GregorianCalendar();
@@ -135,7 +137,7 @@ public class MainController {
 		comment.setDate(calendar);
 		//Связываем комментарий с сообщением и автором
 		comment.setMessage(message);
-		comment.setAuthor(message.getAuthor());
+		comment.setAuthor(user);
 		//Добавляем комментарий в список комментариев текущего сообщения
 		List<Comment> comments = message.getComments();
 		comments.add(comment);
