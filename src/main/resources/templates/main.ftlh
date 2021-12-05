@@ -56,6 +56,18 @@
                         <span class="message-time">${message.returnReformatDate()}</span>
                     </#if>
                 </span>
+                <form class="send_comment" action="main/comment/${message.id}" method="post">
+                    <input class="input_comment" name="message" type="text" placeholder="Комментарий">
+                    <button class="submit_comment" type="submit">Отправить</button>
+                </form>
+                <div class="comments">
+                    <#list message.getComments() as comment>
+                        <span class="comment_author">${comment.author.username}</span>
+                        <span class="comment_text">${comment.text}</span>
+                    <#else>
+                        <span>No comments</span>
+                    </#list>
+                </div>
             </div>
         <#else>
             <div>No messages</div>

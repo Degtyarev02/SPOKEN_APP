@@ -1,7 +1,9 @@
 package com.example.twitterclone.controller;
 
+import com.example.twitterclone.domain.Comment;
 import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.domain.User;
+import com.example.twitterclone.repos.CommentRepository;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
 import com.example.twitterclone.service.S3Wrapper;
@@ -31,6 +33,9 @@ public class MainController {
 	private MessageRepository messageRepository;
 
 	@Autowired
+	private CommentRepository commentRepository;
+
+	@Autowired
 	S3Wrapper wrapperService;
 
 	@GetMapping("/")
@@ -44,7 +49,6 @@ public class MainController {
 		//Создаем список и передаем туда все сообщения найденные с соответствующей таблицы
 		//!(ВАЖНО) Элементы в messages забираются из БД в порядке от старых к новым!!!!!! Дальше это исправим
 		Iterable<Message> messages = messageRepository.findAll();
-
 		//Создаем простой список и добавляем туда все элементы из messages
 		ArrayList<Message> list = new ArrayList();
 		//добавляем все из messages
@@ -111,13 +115,30 @@ public class MainController {
 	public String deleteMessage(@PathVariable Message message) {
 		//Проверяем что удаляемое сообщение существует
 		if (message != null) {
-			if(message.getFilename() != null) {
+			if (message.getFilename() != null) {
 				//если есть прикрепленная картинка, то удаляем ее тоже
 				wrapperService.deleteFile(message.getFilename());
 			}
 			//Удаляем сообщения из БД
 			messageRepository.delete(message);
 		}
+		return "redirect:/main";
+	}
+
+	@PostMapping("/main/comment/{message}")
+	public String addComment(@PathVariable Message message,
+							 @RequestParam("message") String commentText) {
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
+		Comment comment = new Comment();
+		comment.setText(commentText);
+		comment.setDate(calendar);
+		comment.setMessage(message);
+		comment.setAuthor(message.getAuthor());
+		List<Comment> comments = message.getComments();
+		comments.add(comment);
+		message.setComments(comments);
+		commentRepository.save(comment);
 		return "redirect:/main";
 	}
 

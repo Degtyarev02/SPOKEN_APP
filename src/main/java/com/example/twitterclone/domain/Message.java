@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Message {
@@ -25,6 +26,9 @@ public class Message {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User author;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Comment> comments;
 
 
 	private Calendar date;
@@ -99,6 +103,14 @@ public class Message {
 
 	public void setDate(Calendar date) {
 		this.date = date;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override
