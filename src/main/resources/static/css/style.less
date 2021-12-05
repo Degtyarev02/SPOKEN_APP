@@ -707,3 +707,67 @@ footer {
     display:  none;
   }
 }
+
+//Редактирование пользователя (Только для админов)
+
+.section-admin-edit {
+  width:           100vw;
+  height:          100vh;
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+
+  .admin-edit-container {
+    padding:        30px;
+    border-radius:  20px;
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+    box-shadow:     0 4px 31px 0 rgba(34, 60, 80, 0.2);
+  }
+
+  .admin-edit-form {
+    margin-top:     30px;
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+
+    .username {
+      width:         100%;
+      height:        30px;
+      padding:       15px;
+      border:        2px @primary solid;
+      border-radius: 15px;
+      color:         @secondary-grey;
+      background:    @secondary-white;
+      font-size:     17px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin-top:     20px;
+      text-transform: uppercase;
+      cursor:         pointer;
+      background:     @primary;
+      color:          @secondary-white;
+      border:         none;
+      border-radius:  10px;
+      padding:        10px;
+    }
+
+    .container-of-roles {
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      flex-direction:  column;
+      width:           50%;
+
+      .check-boxes {
+        display:         flex;
+        align-items:     center;
+        justify-content: space-between;
+        width:           100%;
+      }
+    }
+  }
+}
