@@ -57,7 +57,7 @@
                     </#if>
                 </span>
                 <form class="send_comment" action="main/comment/${message.id}" method="post">
-                    <input class="input_comment" name="message" type="text" placeholder="Комментарий">
+                    <input class="input_comment" name="text" type="text" placeholder="Комментарий">
                     <button class="submit_comment" type="submit">Отправить</button>
                 </form>
                 <div class="comments">

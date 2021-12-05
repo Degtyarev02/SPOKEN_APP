@@ -127,14 +127,11 @@ public class MainController {
 
 	@PostMapping("/main/comment/{message}")
 	public String addComment(@PathVariable Message message,
-							 @RequestParam("message") String commentText) {
+							 Comment comment) {
 		//Получаем дату создания комментария
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
-		//Создаем новый комментарий
-		Comment comment = new Comment();
-		//Устанавливаем для комментария текст, дату
-		comment.setText(commentText);
+		//Устанавливаем для комментария дату
 		comment.setDate(calendar);
 		//Связываем комментарий с сообщением и автором
 		comment.setMessage(message);
