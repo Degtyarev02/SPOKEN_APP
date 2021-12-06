@@ -174,8 +174,62 @@ body {
   }
 }
 
+
+//Навигационная панель
+.navbar {
+  background:  rgba(255, 255, 255, 0);
+  position:    absolute;
+  width:       100%;
+  display:     flex;
+  align-items: center;
+
+  .menu {
+    margin-left:     50px;
+    margin-right:    auto;
+    width:           fit-content;
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+    height:          100px;
+    list-style:      none;
+
+    li {
+      color:          @secondary-white;
+      margin-left:    15px;
+      margin-right:   15px;
+      font-size:      20px;
+      padding-bottom: 5px;
+      transition:     .3s linear;
+
+      a {
+        &:visited {
+          color: @secondary-white;
+        }
+      }
+    }
+  }
+
+  .logout {
+    margin-right: 20px;
+
+    button {
+      padding:       5px 15px;
+      border-radius: 25%;
+      border:        @secondary-white 2px solid;
+      color:         @secondary-white;
+      background:    rgba(0, 0, 0, 0);
+      cursor:        pointer;
+
+      &:hover {
+        background: @secondary-white;
+        color:      @primary;
+      }
+    }
+  }
+}
+
 /*Главная страница*/
-header {
+.front_page {
   background: url(../img/serverimg/main-background.jpg) no-repeat center;
   box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
 }
@@ -194,27 +248,6 @@ header {
     text-transform:      uppercase;
     color:               @secondary-white;
     -webkit-text-stroke: 2px @primary;
-    position:            absolute;
-    top:                 10%;
-  }
-}
-
-.logout {
-  button {
-    position:      absolute;
-    right:         30px;
-    padding:       5px 15px;
-    margin-top:    20px;
-    border-radius: 25%;
-    border:        @primary 2px solid;
-    color:         @primary;
-    background:    rgba(0, 0, 0, 0);
-    cursor:        pointer;
-
-    &:hover {
-      background: @primary;
-      color:      @secondary-white;
-    }
   }
 }
 
@@ -433,7 +466,14 @@ header {
       }
 
       .comment_text {
-        padding-top: 5px;
+        padding-top:    5px;
+        padding-bottom: 5px;
+      }
+
+      .comment_time {
+        text-align:  end;
+        padding-top: 0;
+        font-size:   13px;
       }
     }
 
@@ -648,6 +688,7 @@ footer {
     padding:        50px;
     border-radius:  20px;
     box-shadow:     0 0 46px -7px rgba(154, 154, 154, 0.2);
+    margin-bottom:  80px;
 
     > * {
       margin-bottom: 30px;

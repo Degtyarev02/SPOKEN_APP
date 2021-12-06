@@ -1,10 +1,12 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/footer.ftlh" as f>
+<#import "parts/navbar.ftlh" as n>
 <@c.mainpage>
-    <header>
-        <form action="/logout" method="post" class="logout">
-            <button type="submit">X</button>
-        </form>
+
+    <@n.navbar></@n.navbar>
+
+
+    <section class="front_page">
         <div class="header">
             <h2>SPOKEN</h2>
             <form action="filter" method="post" class="filter">
@@ -12,7 +14,7 @@
                 <button type="submit">Search</button>
             </form>
         </div>
-    </header>
+    </section>
 
 
     <section class="main-message-page">

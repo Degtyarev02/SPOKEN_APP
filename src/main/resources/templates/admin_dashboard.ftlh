@@ -1,6 +1,7 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/navbar.ftlh" as n>
 <@c.mainpage>
-
+    <@n.navbar></@n.navbar>
     <div class="admin-header">
         <h2>Hello, ${user.username}</h2>
         <form action="/admin/filter" method="post">

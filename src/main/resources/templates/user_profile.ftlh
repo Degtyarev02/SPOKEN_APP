@@ -1,7 +1,10 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/footer.ftlh" as f>
+<#import "parts/navbar.ftlh" as n>
 <#assign userhasicon = user.iconname??>
 <@c.mainpage>
+
+    <@n.navbar></@n.navbar>
 
     <div class="container-profile">
         <div class="profile-info">
@@ -53,6 +56,7 @@
                             <div class="comment_one">
                                 <span class="comment_author">${comment.author.username}</span>
                                 <span class="comment_text">${comment.text}</span>
+                                <span class="comment_time">${comment.returnReformatDate()}</span>
                             </div>
                         <#else>
                             <h2>No comments</h2>

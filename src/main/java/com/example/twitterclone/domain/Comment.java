@@ -71,4 +71,24 @@ public class Comment {
 	public void setMessage(Message message) {
 		this.message = message;
 	}
+
+	public String returnReformatDate() {
+		StringBuilder builder = new StringBuilder();
+
+		//Если часов меньше 10, добавляем 0 в начале для двузначного числа
+		if (date.get(Calendar.HOUR_OF_DAY) < 10) {
+			builder.append("0");
+		}
+
+		builder.append(date.get(Calendar.HOUR_OF_DAY)).append(":");
+
+		//То же самое что и с часами
+		if (date.get(Calendar.MINUTE) < 10) {
+			builder.append("0");
+		}
+
+		builder.append(date.get(Calendar.MINUTE));
+		return builder.toString();
+
+	}
 }
