@@ -164,12 +164,13 @@ body {
   list-style: none;
 }
 .navbar .menu li {
-  color: #ffffff;
   margin-left: 15px;
   margin-right: 15px;
   font-size: 20px;
-  padding-bottom: 5px;
   transition: 0.3s linear;
+}
+.navbar .menu li a {
+  color: #ffffff;
 }
 .navbar .menu li a:visited {
   color: #ffffff;
