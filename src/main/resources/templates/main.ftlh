@@ -69,6 +69,7 @@
                             <div class="comment_one">
                                 <span class="comment_author">${comment.author.username}</span>
                                 <span class="comment_text">${comment.text}</span>
+                                <span class="comment_time">${comment.returnReformatDate()}</span>
                             </div>
                         <#else>
                             <h2>No comments</h2>
