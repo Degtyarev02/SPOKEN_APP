@@ -445,10 +445,16 @@ body {
   .comments {
     margin-top: 30px;
 
+    .comments-list{
+      overflow: hidden;
+      height: 0;
+    }
+
     h2 {
       margin-left: 20px;
       color:       @secondary-grey !important;
       font-size:   20px;
+      cursor: pointer;
     }
 
     .comments-list span :nth-child(even) {

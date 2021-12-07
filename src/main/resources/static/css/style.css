@@ -379,10 +379,15 @@ body {
 .message .comments {
   margin-top: 30px;
 }
+.message .comments .comments-list {
+  overflow: hidden;
+  height: 0;
+}
 .message .comments h2 {
   margin-left: 20px;
   color: #444444 !important;
   font-size: 20px;
+  cursor: pointer;
 }
 .message .comments .comments-list span :nth-child(even) {
   background: #808080 !important;

@@ -63,7 +63,7 @@
                     <button class="submit_comment" type="submit">Отправить</button>
                 </form>
                 <div class="comments">
-                    <h2>Комментарии</h2>
+                    <h2 class="show-hide-comments">Развернуть комментарии</h2>
                     <div class="comments-list">
                         <#list message.getComments() as comment>
                             <div class="comment_one">
@@ -83,4 +83,5 @@
     </section>
 
     <@f.footer></@f.footer>
+    <script src="../static/js/script.js"></script>
 </@c.mainpage>
