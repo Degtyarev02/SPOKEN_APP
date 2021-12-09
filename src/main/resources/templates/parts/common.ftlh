@@ -17,6 +17,7 @@
     </head>
     <body>
     <#nested>
+    <script src="../../static/js/script.js"></script>
     </body>
     </html>
 </#macro>

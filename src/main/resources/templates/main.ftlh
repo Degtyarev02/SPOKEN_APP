@@ -83,5 +83,5 @@
     </section>
 
     <@f.footer></@f.footer>
-    <script src="../static/js/script.js"></script>
+
 </@c.mainpage>

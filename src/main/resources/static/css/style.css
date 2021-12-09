@@ -170,10 +170,10 @@ body {
   transition: 0.3s linear;
 }
 .navbar .menu li a {
-  color: #ffffff;
+  color: #444444;
 }
 .navbar .menu li a:visited {
-  color: #ffffff;
+  color: #444444;
 }
 .navbar .logout {
   margin-right: 20px;
@@ -496,6 +496,7 @@ body {
 .container-profile {
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 .profile-info {
   display: flex;
