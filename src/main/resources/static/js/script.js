@@ -5,7 +5,7 @@ function show_comments() {
     for(let i = 0; i < comment_list.length; i++){
         show_hide_comments[i].onclick = function () {
             if(!flag_to_show_comments) {
-                comment_list[i].style.cssText = "height: fit-content;";
+                comment_list[i].style.cssText = "height: auto;";
                 flag_to_show_comments = true;
                 show_hide_comments[i].innerText = "Скрыть комментарии";
             } else {

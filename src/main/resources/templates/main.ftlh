@@ -3,10 +3,8 @@
 <#import "parts/navbar.ftlh" as n>
 <@c.mainpage>
 
-    <@n.navbar></@n.navbar>
-
-
     <section class="front_page">
+        <@n.navbar></@n.navbar>
         <div class="header">
             <h2>SPOKEN</h2>
             <form action="filter" method="post" class="filter">

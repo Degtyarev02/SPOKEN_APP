@@ -9,7 +9,7 @@
   padding:     0;
   box-sizing:  border-box;
   font-family: 'Mulish', serif;
-  transition:  .3s linear;
+  transition:  all .3s linear;
 
   &:focus {
     outline: none;
@@ -178,7 +178,6 @@ body {
 //Навигационная панель
 .navbar {
   background:  rgba(255, 255, 255, 0);
-  position:    absolute;
   width:       100%;
   display:     flex;
   align-items: center;
@@ -205,6 +204,10 @@ body {
         &:visited {
           color: @secondary-grey;
         }
+
+        &:hover {
+          color: @primary;
+        }
       }
     }
   }
@@ -215,14 +218,14 @@ body {
     button {
       padding:       5px 15px;
       border-radius: 25%;
-      border:        @secondary-white 2px solid;
-      color:         @secondary-white;
+      border:        @primary 2px solid;
+      color:         @primary;
       background:    rgba(0, 0, 0, 0);
       cursor:        pointer;
 
       &:hover {
-        background: @secondary-white;
-        color:      @primary;
+        background: @primary;
+        color:      @secondary-white;
       }
     }
   }
@@ -444,17 +447,19 @@ body {
 
   .comments {
     margin-top: 30px;
+    transition: height .5s ease-out;
 
-    .comments-list{
-      overflow: hidden;
-      height: 0;
+    .comments-list {
+      overflow:   hidden;
+      height:     0;
+      transition: height .5s ease-out;
     }
 
     h2 {
       margin-left: 20px;
       color:       @secondary-grey !important;
       font-size:   20px;
-      cursor: pointer;
+      cursor:      pointer;
     }
 
     .comments-list span :nth-child(even) {
@@ -493,16 +498,19 @@ body {
 
 //Панель админа
 
-.admin-header {
+.admin-header-nav {
   background:     url(../img/serverimg/secondary-background.jpg) no-repeat center;
   box-shadow:     0 0 82px -19px rgba(34, 60, 80, 0.4);
   width:          100%;
   height:         fit-content;
-  display:        flex;
-  flex-direction: column;
-  align-items:    center;
-  padding-top:    10%;
   padding-bottom: 10%;
+
+  .admin-header {
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+    padding-top:    10%;
+  }
 
 
   h2 {
@@ -587,11 +595,9 @@ body {
 }
 
 //Профиль пользователя (дизайн списка сообщений прописан выше в стилях главной страницы)
-
 .container-profile {
   display:         flex;
   justify-content: center;
-  margin-top: 50px;
 }
 
 .profile-info {

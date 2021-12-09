@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Mulish', serif;
-  transition: 0.3s linear;
+  transition: all 0.3s linear;
 }
 *:focus {
   outline: none;
@@ -148,7 +148,6 @@ body {
 }
 .navbar {
   background: rgba(255, 255, 255, 0);
-  position: absolute;
   width: 100%;
   display: flex;
   align-items: center;
@@ -175,20 +174,23 @@ body {
 .navbar .menu li a:visited {
   color: #444444;
 }
+.navbar .menu li a:hover {
+  color: #008cff;
+}
 .navbar .logout {
   margin-right: 20px;
 }
 .navbar .logout button {
   padding: 5px 15px;
   border-radius: 25%;
-  border: #ffffff 2px solid;
-  color: #ffffff;
+  border: #008cff 2px solid;
+  color: #008cff;
   background: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 .navbar .logout button:hover {
-  background: #ffffff;
-  color: #008cff;
+  background: #008cff;
+  color: #ffffff;
 }
 /*Главная страница*/
 .front_page {
@@ -378,10 +380,12 @@ body {
 }
 .message .comments {
   margin-top: 30px;
+  transition: height 0.5s ease-out;
 }
 .message .comments .comments-list {
   overflow: hidden;
   height: 0;
+  transition: height 0.5s ease-out;
 }
 .message .comments h2 {
   margin-left: 20px;
@@ -415,18 +419,20 @@ body {
   font-size: 16px;
   margin: 20px;
 }
-.admin-header {
+.admin-header-nav {
   background: url(../img/serverimg/secondary-background.jpg) no-repeat center;
   box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
   width: 100%;
   height: fit-content;
+  padding-bottom: 10%;
+}
+.admin-header-nav .admin-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 10%;
-  padding-bottom: 10%;
 }
-.admin-header h2 {
+.admin-header-nav h2 {
   font-size: 80px;
   text-align: center;
   font-family: 'Titan One', cursive;
@@ -435,7 +441,7 @@ body {
   -webkit-text-stroke: 2px #008cff;
   padding-bottom: 70px;
 }
-.admin-header input {
+.admin-header-nav input {
   width: 50vw;
   height: 50px;
   padding: 15px;
@@ -496,7 +502,6 @@ body {
 .container-profile {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
 }
 .profile-info {
   display: flex;

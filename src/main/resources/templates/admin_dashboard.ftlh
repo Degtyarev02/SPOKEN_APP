@@ -1,13 +1,16 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/navbar.ftlh" as n>
 <@c.mainpage>
-    <@n.navbar></@n.navbar>
-    <div class="admin-header">
-        <h2>Hello, ${user.username}</h2>
-        <form action="/admin/filter" method="post">
-            <input type="text" name="filter" placeholder="Search by username">
-        </form>
-    </div>
+
+    <section class="admin-header-nav">
+        <@n.navbar></@n.navbar>
+        <div class="admin-header">
+            <h2>Hello, ${user.username}</h2>
+            <form action="/admin/filter" method="post">
+                <input type="text" name="filter" placeholder="Search by username">
+            </form>
+        </div>
+    </section>
 
     <div class="user-list-container">
         <div class="users-list">
