@@ -169,13 +169,13 @@ body {
   transition: 0.3s linear;
 }
 .navbar .menu li a {
-  color: #444444;
+  color: #008cff;
 }
 .navbar .menu li a:visited {
-  color: #444444;
+  color: #008cff;
 }
 .navbar .menu li a:hover {
-  color: #008cff;
+  color: #005499;
 }
 .navbar .logout {
   margin-right: 20px;

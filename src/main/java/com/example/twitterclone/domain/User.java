@@ -42,13 +42,13 @@ public class User implements UserDetails {
 	private Set<Role> roles;
 
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinTable(name = "subscriptions_table",
-			joinColumns ={ @JoinColumn(name = "subscriber_id")},
-			inverseJoinColumns = { @JoinColumn(name = "subscription_id")})
+			joinColumns = {@JoinColumn(name = "subscriber_id")},
+			inverseJoinColumns = {@JoinColumn(name = "subscription_id")})
 	private Set<User> subscribers = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinTable(name = "subscriptions_table",
 			joinColumns = {@JoinColumn(name = "subscription_id")},
 			inverseJoinColumns = {@JoinColumn(name = "subscriber_id")})

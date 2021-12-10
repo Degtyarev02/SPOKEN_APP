@@ -1,13 +1,11 @@
 package com.example.twitterclone.controller;
 
-
 import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
 import com.example.twitterclone.service.S3Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -97,20 +94,30 @@ public class UserController {
 		return "redirect:/main/user/" + user.getId();
 	}
 
+
+	//Метод для подписки на пользователя
 	@PostMapping("/main/subscribe/{user}")
-	public String subscribeToUser(@PathVariable User user, @AuthenticationPrincipal User currentUser) {
+	public String subscribeToUser(@PathVariable User user, //Пользователь на которого подписываемся
+								  @AuthenticationPrincipal User currentUser //Пользователь, который подписывается
+	) {
+		//Если пользовательские id не равны и у подписчиков пользователя на которого мы подписываемся нет пользователя, который подписывается
 		if (!user.getId().equals(currentUser.getId())
 				&& !user.getSubscribers().contains(currentUser)) {
+			//То добавляемся в подписчики пользователя на которого подписываемся
 			user.getSubscribers().add(currentUser);
 			userRepo.save(user);
 		}
 		return "redirect:/main/user/" + user.getId();
 	}
 
+	//Метод для отписки от пользователя
 	@PostMapping("/main/unsubscribe/{user}")
 	public String unsubscribeFromUser(@PathVariable User user, @AuthenticationPrincipal User currentUser) {
+		//Если пользователи не одинаковые
+		//И если один подписан на другого
 		if (!user.getId().equals(currentUser.getId())
 				&& user.getSubscribers().contains(currentUser)) {
+			//Убираем себя из подписчиков
 			user.getSubscribers().remove(currentUser);
 			userRepo.save(user);
 		}
