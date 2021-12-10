@@ -532,7 +532,16 @@ body {
 .profile-info .main-info span {
   color: lighter(#444444, 10%);
 }
-.profile-info .main-info a {
+.profile-info .main-info .subscriptions {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.profile-info .main-info .subscriptions span {
+  display: block;
+}
+.profile-info .main-info a,
+.profile-info .main-info button {
+  width: 100%;
   display: block;
   padding: 20px 30px;
   background: #008cff;
@@ -540,9 +549,18 @@ body {
   border-radius: 20px;
   text-align: center;
   color: #ffffff;
+  border: none;
+  cursor: pointer;
 }
-.profile-info .main-info a:hover {
+.profile-info .main-info a:hover,
+.profile-info .main-info button:hover {
   background: #0070cc;
+}
+.profile-info .main-info .unsubscribe {
+  background: #444444;
+}
+.profile-info .main-info .unsubscribe:hover {
+  background: #2b2b2b;
 }
 footer {
   background: #008cff;

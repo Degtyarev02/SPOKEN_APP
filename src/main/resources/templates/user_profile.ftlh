@@ -1,10 +1,23 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/footer.ftlh" as f>
-<#import "parts/navbar.ftlh" as n>
 <#assign userhasicon = user.iconname??>
 <@c.mainpage>
 
-    <@n.navbar></@n.navbar>
+    <header>
+        <div class="navbar">
+            <ul class="menu">
+                <li><a class="navbar_elements" href="/main">Домой</a></li>
+                <li><a class="navbar_elements" href="/main/user/${currentuser.id}">Профиль</a></li>
+                <#if currentuser.isAdmin()>
+                    <li><a class="navbar_elements" href="/admin/">Панель админа</a></li>
+                </#if>
+
+            </ul>
+            <form action="/logout" method="post" class="logout">
+                <button type="submit">X</button>
+            </form>
+        </div>
+    </header>
 
     <div class="container-profile">
         <div class="profile-info">
@@ -14,15 +27,29 @@
 
             <div class="main-info">
                 <h3>${user.username}</h3>
+                <div class="subscriptions">
+                    <span> <b>Читает:</b> ${subscriptionsSize}</span>
+                    <span> <b>Читателей:</b> ${subscribersSize} </span>
+                </div>
                 <span>
-                <#if user.status??>
-                    ${user.status}
-                <#else>
-                    Без статуса
-                </#if>
-            </span>
+                    <#if user.status??>
+                        ${user.status}
+                    <#else>
+                        Без статуса
+                    </#if>
+                </span>
                 <#if user?? && currentuser.id == user.id>
                     <a href="/main/edit/${user.id}">Редактировать</a>
+                <#else>
+                    <#if isSubscriber>
+                        <form action="/main/unsubscribe/${user.id}" method="post">
+                            <button class="unsubscribe" type="submit">Отписаться</button>
+                        </form>
+                    <#else>
+                        <form action="/main/subscribe/${user.id}" method="post">
+                            <button class="subscribe" type="submit">Подписаться</button>
+                        </form>
+                    </#if>
                 </#if>
             </div>
         </div>

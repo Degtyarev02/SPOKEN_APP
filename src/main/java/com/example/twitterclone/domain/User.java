@@ -5,10 +5,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -40,6 +40,19 @@ public class User implements UserDetails {
 	)
 	@Enumerated(EnumType.STRING)
 	private Set<Role> roles;
+
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "subscriptions_table",
+			joinColumns ={ @JoinColumn(name = "subscriber_id")},
+			inverseJoinColumns = { @JoinColumn(name = "subscription_id")})
+	private Set<User> subscribers = new HashSet<>();
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "subscriptions_table",
+			joinColumns = {@JoinColumn(name = "subscription_id")},
+			inverseJoinColumns = {@JoinColumn(name = "subscriber_id")})
+	private Set<User> subscriptions = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -111,6 +124,22 @@ public class User implements UserDetails {
 		this.iconname = iconname;
 	}
 
+	public Set<User> getSubscribers() {
+		return subscribers;
+	}
+
+	public void setSubscribers(Set<User> subscribers) {
+		this.subscribers = subscribers;
+	}
+
+	public Set<User> getSubscriptions() {
+		return subscriptions;
+	}
+
+	public void setSubscriptions(Set<User> subscriptions) {
+		this.subscriptions = subscriptions;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return getRoles();
@@ -135,5 +164,18 @@ public class User implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return isActive();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return Objects.equals(id, user.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 }

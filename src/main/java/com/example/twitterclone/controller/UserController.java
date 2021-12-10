@@ -40,8 +40,12 @@ public class UserController {
 	//Контроллер, который выводит информацию об отдельном пользователе
 	@GetMapping("/main/user/{user}")
 	public String userProfilePage(@PathVariable User user, @AuthenticationPrincipal User currentUser, Model model) {
+
+		model.addAttribute("subscriptionsSize", user.getSubscriptions().size());
+		model.addAttribute("subscribersSize", user.getSubscribers().size());
 		model.addAttribute("currentuser", currentUser);
 		model.addAttribute("user", user);
+		model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
 		List<Message> byUser = messageRepository.findByAuthor(user);
 		Collections.reverse(byUser);
 		model.addAttribute("messages", byUser);
@@ -75,14 +79,14 @@ public class UserController {
 		if (file != null && !file.getOriginalFilename().isEmpty()) {
 			//Если у пользователя уже стоит аватарка, то удаляем старую
 			if (user.getIconname() != null) {
-				s3Wrapper.deleteFile("profile/"+user.getIconname());
+				s3Wrapper.deleteFile("profile/" + user.getIconname());
 			}
 
 			//Обезопасим коллизию и создадим уникальное имя для файла
 			String uuidFile = UUID.randomUUID().toString();
 			String fileName = uuidFile + "." + file.getOriginalFilename();
 			//Перемещаем файл в папку
-			s3Wrapper.upload(file.getInputStream(), "profile/"+fileName);
+			s3Wrapper.upload(file.getInputStream(), "profile/" + fileName);
 			//Устанавливаем имя файла для объекта message
 			user.setIconname(fileName);
 		}
@@ -90,6 +94,26 @@ public class UserController {
 		user.setUsername(newUsername);
 		user.setStatus(newStatus);
 		userRepo.save(user);
+		return "redirect:/main/user/" + user.getId();
+	}
+
+	@PostMapping("/main/subscribe/{user}")
+	public String subscribeToUser(@PathVariable User user, @AuthenticationPrincipal User currentUser) {
+		if (!user.getId().equals(currentUser.getId())
+				&& !user.getSubscribers().contains(currentUser)) {
+			user.getSubscribers().add(currentUser);
+			userRepo.save(user);
+		}
+		return "redirect:/main/user/" + user.getId();
+	}
+
+	@PostMapping("/main/unsubscribe/{user}")
+	public String unsubscribeFromUser(@PathVariable User user, @AuthenticationPrincipal User currentUser) {
+		if (!user.getId().equals(currentUser.getId())
+				&& user.getSubscribers().contains(currentUser)) {
+			user.getSubscribers().remove(currentUser);
+			userRepo.save(user);
+		}
 		return "redirect:/main/user/" + user.getId();
 	}
 }

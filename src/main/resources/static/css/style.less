@@ -632,7 +632,17 @@ body {
       color: lighter(@secondary-grey, 10%);
     }
 
-    a {
+    .subscriptions {
+      margin-top:    10px;
+      margin-bottom: 10px;
+
+      span {
+        display: block;
+      }
+    }
+
+    a, button {
+      width:         100%;
       display:       block;
       padding:       20px 30px;
       background:    @primary;
@@ -640,9 +650,20 @@ body {
       border-radius: 20px;
       text-align:    center;
       color:         @secondary-white;
+      border:        none;
+      cursor:        pointer;
 
       &:hover {
         background: darken(@primary, 10%);
+      }
+    }
+
+
+    .unsubscribe {
+      background: @secondary-grey;
+
+      &:hover {
+        background: darken(@secondary-grey, 10%);
       }
     }
   }
