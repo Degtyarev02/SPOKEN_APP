@@ -39,7 +39,7 @@
         <#list messages as message>
             <div class="message">
                 <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a>
-                    <#if user?? && message.author.id == user.id>
+                    <#if currentUser?? && message.author.id == currentUser.id>
                         <form class="delete" action="/main/${message.id}" method="post">
                         <button type="submit">X</button>
                     </form>

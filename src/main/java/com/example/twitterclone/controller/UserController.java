@@ -40,7 +40,7 @@ public class UserController {
 
 		model.addAttribute("subscriptionsSize", user.getSubscriptions().size());
 		model.addAttribute("subscribersSize", user.getSubscribers().size());
-		model.addAttribute("currentuser", currentUser);
+		model.addAttribute("currentUser", currentUser);
 		model.addAttribute("user", user);
 		model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
 		List<Message> byUser = messageRepository.findByAuthor(user);
@@ -128,7 +128,7 @@ public class UserController {
 	public String allUsers(@AuthenticationPrincipal User currentUser, Model model){
 		List<User> users = userRepo.findAll();
 		model.addAttribute("users", users);
-		model.addAttribute("user", currentUser);
+		model.addAttribute("currentUser", currentUser);
 		return "users";
 	}
 }

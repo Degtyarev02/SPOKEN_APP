@@ -95,7 +95,6 @@ public class User implements UserDetails {
 		this.roles = roles;
 	}
 
-
 	public String getPassword2() {
 		return password2;
 	}
@@ -107,7 +106,6 @@ public class User implements UserDetails {
 	public boolean isAdmin() {
 		return roles.contains(Role.ADMIN);
 	}
-
 
 	public String getStatus() {
 		return status;
@@ -153,7 +151,6 @@ public class User implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return getRoles();
 	}
-
 
 	@Override
 	public boolean isAccountNonExpired() {

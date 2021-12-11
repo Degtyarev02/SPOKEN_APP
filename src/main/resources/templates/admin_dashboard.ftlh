@@ -5,7 +5,7 @@
     <section class="admin-header-nav">
         <@n.navbar></@n.navbar>
         <div class="admin-header">
-            <h2>Hello, ${user.username}</h2>
+            <h2>Hello, ${currentUser.username}</h2>
             <form action="/admin/filter" method="post">
                 <input type="text" name="filter" placeholder="Search by username">
             </form>

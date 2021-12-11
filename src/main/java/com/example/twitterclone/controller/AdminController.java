@@ -5,7 +5,6 @@ import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.CommentRepository;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -38,7 +37,7 @@ public class AdminController {
 	 */
 	@GetMapping("/")
 	public String adminDash(@AuthenticationPrincipal User user, Model model) {
-		model.addAttribute("user", user);
+		model.addAttribute("currentUser", user);
 		Iterable<User> usersList = userRepo.findAll();
 		model.addAttribute("userlist", usersList);
 		return "admin_dashboard";
@@ -47,7 +46,7 @@ public class AdminController {
 	//Данный фильтр ищет пользователя по имени
 	@PostMapping("filter")
 	public String searchByName(@AuthenticationPrincipal User user, @RequestParam String filter, Model model) {
-		model.addAttribute("user", user);
+		model.addAttribute("currentUser", user);
 		List<User> userList = userRepo.findAllByUsername(filter);
 		model.addAttribute("userlist", userList);
 		return "admin_dashboard";
@@ -103,6 +102,9 @@ public class AdminController {
 	@PostMapping("/{user}")
 	public String deleteUser(@PathVariable User user) {
 		if (user != null) {
+			user.getSubscribers().clear();
+			user.getSubscriptions().clear();
+			userRepo.save(user);
 			commentRepository.deleteAllByAuthor(user);
 			messageRepo.deleteAllByAuthor(user);
 			userRepo.deleteById(user.getId());

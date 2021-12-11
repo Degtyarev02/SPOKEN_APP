@@ -1,24 +1,10 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/footer.ftlh" as f>
+<#import "parts/navbar.ftlh" as n>
 <#assign userhasicon = user.iconname??>
 <@c.mainpage>
 
-    <header>
-        <div class="navbar">
-            <ul class="menu">
-                <li><a class="navbar_elements" href="/main">Домой</a></li>
-                <li><a class="navbar_elements" href="/main/user/${currentuser.id}">Профиль</a></li>
-                <li><a class="navbar_elements" href="/main/users">Пользователи</a></li>
-                <#if currentuser.isAdmin()>
-                    <li><a class="navbar_elements" href="/admin/">Панель админа</a></li>
-                </#if>
-
-            </ul>
-            <form action="/logout" method="post" class="logout">
-                <button type="submit">X</button>
-            </form>
-        </div>
-    </header>
+    <@n.navbar></@n.navbar>
 
     <div class="container-profile">
         <div class="profile-info">
@@ -39,7 +25,7 @@
                         Без статуса
                     </#if>
                 </span>
-                <#if user?? && currentuser.id == user.id>
+                <#if user?? && currentUser.id == user.id>
                     <a class="user_page_button" href="/main/edit/${user.id}">Редактировать</a>
                 <#else>
                     <#if isSubscriber>
@@ -60,7 +46,7 @@
         <#list messages as message>
             <div class="message">
                 <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a>
-                <#if user?? && user.id == currentuser.id>
+                <#if user?? && user.id == currentUser.id>
                     <form class="delete" action="/main/${message.id}" method="post">
                         <button type="submit">X</button>
                     </form>

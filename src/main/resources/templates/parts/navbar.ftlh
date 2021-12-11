@@ -3,9 +3,9 @@
         <div class="navbar">
             <ul class="menu">
                 <li><a class="navbar_elements" href="/main">Домой</a></li>
-                <li><a class="navbar_elements" href="/main/user/${user.id}">Профиль</a></li>
+                <li><a class="navbar_elements" href="/main/user/${currentUser.id}">Профиль</a></li>
                 <li><a class="navbar_elements" href="/main/users">Пользователи</a></li>
-                <#if user.isAdmin()>
+                <#if currentUser.isAdmin()>
                     <li><a class="navbar_elements" href="/admin/">Панель админа</a></li>
                 </#if>
 

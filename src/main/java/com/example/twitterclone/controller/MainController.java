@@ -57,7 +57,7 @@ public class MainController {
         Collections.reverse(list);
         //Передаем список в модель, для отображения на странице
         model.addAttribute("messages", list);
-        model.addAttribute("user", user);
+        model.addAttribute("currentUser", user);
         return "main";
     }
 

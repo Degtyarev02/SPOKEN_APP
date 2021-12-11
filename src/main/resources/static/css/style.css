@@ -716,8 +716,9 @@ footer .social-media a img {
 .user-from-users {
   width: 80%;
   justify-content: flex-start;
+  color: #444444;
 }
-.user-from-users .go-to-user:focus {
+.user-from-users .go-to-user:visited {
   color: #444444;
 }
 /*# sourceMappingURL=style.css.map */
