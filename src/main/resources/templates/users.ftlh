@@ -3,7 +3,14 @@
 <#import "parts/navbar.ftlh" as n>
 <@c.mainpage>
     <@n.navbar></@n.navbar>
-    <div class="all-users-list">
+    <section class="users-filter">
+        <form action="/main/users" method="get">
+            <input type="text" name="findingName" placeholder="Search by username">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <section class="all-users-list">
         <#list users as user>
             <#assign userhasicon = user.iconname??>
             <div class="container-profile">
@@ -28,5 +35,5 @@
                 </div>
             </div>
         </#list>
-    </div>
+    </section>
 </@c.mainpage>

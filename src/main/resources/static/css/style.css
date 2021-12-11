@@ -148,6 +148,7 @@ body {
 }
 .navbar {
   background: rgba(255, 255, 255, 0);
+  box-shadow: 2px 12px 30px -17px rgba(34, 60, 80, 0.2);
   width: 100%;
   display: flex;
   align-items: center;
@@ -713,9 +714,40 @@ footer .social-media a img {
   justify-content: space-between;
   width: 100%;
 }
+.users-filter {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.users-filter input {
+  width: 73vw;
+  height: 50px;
+  padding: 15px;
+  border: 2px #008cff solid;
+  border-radius: 15px 0 0 15px;
+  color: #444444;
+  background: #ffffff;
+  border-right: none;
+  font-size: 17px;
+}
+.users-filter button {
+  height: 50px;
+  padding-right: 15px;
+  border: 2px #008cff solid;
+  border-radius: 0 15px 15px 0;
+  background: #ffffff;
+  border-left: none;
+  margin-left: -10px;
+  color: #008cff;
+  font-size: 17px;
+  cursor: pointer;
+}
 .user-from-users {
   width: 80%;
   justify-content: flex-start;
+  color: #444444;
+}
+.user-from-users .go-to-user {
   color: #444444;
 }
 .user-from-users .go-to-user:visited {

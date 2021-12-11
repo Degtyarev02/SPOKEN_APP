@@ -18,6 +18,7 @@
     <body>
     <#nested>
     <script src="../../static/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/870b49f80b.js" crossorigin="anonymous"></script>
     </body>
     </html>
 </#macro>

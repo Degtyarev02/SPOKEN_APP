@@ -125,8 +125,13 @@ public class UserController {
 	}
 
 	@GetMapping("/main/users")
-	public String allUsers(@AuthenticationPrincipal User currentUser, Model model){
-		List<User> users = userRepo.findAll();
+	public String allUsers(@AuthenticationPrincipal User currentUser, Model model, @RequestParam(defaultValue = "") String findingName){
+		List<User> users;
+		if(findingName.equals("")){
+			users = userRepo.findAll();
+		} else {
+			users = userRepo.findAllByUsername(findingName);
+		}
 		model.addAttribute("users", users);
 		model.addAttribute("currentUser", currentUser);
 		return "users";

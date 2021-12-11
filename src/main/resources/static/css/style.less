@@ -178,6 +178,7 @@ body {
 //Навигационная панель
 .navbar {
   background:  rgba(255, 255, 255, 0);
+  box-shadow:  2px 12px 30px -17px rgba(34, 60, 80, 0.2);
   width:       100%;
   display:     flex;
   align-items: center;
@@ -848,12 +849,49 @@ footer {
 }
 
 //Список пользователей
-.user-from-users{
-  width: 80%;
+
+.users-filter {
+  margin-top:      50px;
+  display:         flex;
+  justify-content: center;
+
+  input {
+    width:         73vw;
+    height:        50px;
+    padding:       15px;
+    border:        2px @primary solid;
+    border-radius: 15px 0 0 15px;
+    color:         @secondary-grey;
+    background:    @secondary-white;
+    border-right:  none;
+    font-size:     17px;
+  }
+
+  button {
+    height:        50px;
+    padding-right: 15px;
+    border:        2px @primary solid;
+    border-radius: 0 15px 15px 0;
+    background:    @secondary-white;
+    border-left:   none;
+    margin-left:   -10px;
+    color:         @primary;
+    font-size:     17px;
+    cursor:        pointer;
+  }
+}
+
+.user-from-users {
+  width:           80%;
   justify-content: flex-start;
-  color: @secondary-grey;
-  .go-to-user:visited{
+  color:           @secondary-grey;
+
+  .go-to-user {
     color: @secondary-grey;
+
+    &:visited {
+      color: @secondary-grey;
+    }
   }
 }
 
