@@ -1,5 +1,8 @@
 package com.example.twitterclone.domain;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -19,13 +22,13 @@ public class Comment {
 	@Length(max = 50, message = "Comment is too long")
 	private String text;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.REMOVE)
 	@JoinColumn(name = "user_id")
 	private User author;
 
 	private Calendar date;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.REMOVE)
 	@JoinColumn(name = "message_id")
 	private Message message;
 

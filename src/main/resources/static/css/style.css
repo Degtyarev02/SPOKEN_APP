@@ -539,7 +539,7 @@ body {
 .profile-info .main-info .subscriptions span {
   display: block;
 }
-.profile-info .main-info a,
+.profile-info .main-info .user_page_button,
 .profile-info .main-info button {
   width: 100%;
   display: block;
@@ -552,7 +552,7 @@ body {
   border: none;
   cursor: pointer;
 }
-.profile-info .main-info a:hover,
+.profile-info .main-info .user_page_button:hover,
 .profile-info .main-info button:hover {
   background: #0070cc;
 }
@@ -712,5 +712,12 @@ footer .social-media a img {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+.user-from-users {
+  width: 80%;
+  justify-content: flex-start;
+}
+.user-from-users .go-to-user:focus {
+  color: #444444;
 }
 /*# sourceMappingURL=style.css.map */

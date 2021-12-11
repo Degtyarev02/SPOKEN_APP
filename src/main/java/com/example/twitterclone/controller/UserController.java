@@ -123,4 +123,12 @@ public class UserController {
 		}
 		return "redirect:/main/user/" + user.getId();
 	}
+
+	@GetMapping("/main/users")
+	public String allUsers(@AuthenticationPrincipal User currentUser, Model model){
+		List<User> users = userRepo.findAll();
+		model.addAttribute("users", users);
+		model.addAttribute("user", currentUser);
+		return "users";
+	}
 }

@@ -2,6 +2,7 @@ package com.example.twitterclone.controller;
 
 import com.example.twitterclone.domain.Role;
 import com.example.twitterclone.domain.User;
+import com.example.twitterclone.repos.CommentRepository;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
 import org.hibernate.SessionFactory;
@@ -26,6 +27,9 @@ public class AdminController {
 
 	@Autowired
 	private MessageRepository messageRepo;
+
+	@Autowired
+	private CommentRepository commentRepository;
 
 
 	/**
@@ -99,6 +103,7 @@ public class AdminController {
 	@PostMapping("/{user}")
 	public String deleteUser(@PathVariable User user) {
 		if (user != null) {
+			commentRepository.deleteAllByAuthor(user);
 			messageRepo.deleteAllByAuthor(user);
 			userRepo.deleteById(user.getId());
 		}

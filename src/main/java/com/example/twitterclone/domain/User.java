@@ -1,5 +1,6 @@
 package com.example.twitterclone.domain;
 
+import org.hibernate.annotations.Fetch;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,13 +43,13 @@ public class User implements UserDetails {
 	private Set<Role> roles;
 
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JoinTable(name = "subscriptions_table",
 			joinColumns = {@JoinColumn(name = "subscriber_id")},
 			inverseJoinColumns = {@JoinColumn(name = "subscription_id")})
 	private Set<User> subscribers = new HashSet<>();
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JoinTable(name = "subscriptions_table",
 			joinColumns = {@JoinColumn(name = "subscription_id")},
 			inverseJoinColumns = {@JoinColumn(name = "subscriber_id")})
@@ -134,6 +135,14 @@ public class User implements UserDetails {
 
 	public Set<User> getSubscriptions() {
 		return subscriptions;
+	}
+
+	public int getSubscribersSize(){
+		return subscribers.size();
+	}
+
+	public int getSubscriptionsSize(){
+		return subscriptions.size();
 	}
 
 	public void setSubscriptions(Set<User> subscriptions) {

@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
 	List<Message> findByTag(String tag);

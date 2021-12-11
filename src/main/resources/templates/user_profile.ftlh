@@ -8,6 +8,7 @@
             <ul class="menu">
                 <li><a class="navbar_elements" href="/main">Домой</a></li>
                 <li><a class="navbar_elements" href="/main/user/${currentuser.id}">Профиль</a></li>
+                <li><a class="navbar_elements" href="/main/users">Пользователи</a></li>
                 <#if currentuser.isAdmin()>
                     <li><a class="navbar_elements" href="/admin/">Панель админа</a></li>
                 </#if>
@@ -39,7 +40,7 @@
                     </#if>
                 </span>
                 <#if user?? && currentuser.id == user.id>
-                    <a href="/main/edit/${user.id}">Редактировать</a>
+                    <a class="user_page_button" href="/main/edit/${user.id}">Редактировать</a>
                 <#else>
                     <#if isSubscriber>
                         <form action="/main/unsubscribe/${user.id}" method="post">
