@@ -753,4 +753,46 @@ footer .social-media a img {
 .user-from-users .go-to-user:visited {
   color: #444444;
 }
+@media (max-width: 576px) {
+  .container .sign-in-label {
+    font-size: 60px;
+  }
+  .container .init-form {
+    height: fit-content;
+  }
+  .container .init-form img {
+    display: none;
+  }
+  .container .login-form {
+    margin-top: 130px;
+    margin-left: 0;
+    transform: scale(0.9);
+  }
+  .header h2 {
+    font-size: 60px;
+  }
+  .filter {
+    margin-top: 59px;
+  }
+  .main-message-page {
+    margin-top: 40px;
+  }
+  .add-message-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .add-message-field input {
+    margin-bottom: 10px;
+  }
+  .add-message-field .tag {
+    width: 100%;
+  }
+  .add-message-field button {
+    width: 100%;
+  }
+  .message {
+    width: 95%;
+  }
+}
 /*# sourceMappingURL=style.css.map */
