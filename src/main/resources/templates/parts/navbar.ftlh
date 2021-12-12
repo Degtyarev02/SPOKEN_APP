@@ -11,10 +11,11 @@
 
             </ul>
             <form action="/logout" method="post" class="logout">
-                <button type="submit">X</button></form>
+                <button type="submit">X</button>
+            </form>
         </div>
         <div class="open-navbar">
-            <img src="/static/right-arrow.png" width="16" height="16" alt="">
+            <img class="arrow" src="/static/img/serverimg/rightarrow.png" width="16" height="16" alt="">
         </div>
     </header>
 </#macro>

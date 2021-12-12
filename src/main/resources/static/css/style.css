@@ -773,9 +773,15 @@ footer .social-media a img {
     margin-bottom: 15px;
   }
   .open-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 35px;
     height: 35px;
     background: white;
+    border: 2px solid #008cff;
+    border-radius: 8px;
+    color: #008cff;
     position: absolute;
     right: 10px;
     top: 10px;
@@ -784,6 +790,9 @@ footer .social-media a img {
   .open {
     display: flex !important;
     transform: translateY(0) !important;
+  }
+  .open .arrow {
+    transform: rotate(90deg);
   }
   .container .sign-in-label {
     font-size: 60px;
@@ -830,6 +839,38 @@ footer .social-media a img {
   }
   .message {
     width: 95%;
+  }
+  .profile-info {
+    flex-direction: column;
+    padding: 20px 0;
+    margin-top: 60px;
+    width: 95%;
+  }
+  .profile-info .icon {
+    width: 128px;
+    height: 128px;
+  }
+  .profile-info .main-info {
+    padding: 10px 30px 0 30px;
+  }
+  .edit_self_profile {
+    margin-top: 20px;
+  }
+  .edit_self_profile .editble {
+    transform: scale(0.8);
+    padding: 20px;
+  }
+  footer h2 {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+  footer .social-media a span {
+    font-size: 10px;
+    margin-top: 5px;
+  }
+  footer .social-media a img {
+    width: 42px;
+    height: 42px;
   }
 }
 /*# sourceMappingURL=style.css.map */

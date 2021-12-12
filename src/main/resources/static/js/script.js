@@ -23,15 +23,18 @@ show_comments();
 
 let open_navbar = document.querySelector('.open-navbar');
 let navbar = document.querySelector('.navbar');
+let arrow = document.querySelector('.arrow')
 let open_navbar_flag = false;
 
 function show_navbar() {
     open_navbar.onclick = function () {
         if (!open_navbar_flag) {
             navbar.classList.add("open");
+            arrow.style.cssText = "transform: rotate(90deg);"
             open_navbar_flag = true;
         } else {
             navbar.classList.remove("open");
+            arrow.style.cssText = "transform: rotate(0);"
             open_navbar_flag = false;
         }
     }
