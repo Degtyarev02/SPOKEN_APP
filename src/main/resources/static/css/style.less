@@ -897,6 +897,44 @@ footer {
 
 @media (max-width: 576px) {
 
+  //Навбар
+  .navbar {
+    display:        none;
+    flex-direction: column;
+    transform:      translateY(-10000px);
+
+    .menu {
+      flex-direction: column;
+      margin-left:    auto;
+      height:         fit-content;
+      margin-top:     15px;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+
+    .logout {
+      margin-right:  0;
+      margin-bottom: 15px;
+    }
+  }
+
+  .open-navbar {
+    width:      35px;
+    height:     35px;
+    background: white;
+    position:   absolute;
+    right:      10px;
+    top:        10px;
+    z-index:    100;
+  }
+
+  .open{
+    display: flex !important;
+    transform: translateY(0) !important;
+  }
+
 
   //Страница логина
   .container {
@@ -922,6 +960,11 @@ footer {
 
   //Главная страница
   .header {
+    height:          fit-content;
+    justify-content: start;
+    margin-top:      50px;
+    margin-bottom:   100px;
+
     h2 {
       font-size: 60px;
     }
@@ -956,7 +999,4 @@ footer {
   .message {
     width: 95%;
   }
-
-  
-
 }

@@ -21,5 +21,6 @@
             </form>
             <img src="../static/img/serverimg/share.png" alt="" width="850" height="540">
         </div>
+
     </div>
 </@c.mainpage>

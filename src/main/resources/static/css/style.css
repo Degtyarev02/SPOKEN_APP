@@ -754,6 +754,37 @@ footer .social-media a img {
   color: #444444;
 }
 @media (max-width: 576px) {
+  .navbar {
+    display: none;
+    flex-direction: column;
+    transform: translateY(-10000px);
+  }
+  .navbar .menu {
+    flex-direction: column;
+    margin-left: auto;
+    height: fit-content;
+    margin-top: 15px;
+  }
+  .navbar .menu li {
+    margin-bottom: 10px;
+  }
+  .navbar .logout {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  .open-navbar {
+    width: 35px;
+    height: 35px;
+    background: white;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 100;
+  }
+  .open {
+    display: flex !important;
+    transform: translateY(0) !important;
+  }
   .container .sign-in-label {
     font-size: 60px;
   }
@@ -767,6 +798,12 @@ footer .social-media a img {
     margin-top: 130px;
     margin-left: 0;
     transform: scale(0.9);
+  }
+  .header {
+    height: fit-content;
+    justify-content: start;
+    margin-top: 50px;
+    margin-bottom: 100px;
   }
   .header h2 {
     font-size: 60px;
