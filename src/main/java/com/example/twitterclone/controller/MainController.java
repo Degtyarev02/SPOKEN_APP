@@ -130,8 +130,7 @@ public class MainController {
             @AuthenticationPrincipal User user,
             @PathVariable Message message,
             @Valid Comment comment,
-            BindingResult bindingResult,
-            Model model) {
+            BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             FieldError error = bindingResult.getFieldError();

@@ -232,6 +232,10 @@ body {
   }
 }
 
+.open-navbar {
+  display: none;
+}
+
 /*Главная страница*/
 .front_page {
   background: url(../img/serverimg/main-background.jpg) no-repeat center;
@@ -881,6 +885,10 @@ footer {
   }
 }
 
+.all-users-list {
+  margin-bottom: 50px;
+}
+
 .user-from-users {
   width:           80%;
   justify-content: flex-start;
@@ -1026,8 +1034,9 @@ footer {
       height: 128px;
     }
 
-    .main-info{
+    .main-info {
       padding: 10px 30px 0 30px;
+      width:   100%;
     }
   }
 
@@ -1062,5 +1071,26 @@ footer {
         }
       }
     }
+  }
+
+  //Панель админа
+  .admin-header-nav {
+    h2 {
+      font-size: 60px;
+    }
+
+  }
+
+  .user-list-container {
+
+    .users-list {
+      display:        flex;
+      flex-wrap:      nowrap;
+      flex-direction: column;
+    }
+  }
+
+  .user {
+    max-width: 100%;
   }
 }

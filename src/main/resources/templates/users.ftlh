@@ -36,4 +36,5 @@
             </div>
         </#list>
     </section>
+    <@f.footer></@f.footer>
 </@c.mainpage>
