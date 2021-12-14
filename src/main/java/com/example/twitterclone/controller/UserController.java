@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -98,7 +99,8 @@ public class UserController {
 	//Метод для подписки на пользователя
 	@PostMapping("/main/subscribe/{user}")
 	public String subscribeToUser(@PathVariable User user, //Пользователь на которого подписываемся
-								  @AuthenticationPrincipal User currentUser //Пользователь, который подписывается
+								  @AuthenticationPrincipal User currentUser, //Пользователь, который подписывается
+								  HttpServletRequest request
 	) {
 		//Если пользовательские id не равны и у подписчиков пользователя на которого мы подписываемся нет пользователя, который подписывается
 		if (!user.getId().equals(currentUser.getId())
