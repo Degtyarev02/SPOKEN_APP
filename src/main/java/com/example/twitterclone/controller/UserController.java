@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -43,7 +42,6 @@ public class UserController {
 		model.addAttribute("subscribersSize", user.getSubscribers().size());
 		model.addAttribute("currentUser", currentUser);
 		model.addAttribute("user", user);
-		model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
 		List<Message> byUser = messageRepository.findByAuthor(user);
 		Collections.reverse(byUser);
 		model.addAttribute("messages", byUser);
@@ -100,7 +98,7 @@ public class UserController {
 	@PostMapping("/main/subscribe/{user}")
 	public String subscribeToUser(@PathVariable User user, //Пользователь на которого подписываемся
 								  @AuthenticationPrincipal User currentUser, //Пользователь, который подписывается
-								  HttpServletRequest request
+								  @RequestHeader(required = false) String referer
 	) {
 		//Если пользовательские id не равны и у подписчиков пользователя на которого мы подписываемся нет пользователя, который подписывается
 		if (!user.getId().equals(currentUser.getId())
@@ -109,12 +107,16 @@ public class UserController {
 			user.getSubscribers().add(currentUser);
 			userRepo.save(user);
 		}
-		return "redirect:/main/user/" + user.getId();
+		//Получаем путь откуда мы пришли и возвращаемся туда
+		UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+		return "redirect:" + components.getPath();
 	}
 
 	//Метод для отписки от пользователя
 	@PostMapping("/main/unsubscribe/{user}")
-	public String unsubscribeFromUser(@PathVariable User user, @AuthenticationPrincipal User currentUser) {
+	public String unsubscribeFromUser(@PathVariable User user,
+									  @AuthenticationPrincipal User currentUser,
+									  @RequestHeader(required = false) String referer) {
 		//Если пользователи не одинаковые
 		//И если один подписан на другого
 		if (!user.getId().equals(currentUser.getId())
@@ -123,13 +125,14 @@ public class UserController {
 			user.getSubscribers().remove(currentUser);
 			userRepo.save(user);
 		}
-		return "redirect:/main/user/" + user.getId();
+		UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+		return "redirect:" + components.getPath();
 	}
 
 	@GetMapping("/main/users")
-	public String allUsers(@AuthenticationPrincipal User currentUser, Model model, @RequestParam(defaultValue = "") String findingName){
+	public String allUsers(@AuthenticationPrincipal User currentUser, Model model, @RequestParam(defaultValue = "") String findingName) {
 		List<User> users;
-		if(findingName.equals("")){
+		if (findingName.equals("")) {
 			users = userRepo.findAll();
 		} else {
 			users = userRepo.findAllByUsername(findingName);

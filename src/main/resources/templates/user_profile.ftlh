@@ -28,7 +28,7 @@
                 <#if user?? && currentUser.id == user.id>
                     <a class="user_page_button" href="/main/edit/${user.id}">Редактировать</a>
                 <#else>
-                    <#if isSubscriber>
+                    <#if user.subscribers?seq_contains(currentUser)>
                         <form action="/main/unsubscribe/${user.id}" method="post">
                             <button class="unsubscribe" type="submit">Отписаться</button>
                         </form>

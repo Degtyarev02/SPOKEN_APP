@@ -2,6 +2,7 @@
 <#import "parts/footer.ftlh" as f>
 <#import "parts/navbar.ftlh" as n>
 <@c.mainpage>
+
     <@n.navbar></@n.navbar>
     <section class="users-filter">
         <form action="/main/users" method="get">
@@ -12,6 +13,7 @@
 
     <section class="all-users-list">
         <#list users as user>
+            <#assign isSubscriber = user.subscribers?seq_contains(currentUser)>
             <#assign userhasicon = user.iconname??>
             <div class="container-profile">
                 <div class="profile-info user-from-users">
@@ -30,7 +32,20 @@
                     <#else>
                         Без статуса
                     </#if>
-                </span>
+                        </span>
+                        <#if user?? && currentUser.id == user.id>
+                            <a class="user_page_button" href="/main/edit/${user.id}">Редактировать</a>
+                        <#else>
+                            <#if isSubscriber>
+                                <form action="/main/unsubscribe/${user.id}" method="post">
+                                    <button class="unsubscribe" type="submit">Отписаться</button>
+                                </form>
+                            <#else>
+                                <form action="/main/subscribe/${user.id}" method="post">
+                                    <button class="subscribe" type="submit">Подписаться</button>
+                                </form>
+                            </#if>
+                        </#if>
                     </div>
                 </div>
             </div>
