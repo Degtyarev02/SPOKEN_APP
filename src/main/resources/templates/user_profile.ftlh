@@ -14,6 +14,7 @@
 
             <div class="main-info">
                 <h3>${user.username}</h3>
+                <img src= "/static/img/serverimg/trophy.png" width="16" height="16" alt="">
                 <div class="subscriptions">
                     <span> <b>Читает:</b> ${subscriptionsSize}</span>
                     <span> <b>Читателей:</b> ${subscribersSize} </span>
@@ -63,6 +64,10 @@
                         <span class="message-time">${message.returnReformatDate()}</span>
                     </#if>
                 </span>
+                <form class="send_comment" action="/main/comment/${message.id}" method="post">
+                    <input class="input_comment" name="text" type="text" placeholder="Комментарий">
+                    <button class="submit_comment" type="submit">Отправить</button>
+                </form>
                 <div class="comments">
                     <h2 class="show-hide-comments">Развернуть комментарии</h2>
                     <div class="comments-list">
