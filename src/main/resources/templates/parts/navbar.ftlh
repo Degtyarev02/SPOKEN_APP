@@ -15,7 +15,7 @@
             </form>
         </div>
         <div class="open-navbar">
-            <img class="arrow" src="/static/img/serverimg/rightarrow.png" width="16" height="16" alt="">
+            <img class="arrow" src="/static/img/rightarrow.png" width="16" height="16" alt="">
         </div>
     </header>
 </#macro>

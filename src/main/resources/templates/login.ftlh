@@ -19,7 +19,7 @@
                 <input type="submit" value="Sign In" class="submit"/>
                 <a href="/registration" class="registration">Sign up</a>
             </form>
-            <img src="../static/img/serverimg/share.png" alt="" width="850" height="540">
+            <img src="../static/img/share.png" alt="" width="850" height="540">
         </div>
 
     </div>

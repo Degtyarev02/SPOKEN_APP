@@ -3,7 +3,6 @@
 <#import "parts/navbar.ftlh" as n>
 <#assign userhasicon = user.iconname??>
 <@c.mainpage>
-
     <@n.navbar></@n.navbar>
 
     <div class="container-profile">
@@ -13,8 +12,10 @@
                  alt="">
 
             <div class="main-info">
-                <h3>${user.username}</h3>
-                <img src= "/static/img/serverimg/trophy.png" width="16" height="16" alt="">
+                <h3>${user.username}</h3><#--
+                <img src= "/static/img/serverimg/trophy.png" width="64" height="64" alt="">
+                <img title="Вы уже опубликовали более 10 постов" src= "/static/img/medal.png" width="64" height="64" alt="">
+                <img title="У Вас более 30 подписчиков" src= "/static/img/subreward.png" width="64" height="64" alt="">-->
                 <div class="subscriptions">
                     <span> <b>Читает:</b> ${subscriptionsSize}</span>
                     <span> <b>Читателей:</b> ${subscribersSize} </span>
