@@ -517,17 +517,31 @@ body {
   width: fit-content;
   border-radius: 20px;
 }
+.profile-info .icon-rewards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 46px -7px rgba(154, 154, 154, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+}
 .profile-info .icon {
   width: 256px;
   height: 256px;
   border-radius: 50%;
   border: #008cff 2px solid;
+  margin-bottom: 20px;
 }
 .profile-info .main-info {
-  height: 256px;
-  width: fit-content;
   max-width: 712px;
   padding: 30px;
+  box-shadow: 0 0 46px -7px rgba(154, 154, 154, 0.2);
+  height: 100%;
+  border-radius: 20px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .profile-info .main-info h3 {
   font-size: 30px;
@@ -549,7 +563,7 @@ body {
   display: block;
   padding: 20px 30px;
   background: #008cff;
-  margin-top: 20px;
+  margin-top: auto;
   border-radius: 20px;
   text-align: center;
   color: #ffffff;
@@ -761,9 +775,11 @@ footer .social-media a img {
 }
 @media (max-width: 576px) {
   .navbar {
-    display: none;
+    position: absolute;
     flex-direction: column;
-    transform: translateY(-10000px);
+    background: #ffffff;
+    transition: transform 0.7s linear;
+    transform: translateY(-600px);
   }
   .navbar .menu {
     flex-direction: column;
@@ -794,7 +810,6 @@ footer .social-media a img {
     z-index: 100;
   }
   .open {
-    display: flex !important;
     transform: translateY(0) !important;
   }
   .open .arrow {
@@ -852,13 +867,26 @@ footer .social-media a img {
     margin-top: 60px;
     width: 95%;
   }
+  .profile-info .icon-rewards {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
   .profile-info .icon {
     width: 128px;
     height: 128px;
   }
   .profile-info .main-info {
+    display: block;
     padding: 10px 30px 0 30px;
     width: 100%;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .profile-info .main-info .user_page_button,
+  .profile-info .main-info button {
+    margin-top: 20px;
   }
   .edit_self_profile {
     margin-top: 20px;

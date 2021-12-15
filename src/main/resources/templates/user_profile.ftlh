@@ -7,15 +7,25 @@
 
     <div class="container-profile">
         <div class="profile-info">
-            <img class="icon"
-                 src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
-                 alt="">
+            <div class="icon-rewards">
+                <img class="icon"
+                     src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
+                     alt="">
+                <div class="rewards">
+                    <#if messages?size gte 5>
+                        <img title="Вы уже опубликовали более 10 постов!" src="/static/img/trophy.png" width="64"
+                             height="64" alt="">
+                    </#if>
 
+                    <#if subscribersSize gt 10>
+                        <img title="У Вас уже более 10 подписчиков!" src="/static/img/medal.png" width="64" height="64"
+                             alt="">
+                    </#if>
+                    <img title="У Вас более 100 лайков!" src="/static/img/subreward.png" width="64" height="64" alt="">
+                </div>
+            </div>
             <div class="main-info">
-                <h3>${user.username}</h3><#--
-                <img src= "/static/img/serverimg/trophy.png" width="64" height="64" alt="">
-                <img title="Вы уже опубликовали более 10 постов" src= "/static/img/medal.png" width="64" height="64" alt="">
-                <img title="У Вас более 30 подписчиков" src= "/static/img/subreward.png" width="64" height="64" alt="">-->
+                <h3>${user.username}</h3>
                 <div class="subscriptions">
                     <span> <b>Читает:</b> ${subscriptionsSize}</span>
                     <span> <b>Читателей:</b> ${subscribersSize} </span>
