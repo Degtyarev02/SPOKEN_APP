@@ -3,6 +3,7 @@ package com.example.twitterclone.controller;
 import com.example.twitterclone.domain.Role;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.UserRepo;
+import com.example.twitterclone.service.ExceptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,9 @@ public class RegistrationController {
 	@Autowired
 	@Lazy
 	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	ExceptionService exceptionService;
 
 	@GetMapping("/registration")
 	public String registration() {
@@ -52,12 +56,7 @@ public class RegistrationController {
 		}
 		//Если BindingResult вернулся с ошибками, то заполняем список ошибками и в цикле передаем все ошибки в модель
 		if (result.hasErrors()) {
-			List<FieldError> errorList = result.getFieldErrors();
-			for (FieldError error : errorList) {
-				//В качестве названия элемента модели используем имя поля, где произошла ошибка и добавляем к ней Error,
-				// в качестве сообщения передаем message ошибки определенный в domain
-				model.addAttribute(error.getField() + "Error", error.getDefaultMessage());
-			}
+			Model tmpModel = exceptionService.getErrorsFromBindingResult(model, result);
 			return "registration";
 		}
 

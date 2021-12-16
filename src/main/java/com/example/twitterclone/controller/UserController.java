@@ -4,6 +4,7 @@ import com.example.twitterclone.domain.Message;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
+import com.example.twitterclone.service.ExceptionService;
 import com.example.twitterclone.service.S3Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -60,6 +61,7 @@ public class UserController {
 			@PathVariable User user,
 			//Получаем все данные из всех полей в форме
 			@RequestParam Map<String, String> form,
+			//Файл - аватарка пользователя
 			@RequestParam("file") MultipartFile file) throws IOException {
 
 		//Получаем новое имя и статус пользователя
