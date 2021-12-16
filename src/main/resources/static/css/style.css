@@ -563,7 +563,7 @@ body {
   display: block;
   padding: 20px 30px;
   background: #008cff;
-  margin-top: auto;
+  margin-top: 10%;
   border-radius: 20px;
   text-align: center;
   color: #ffffff;
@@ -805,7 +805,7 @@ footer .social-media a img {
     border-radius: 8px;
     color: #008cff;
     position: absolute;
-    right: 10px;
+    right: 19px;
     top: 10px;
     z-index: 100;
   }
@@ -866,6 +866,8 @@ footer .social-media a img {
     padding: 20px 0;
     margin-top: 60px;
     width: 95%;
+    display: flex;
+    justify-content: center;
   }
   .profile-info .icon-rewards {
     background: none;

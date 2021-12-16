@@ -98,7 +98,7 @@ public class UserController {
 	@PostMapping("/main/subscribe/{user}")
 	public String subscribeToUser(@PathVariable User user, //Пользователь на которого подписываемся
 								  @AuthenticationPrincipal User currentUser, //Пользователь, который подписывается
-								  @RequestHeader(required = false) String referer
+								  @RequestHeader(required = false) String referer //Ссылка с которой пришел запрос
 	) {
 		//Если пользовательские id не равны и у подписчиков пользователя на которого мы подписываемся нет пользователя, который подписывается
 		if (!user.getId().equals(currentUser.getId())
@@ -129,11 +129,21 @@ public class UserController {
 		return "redirect:" + components.getPath();
 	}
 
+
+	/**
+	 * Метод выводит всех пользователей на экран учитывая "фильтр" с именем пользователя
+	 * По умолчанию фильтр - пустая строка - выводит всех существующих пользователей
+	 *
+	 * @param currentUser текущий пользователь
+	 * @param findingName параметр, который нужен, чтобы искать пользователя по имени
+	 */
 	@GetMapping("/main/users")
 	public String allUsers(@AuthenticationPrincipal User currentUser, Model model, @RequestParam(defaultValue = "") String findingName) {
 		List<User> users;
+		//Если фильтр по умолчанию - выводи всех
 		if (findingName.equals("")) {
 			users = userRepo.findAll();
+			//Иначе найди пользователя по имени
 		} else {
 			users = userRepo.findAllByUsername(findingName);
 		}

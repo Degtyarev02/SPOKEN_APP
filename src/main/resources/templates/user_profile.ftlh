@@ -13,7 +13,7 @@
                      alt="">
                 <div class="rewards">
                     <#if messages?size gte 5>
-                        <img title="Вы уже опубликовали более 10 постов!" src="/static/img/trophy.png" width="64"
+                        <img title="Вы уже опубликовали более 5 постов!" src="/static/img/trophy.png" width="64"
                              height="64" alt="">
                     </#if>
 

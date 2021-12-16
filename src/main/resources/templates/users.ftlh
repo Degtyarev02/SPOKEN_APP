@@ -17,9 +17,11 @@
             <#assign userhasicon = user.iconname??>
             <div class="container-profile">
                 <div class="profile-info user-from-users">
-                    <img class="icon"
-                         src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
-                         alt="">
+                    <div class="icon-rewards">
+                        <img class="icon"
+                             src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
+                             alt="">
+                    </div>
                     <div class="main-info">
                         <h3><a class="go-to-user" href="/main/user/${user.id}">${user.username}</a></h3>
                         <div class="subscriptions">
@@ -49,6 +51,8 @@
                     </div>
                 </div>
             </div>
+        <#else>
+            No users!
         </#list>
     </section>
     <@f.footer></@f.footer>
