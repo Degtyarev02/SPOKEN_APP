@@ -40,11 +40,10 @@
             <div class="message">
                 <span class="message-author"><a href="/main/user/${message.author.id}">${message.author.username}</a>
                     <#if currentUser?? && message.author.id == currentUser.id>
-                        <form class="delete" action="/main/${message.id}" method="post">
-                        <button type="submit">X</button>
-                    </form>
-                    </#if>
-                    </span>
+                    <form class="delete" action="/main/${message.id}" method="post">
+                            <button type="submit">X</button>
+                        </form></#if>
+                </span>
                 <div class="content-container">
                     <#if  message.filename??>
                         <img src="https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/${message.filename}">

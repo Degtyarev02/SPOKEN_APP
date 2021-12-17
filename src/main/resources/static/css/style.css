@@ -25,7 +25,7 @@ a {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100%;
 }
 .main {
   width: 100%;
@@ -91,7 +91,7 @@ body {
   background: url(../img/main-background.jpg) no-repeat center;
 }
 .init-form {
-  height: 85vh;
+  overflow: hidden;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -302,7 +302,7 @@ body {
 }
 .message {
   margin-top: 40px;
-  width: 40%;
+  width: 50%;
   border-radius: 20px;
   border: 2px solid #008cff;
   box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
@@ -345,7 +345,6 @@ body {
   font-size: 20px;
   background: #008cff;
   color: #ffffff;
-  overflow: hidden;
 }
 .message .message-tag {
   font-style: italic;
@@ -774,6 +773,9 @@ footer .social-media a img {
   color: #444444;
 }
 @media (max-width: 576px) {
+  .main {
+    background: #89c6ff;
+  }
   .navbar {
     position: absolute;
     flex-direction: column;
@@ -815,6 +817,9 @@ footer .social-media a img {
   .open .arrow {
     transform: rotate(90deg);
   }
+  .container {
+    background: #89c6ff;
+  }
   .container .sign-in-label {
     font-size: 60px;
   }
@@ -837,6 +842,9 @@ footer .social-media a img {
   }
   .header h2 {
     font-size: 60px;
+  }
+  .front_page {
+    background: #89c6ff;
   }
   .filter {
     margin-top: 59px;

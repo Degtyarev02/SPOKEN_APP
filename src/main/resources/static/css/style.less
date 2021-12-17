@@ -1,7 +1,8 @@
 //Variables
-@primary:         #008cff;
-@secondary-grey:  #444444;
-@secondary-white: #ffffff;
+@primary:           #008cff;
+@mobile-background: #89c6ff;
+@secondary-grey:    #444444;
+@secondary-white:   #ffffff;
 
 
 * {
@@ -31,7 +32,7 @@ a {
 body {
   display:        flex;
   flex-direction: column;
-  min-height:     100vh;
+  min-height:     100%;
 }
 
 
@@ -111,7 +112,7 @@ body {
 }
 
 .init-form {
-  height:          85vh;
+  overflow:        hidden;
   display:         flex;
   justify-content: space-around;
   align-items:     center;
@@ -356,7 +357,7 @@ body {
 
 .message {
   margin-top:    40px;
-  width:         40%;
+  width:         50%;
   border-radius: 20px;
   border:        2px solid @primary;
   box-shadow:    0 0 82px -19px rgba(34, 60, 80, 0.4);
@@ -406,7 +407,6 @@ body {
     font-size:     20px;
     background:    @primary;
     color:         @secondary-white;
-    overflow:      hidden;
   }
 
   .message-tag {
@@ -922,6 +922,10 @@ footer {
 
 @media (max-width: 576px) {
 
+  .main {
+    background: @mobile-background;
+  }
+
   //Навбар
   .navbar {
     position:       absolute;
@@ -974,6 +978,8 @@ footer {
 
   //Страница логина
   .container {
+    background: @mobile-background;
+
     .sign-in-label {
       font-size: 60px;
     }
@@ -1004,6 +1010,10 @@ footer {
     h2 {
       font-size: 60px;
     }
+  }
+
+  .front_page {
+    background: @mobile-background;
   }
 
   .filter {

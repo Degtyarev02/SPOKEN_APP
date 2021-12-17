@@ -14,11 +14,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Titan+One&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/static/css/style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script>
     </head>
     <body>
     <#nested>
     <script src="../../static/js/script.js"></script>
-    <script src="https://kit.fontawesome.com/870b49f80b.js" crossorigin="anonymous"></script>
     </body>
     </html>
 </#macro>
