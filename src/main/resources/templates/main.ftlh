@@ -23,17 +23,17 @@
                                                                              src="../static/img/photo.png"
                                                                              alt=""></label>
             <button type="submit">Добавить</button>
-            <#if tagError??>
-                <div>
-                    ${tagError}
-                </div>
-            </#if>
-            <#if textError??>
-                <div>
-                    ${textError}
-                </div>
-            </#if>
         </form>
+        <#if tagError??>
+            <div>
+                ${tagError}
+            </div>
+        </#if>
+        <#if textError??>
+            <div>
+                ${textError}
+            </div>
+        </#if>
 
 
         <#list messages as message>

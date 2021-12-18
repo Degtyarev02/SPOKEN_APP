@@ -56,7 +56,7 @@ public class RegistrationController {
 		}
 		//Если BindingResult вернулся с ошибками, то заполняем список ошибками и в цикле передаем все ошибки в модель
 		if (result.hasErrors()) {
-			Model tmpModel = exceptionService.getErrorsFromBindingResult(model, result);
+			model = exceptionService.getErrorsFromBindingResult(model, result);
 			return "registration";
 		}
 

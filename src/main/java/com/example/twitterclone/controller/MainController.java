@@ -6,6 +6,7 @@ import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.CommentRepository;
 import com.example.twitterclone.repos.MessageRepository;
 import com.example.twitterclone.repos.UserRepo;
+import com.example.twitterclone.service.ExceptionService;
 import com.example.twitterclone.service.S3Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -36,6 +37,9 @@ public class MainController {
 
 	@Autowired
 	S3Wrapper wrapperService;
+
+	@Autowired
+	ExceptionService exceptionService;
 
 	@GetMapping("/")
 	public String greeting() {
@@ -69,12 +73,8 @@ public class MainController {
 							 @RequestParam("file") MultipartFile file) throws IOException {
 
 		if (bindingResult.hasErrors()) {
-			List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
-			for (FieldError error : fieldErrorList) {
-				//Добавляем в модель все ошибки
-				model.addAttribute(error.getField() + "Error", error.getDefaultMessage());
-				return main(user, model);
-			}
+			model = exceptionService.getErrorsFromBindingResult(model, bindingResult);
+			return main(user, model);
 		} else {
 			message.setAuthor(user);
 			Calendar calendar = new GregorianCalendar();

@@ -95,6 +95,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-top: 10%;
 }
 .login-form {
   display: flex;
@@ -856,6 +857,9 @@ footer .social-media a img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 0 46px -7px rgba(154, 154, 154, 0.2);
+    padding: 26px;
+    border-radius: 20px;
   }
   .add-message-field input {
     margin-bottom: 10px;
