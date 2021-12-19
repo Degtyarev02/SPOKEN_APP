@@ -119,6 +119,7 @@ public class MainController {
 				wrapperService.deleteFile(message.getFilename());
 			}
 			//Удаляем сообщения из БД
+			message.getUsersWhoLiked().clear();
 			messageRepository.delete(message);
 		}
 		return "redirect:/main";

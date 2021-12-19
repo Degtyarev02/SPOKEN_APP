@@ -104,6 +104,7 @@ public class AdminController {
 		if (user != null) {
 			user.getSubscribers().clear();
 			user.getSubscriptions().clear();
+			user.getLikedPosts().clear();
 			userRepo.save(user);
 			commentRepository.deleteAllByAuthor(user);
 			messageRepo.deleteAllByAuthor(user);

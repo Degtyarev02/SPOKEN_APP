@@ -390,7 +390,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 20px 0px 20px 20px;
+  padding: 20px 0 0 20px;
 }
 .message .like_post .submit_like img {
   width: 32px;
@@ -399,6 +399,7 @@ body {
 }
 .message .like_post .number_of_likes {
   padding-left: 10px;
+  padding-bottom: 0;
 }
 .message .comments {
   margin-top: 30px;
