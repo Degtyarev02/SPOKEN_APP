@@ -452,6 +452,28 @@ body {
     }
   }
 
+  .like_post {
+    display:     flex;
+    align-items: center;
+
+    .submit_like {
+      background: none;
+      border:     none;
+      cursor:     pointer;
+      padding:    20px 0px 20px 20px;
+
+      img {
+        width:  32px;
+        height: 32px;
+        cursor: pointer;
+      }
+    }
+
+    .number_of_likes{
+      padding-left: 10px;
+    }
+  }
+
   .comments {
     margin-top: 30px;
     transition: height .5s ease-out;
@@ -910,7 +932,6 @@ footer {
 
 .user-from-users {
   width:           80%;
-  justify-content: flex-start;
   color:           @secondary-grey;
 
   .go-to-user {

@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity
 public class User implements UserDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotBlank(message = "Username can't be empty")
@@ -54,6 +54,12 @@ public class User implements UserDetails {
 			joinColumns = {@JoinColumn(name = "subscription_id")},
 			inverseJoinColumns = {@JoinColumn(name = "subscriber_id")})
 	private Set<User> subscriptions = new HashSet<>();
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@JoinTable(name = "likes_table",
+			joinColumns = @JoinColumn(name = "person_id"),
+			inverseJoinColumns = @JoinColumn(name = "post_id"))
+	private Set<Message> likedPosts = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -135,16 +141,24 @@ public class User implements UserDetails {
 		return subscriptions;
 	}
 
-	public int getSubscribersSize(){
+	public int getSubscribersSize() {
 		return subscribers.size();
 	}
 
-	public int getSubscriptionsSize(){
+	public int getSubscriptionsSize() {
 		return subscriptions.size();
 	}
 
 	public void setSubscriptions(Set<User> subscriptions) {
 		this.subscriptions = subscriptions;
+	}
+
+	public Set<Message> getLikedPosts() {
+		return likedPosts;
+	}
+
+	public void setLikedPosts(Set<Message> likedPosts) {
+		this.likedPosts = likedPosts;
 	}
 
 	@Override

@@ -59,6 +59,20 @@
                     <input class="input_comment" name="text" type="text" placeholder="Комментарий">
                     <button class="submit_comment" type="submit">Отправить</button>
                 </form>
+
+                <#if message.usersWhoLiked?seq_contains(currentUser)>
+                    <form class="like_post" action="/main/unlike/${message.id}" method="post">
+                        <button class="submit_like" type="submit"><img src="/static/img/like.png" alt=""></button>
+                        <span class="number_of_likes">${message.usersWhoLiked?size}</span>
+                    </form>
+                <#else>
+                    <form class="like_post" action="/main/like/${message.id}" method="post">
+                        <button class="submit_like" type="submit"><img src="/static/img/unlike.png" alt=""></button>
+                        <span class="number_of_likes">${message.usersWhoLiked?size}</span>
+                    </form>
+                </#if>
+
+
                 <div class="comments">
                     <h2 class="show-hide-comments">Развернуть комментарии</h2>
                     <div class="comments-list">

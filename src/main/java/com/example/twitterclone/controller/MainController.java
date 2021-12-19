@@ -161,5 +161,37 @@ public class MainController {
 
 	}
 
+	@PostMapping("/main/like/{message}")
+	public String likeMessage(@PathVariable Message message,
+							  @RequestHeader(required = false) String referer,
+							  @AuthenticationPrincipal User currentUser){
+
+		UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+
+		if(message != null && !currentUser.getLikedPosts().contains(message) && !message.getUsersWhoLiked().contains(currentUser)){
+			currentUser.getLikedPosts().add(message);
+			message.getUsersWhoLiked().add(currentUser);
+			messageRepository.save(message);
+		}
+
+		return "redirect:" + components.getPath();
+	}
+
+	@PostMapping("/main/unlike/{message}")
+	public String unLike(@PathVariable Message message,
+							  @RequestHeader(required = false) String referer,
+							  @AuthenticationPrincipal User currentUser){
+
+		UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+
+		if(message != null && message.getUsersWhoLiked().contains(currentUser)){
+			currentUser.getLikedPosts().remove(message);
+			message.getUsersWhoLiked().remove(currentUser);
+			messageRepository.save(message);
+		}
+
+		return "redirect:" + components.getPath();
+	}
+
 
 }

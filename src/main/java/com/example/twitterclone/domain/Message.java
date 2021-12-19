@@ -1,18 +1,11 @@
 package com.example.twitterclone.domain;
 
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import org.hibernate.annotations.CascadeType;
+import java.util.*;
 
 @Entity
 public class Message {
@@ -38,6 +31,12 @@ public class Message {
     private Calendar date;
 
     private String filename;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinTable(name = "likes_table",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "person_id"))
+    private Set<User> usersWhoLiked = new HashSet<>();
 
     public Message(String text, String tag, User author) {
         this.text = text;
@@ -84,11 +83,9 @@ public class Message {
         this.filename = filename;
     }
 
-
     public void setAuthor(User author) {
         this.author = author;
     }
-
 
     public Calendar getDate() {
         return date;
@@ -100,6 +97,14 @@ public class Message {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Set<User> getUsersWhoLiked() {
+        return usersWhoLiked;
+    }
+
+    public void setUsersWhoLiked(Set<User> usersWhoLiked) {
+        this.usersWhoLiked = usersWhoLiked;
     }
 
     public String returnReformatDate() {

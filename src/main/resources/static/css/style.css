@@ -382,6 +382,24 @@ body {
   border-radius: 10px;
   padding: 10px;
 }
+.message .like_post {
+  display: flex;
+  align-items: center;
+}
+.message .like_post .submit_like {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 20px 0px 20px 20px;
+}
+.message .like_post .submit_like img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+.message .like_post .number_of_likes {
+  padding-left: 10px;
+}
 .message .comments {
   margin-top: 30px;
   transition: height 0.5s ease-out;
@@ -764,7 +782,6 @@ footer .social-media a img {
 }
 .user-from-users {
   width: 80%;
-  justify-content: flex-start;
   color: #444444;
 }
 .user-from-users .go-to-user {

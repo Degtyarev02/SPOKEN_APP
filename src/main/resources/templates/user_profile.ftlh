@@ -21,7 +21,11 @@
                         <img title="У Вас уже более 10 подписчиков!" src="/static/img/medal.png" width="64" height="64"
                              alt="">
                     </#if>
-                    <img title="У Вас более 100 лайков!" src="/static/img/subreward.png" width="64" height="64" alt="">
+
+                    <#if user.likedPosts?size gte 100>
+                        <img title="Вы оценили более 100 постов!" src="/static/img/subreward.png" width="64" height="64"
+                             alt="">
+                    </#if>
                 </div>
             </div>
             <div class="main-info">
@@ -79,6 +83,17 @@
                     <input class="input_comment" name="text" type="text" placeholder="Комментарий">
                     <button class="submit_comment" type="submit">Отправить</button>
                 </form>
+                <#if message.usersWhoLiked?seq_contains(currentUser)>
+                    <form class="like_post" action="/main/unlike/${message.id}" method="post">
+                        <button class="submit_like" type="submit"><img src="/static/img/like.png" alt=""></button>
+                        <span class="number_of_likes">${message.usersWhoLiked?size}</span>
+                    </form>
+                <#else>
+                    <form class="like_post" action="/main/like/${message.id}" method="post">
+                        <button class="submit_like" type="submit"><img src="/static/img/unlike.png" alt=""></button>
+                        <span class="number_of_likes">${message.usersWhoLiked?size}</span>
+                    </form>
+                </#if>
                 <div class="comments">
                     <h2 class="show-hide-comments">Развернуть комментарии</h2>
                     <div class="comments-list">
