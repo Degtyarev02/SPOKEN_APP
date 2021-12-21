@@ -24,7 +24,11 @@ public class RegistrationController {
 
 
 	//На AWS хранилище существует набор стоковых фотографий, которые устанавливаются по умолчанию
-	private final String[] stockProfileImages = {"dog.png", "bird.png", "cat.png", "owl.png"};
+	private final String[] stockProfileImages = {
+			"dog.png", "bird.png", "cat.png",
+			"owl.png", "bear.png", "chicken.png",
+			"hamster.png", "rabbit.png", "wolf.png"
+	};
 
 	@Autowired
 	private UserRepo userRepo;
