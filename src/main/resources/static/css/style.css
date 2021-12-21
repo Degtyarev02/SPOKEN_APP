@@ -553,6 +553,7 @@ body {
 }
 .profile-info .main-info {
   max-width: 712px;
+  min-width: 712px;
   padding: 30px;
   box-shadow: 0 0 46px -7px rgba(154, 154, 154, 0.2);
   height: 100%;
@@ -782,7 +783,7 @@ footer .social-media a img {
   margin-bottom: 50px;
 }
 .user-from-users {
-  width: 80%;
+  width: fit-content;
   color: #444444;
 }
 .user-from-users .go-to-user {
@@ -909,6 +910,7 @@ footer .social-media a img {
     height: 128px;
   }
   .profile-info .main-info {
+    min-width: auto;
     display: block;
     padding: 10px 30px 0 30px;
     width: 100%;
