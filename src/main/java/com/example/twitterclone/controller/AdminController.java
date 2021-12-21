@@ -60,6 +60,7 @@ public class AdminController {
 	}
 
 
+	//Метод для редактирование пользователя
 	@PostMapping("/edit/{user}")
 	public String editUser(//Получаем все данные из формы
 						   @RequestParam Map<String, String> form,
