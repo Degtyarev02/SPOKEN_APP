@@ -17,9 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class RegistrationController {
+
+
+	//На AWS хранилище существует набор стоковых фотографий, которые устанавливаются по умолчанию
+	private final String[] stockProfileImages = {"dog.png", "bird.png", "cat.png", "owl.png"};
 
 	@Autowired
 	private UserRepo userRepo;
@@ -67,6 +72,9 @@ public class RegistrationController {
 			model.addAttribute("message", "User is already exist");
 			return "registration";
 		}
+		Random random = new Random();
+		//Стоковые фотографии выбираются рандомно
+		user.setIconname(stockProfileImages[random.nextInt(stockProfileImages.length)]);
 		user.setActive(true);
 		user.setRoles(Collections.singleton(Role.USER));
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
