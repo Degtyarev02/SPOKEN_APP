@@ -49,14 +49,15 @@ public class MainController {
 
 	@GetMapping("main")
 	public String main(@AuthenticationPrincipal User user, Model model) {
-		//Создаем список и передаем туда все сообщения найденные с соответствующей таблицы
-		//!(ВАЖНО) Элементы в messages забираются из БД в порядке от старых к новым!!!!!! Дальше это исправим
-		Iterable<Message> messages = messageRepository.findAll();
-		//Создаем простой список и добавляем туда все элементы из messages
-		ArrayList<Message> list = new ArrayList();
-		//добавляем все из messages
-		messages.forEach(list::add);
-		//Разворачиваем наш список, чтобы сперва отображились последние добавленные сообщения (от новых с старым)
+
+		//Получаем все подписки у текущего пользователя
+		Set<User> subscribers = user.getSubscribers();
+		ArrayList<Message> list = new ArrayList<>();
+		//Добавляем в список все сообщения подписок
+		for(User subUser : subscribers) {
+			list.addAll(messageRepository.findByAuthor(subUser));
+		}
+		//Разворачиваем наш список, чтобы сперва отображились последние добавленные сообщения (от новых к старым)
 		Collections.reverse(list);
 		//Передаем список в модель, для отображения на странице
 		model.addAttribute("messages", list);
