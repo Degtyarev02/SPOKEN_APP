@@ -25,12 +25,12 @@
             <button type="submit">Добавить</button>
         </form>
         <#if tagError??>
-            <div>
+            <div class="error_text">
                 ${tagError}
             </div>
         </#if>
         <#if textError??>
-            <div>
+            <div class="error_text">
                 ${textError}
             </div>
         </#if>

@@ -6,13 +6,13 @@
             <form action="/login" method="post" class="login-form">
                 <input type="text" name="username" placeholder="Username"/>
                 <#if usernameError??>
-                    <div>
+                    <div class="error_text">
                         ${usernameError}
                     </div>
                 </#if>
                 <input type="password" name="password" placeholder="Password"/>
                 <#if passwordError??>
-                    <div>
+                    <div class="error_text">
                         ${passwordError}
                     </div>
                 </#if>

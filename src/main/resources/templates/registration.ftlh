@@ -7,24 +7,24 @@
             <form action="/registration" method="post" class="login-form">
                 <input type="text" name="username" placeholder="Username"/>
                 <#if usernameError??>
-                    <div>
+                    <div class="error_text">
                         ${usernameError}
                     </div>
                 </#if>
                 <input type="password" name="password" placeholder="Password"/>
                 <#if passwordError??>
-                    <div>
+                    <div class="error_text">
                         ${passwordError}
                     </div>
                 </#if>
                 <div><input type="password" name="password2" placeholder="Confirm password"/></div>
                 <#if passwordEqualsError??>
-                    <div>
+                    <div class="error_text">
                         ${passwordEqualsError}
                     </div>
                 </#if>
                 <#if password2Error??>
-                    <div>
+                    <div class="error_text">
                         ${password2Error}
                     </div>
                 </#if>

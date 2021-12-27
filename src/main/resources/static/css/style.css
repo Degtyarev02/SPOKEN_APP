@@ -8,6 +8,9 @@
 *:focus {
   outline: none;
 }
+.error_text {
+  color: red;
+}
 hr {
   border: none;
   /* Убираем границу */
