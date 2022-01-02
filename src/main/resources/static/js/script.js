@@ -27,17 +27,38 @@ let arrow = document.querySelector('.arrow')
 let open_navbar_flag = false;
 
 function show_navbar() {
-    open_navbar.onclick = function () {
-        if (!open_navbar_flag) {
-            navbar.classList.add("open");
-            arrow.style.cssText = "transform: rotate(90deg);"
-            open_navbar_flag = true;
-        } else {
-            navbar.classList.remove("open");
-            arrow.style.cssText = "transform: rotate(0);"
-            open_navbar_flag = false;
+    if(open_navbar) {
+        open_navbar.onclick = function () {
+            if (!open_navbar_flag) {
+                navbar.classList.add("open");
+                arrow.style.cssText = "transform: rotate(90deg);"
+                open_navbar_flag = true;
+            } else {
+                navbar.classList.remove("open");
+                arrow.style.cssText = "transform: rotate(0);"
+                open_navbar_flag = false;
+            }
         }
     }
 }
 
 show_navbar();
+
+
+$(document).ready(function (){
+    $('#file').change(function (){
+        showImageThumbnail(this);
+    });
+});
+
+function showImageThumbnail(fileInput) {
+    console.log("hello1")
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        $('#thumbnail').attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+}

@@ -112,7 +112,7 @@ body {
 .login-form input {
   width: 400px;
   height: 70px;
-  padding-left: 15px;
+  padding: 15px;
   background: #ffffff;
   border: 2px solid #008cff;
   color: #444444;

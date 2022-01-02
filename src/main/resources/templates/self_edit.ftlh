@@ -8,7 +8,7 @@
             <h3>Редактирование профиля</h3>
             <input id="file" type="file" name="file"> <label for="file"><img width="200" height="200"
                                                                              src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
-                                                                             alt=""></label>
+                                                                             alt="" id="thumbnail"></label>
             <input type="text" name="username" placeholder="Username" value="${user.username}">
             <textarea class="status_edit_textarea" type="text" name="status"
                       placeholder="Status">${user.status!""}</textarea>
