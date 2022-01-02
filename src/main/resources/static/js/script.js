@@ -2,6 +2,14 @@ let show_hide_comments = document.querySelectorAll('.show-hide-comments');
 let comment_list = document.querySelectorAll('.comments-list');
 let flag_to_show_comments = false;
 
+let thumbnailStockSrc = null;
+
+//Запоминаем исходную миниатюру, для загрузчика картинок
+if (document.getElementById("thumbnail")) {
+    thumbnailStockSrc = document.getElementById("thumbnail").src;
+}
+
+//Функция для отображения комментариев
 function show_comments() {
     for (let i = 0; i < comment_list.length; i++) {
         show_hide_comments[i].onclick = function () {
@@ -26,8 +34,9 @@ let navbar = document.querySelector('.navbar');
 let arrow = document.querySelector('.arrow')
 let open_navbar_flag = false;
 
+//Функция для адаптивности мобильной версии, показ навигационной панели
 function show_navbar() {
-    if(open_navbar) {
+    if (open_navbar) {
         open_navbar.onclick = function () {
             if (!open_navbar_flag) {
                 navbar.classList.add("open");
@@ -45,14 +54,17 @@ function show_navbar() {
 show_navbar();
 
 
-$(document).ready(function (){
-    $('#file').change(function (){
+//Для всех input с загрузкой картинок - показывать миниатюры
+$(document).ready(function () {
+    $('#file').change(function () {
         showImageThumbnail(this);
     });
 });
 
+
+//Функция, которая показывает миниатюру загружаемого файла
 function showImageThumbnail(fileInput) {
-    console.log("hello1")
+
     const file = fileInput.files[0];
     const reader = new FileReader();
 
@@ -60,5 +72,10 @@ function showImageThumbnail(fileInput) {
         $('#thumbnail').attr('src', e.target.result);
     };
 
-    reader.readAsDataURL(file);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        $('#thumbnail').attr('src', thumbnailStockSrc);
+    }
 }
