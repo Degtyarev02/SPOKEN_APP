@@ -1,0 +1,14 @@
+{
+  "name": "twitterclone",
+  "version": "1.0.0",
+  "type": "module",
+  "devDependencies": {
+    "@stomp/stompjs": "^6.1.2",
+    "sockjs-client": "^1.5.2"
+  },
+  "dependencies": {
+    "@types/sockjs-client": "^1.5.1",
+    "sockjs": "^0.3.24",
+    "websocket": "^1.0.34"
+  }
+}

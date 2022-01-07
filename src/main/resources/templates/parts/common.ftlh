@@ -14,6 +14,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Titan+One&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/static/css/style.css">
+
+
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
