@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,19 +24,23 @@ public class ChatsController {
 	@Autowired
 	private ChatMessageRepository chatMessageRepository;
 
+	@Autowired
+	private SimpMessagingTemplate simpMessagingTemplate;
+
 	@GetMapping("chat/{receiverUser}")
 	public String chatPage(@PathVariable User receiverUser, @AuthenticationPrincipal User senderUser, Model model){
 		List<ChatMessage> messages = chatMessageRepository.findAllBySenderUserIdAndReceiverUserId(senderUser.getId(), receiverUser.getId());
 		model.addAttribute("messages", messages);
 		model.addAttribute("receiverUser", receiverUser);
+		model.addAttribute("senderUser", senderUser);
 		return "chat_page";
 	}
 
 	@MessageMapping("/{to}")
-	@SendTo("/topic/greetings")
-	public String greeting(@DestinationVariable String to, String chatMessage) throws Exception {
+	public void greeting(@DestinationVariable String to, String chatMessage) throws Exception {
+
 		System.out.println(to);
 		System.out.println(chatMessage);
-		return chatMessage;
+		simpMessagingTemplate.convertAndSend("/topic/" + to, chatMessage);
 	}
 }
