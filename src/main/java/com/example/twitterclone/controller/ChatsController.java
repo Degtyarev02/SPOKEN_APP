@@ -4,7 +4,10 @@ package com.example.twitterclone.controller;
 import com.example.twitterclone.domain.ChatMessage;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.ChatMessageRepository;
-import com.mysql.cj.xdevapi.JsonString;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -36,11 +39,27 @@ public class ChatsController {
 		return "chat_page";
 	}
 
+
+	/**
+	 * Метод
+	 * @param to пользователь, которому отправляется сообщение
+	 * @param chatMessage само сообщение
+	 */
 	@MessageMapping("/{to}")
 	public void greeting(@DestinationVariable String to, String chatMessage) throws Exception {
 
+		//Сообщение приходит в виде JSON
+		//Парсим JSON
+		Object obj = new JSONParser().parse(chatMessage);
+		//Преобразуем в объект JSON
+		JSONObject jo = (JSONObject) obj;
+		//Получаем сообщение
+		String message = (String) jo.get("message");
+
+		//Здесь настроить добавление в бд
+
 		System.out.println(to);
-		System.out.println(chatMessage);
+		System.out.println(message);
 		simpMessagingTemplate.convertAndSend("/topic/" + to, chatMessage);
 	}
 }
