@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ChatMessage {
+public class ChatMessage implements Comparable<ChatMessage> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,5 +48,10 @@ public class ChatMessage {
 
 	public void setReceiverUserId(Long receiverUserId) {
 		this.receiverUserId = receiverUserId;
+	}
+
+	@Override
+	public int compareTo(ChatMessage o) {
+		return id.compareTo(o.getId());
 	}
 }

@@ -9,7 +9,7 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/'+senderUser, function (response) {
             let data = JSON.parse(response.body);
-            if(selectedUser === data.fromLogin){
+            if(selectedUser === data.from){
                 showGreeting(data.message)
             }
         });
@@ -26,18 +26,18 @@ document.getElementById('chat_send_button').onclick = function sendName() {
     document.getElementById('chat_text').value = '';
     innerDiv.appendChild(text);
     container.appendChild(innerDiv);
-    sendMessage(senderUser, message);
+    sendMessage(senderUser, selectedUser, message);
 }
 
-function sendMessage(from, text){
+function sendMessage(from, to, text){
     stompClient.send("/app/"+selectedUser, {}, JSON.stringify({
-        fromLogin: from,
+        from: from,
+        to: to,
         message: text
     }));
 }
 
 function showGreeting(chatMessage) {
-    console.log("blyyyaa")
     let container = document.getElementById('all_chat_messages')
     let innerDiv = document.createElement('div');
     let text = document.createTextNode(chatMessage);

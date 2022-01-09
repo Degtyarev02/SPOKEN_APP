@@ -5,6 +5,7 @@
     <div id = "all_chat_messages" class="all_chat_messages">
         <#list messages as message>
             <div>${message.text}</div>
+            <div>${message.id}</div>
         <#else>
             <div>No messages</div>
         </#list>
