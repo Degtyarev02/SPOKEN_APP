@@ -46,6 +46,7 @@ public class ChatsController {
 		model.addAttribute("messages", messages);
 		model.addAttribute("receiverUser", receiverUser);
 		model.addAttribute("senderUser", senderUser);
+		model.addAttribute("currentUser", senderUser);
 		return "chat_page";
 	}
 
@@ -67,6 +68,7 @@ public class ChatsController {
 		JSONObject jo = (JSONObject) obj;
 		//Получаем сообщение
 		String messageText = (String) jo.get("message");
+		//Получаем того, от кого получили сообщение
 		String from = (String) jo.get("from");
 
 		message.setText(messageText);

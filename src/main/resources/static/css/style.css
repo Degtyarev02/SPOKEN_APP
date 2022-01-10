@@ -796,7 +796,6 @@ footer .social-media a img {
   color: #444444;
 }
 .container-chat-pages {
-  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -839,13 +838,14 @@ footer .social-media a img {
   width: 40%;
   font-size: 20px;
   background: #008cff;
-  border-radius: 20px;
+  border-radius: 20px 20px 0 20px;
   padding: 20px;
   color: #ffffff;
   margin-left: auto;
 }
 .all_chat_messages .receiver-message {
   margin-left: 0;
+  border-radius: 20px 20px 20px 0;
   background: #444444;
 }
 .sendmes {

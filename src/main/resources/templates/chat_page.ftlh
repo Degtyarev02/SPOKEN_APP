@@ -1,13 +1,17 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/navbar.ftlh" as n>
 
 <#assign userhasicon = receiverUser.iconname??>
 <@c.mainpage>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <@n.navbar></@n.navbar>
     <div class="container-chat-pages">
         <div class="receiver-info">
-            <img src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${receiverUser.iconname}", "/static/img/serverimg/profile.png")}"
-                 alt="">
+            <img src="${userhasicon?then(
+            "https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${receiverUser.iconname}",
+            "/static/img/serverimg/profile.png"
+            )}" alt="">
             <div class="receiver-name">${receiverUser.username}</div>
         </div>
         <div class="chat-window">

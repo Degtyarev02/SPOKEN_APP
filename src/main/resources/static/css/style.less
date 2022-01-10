@@ -952,7 +952,6 @@ footer {
 
 //Чаты
 .container-chat-pages {
-  width:           100vw;
   height:          100vh;
   display:         flex;
   flex-direction:  column;
@@ -1003,7 +1002,7 @@ footer {
     width:         40%;
     font-size:     20px;
     background:    @primary;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 20px;
     padding:       20px;
     color:         @secondary-white;
     margin-left:   auto;
@@ -1011,6 +1010,7 @@ footer {
 
   .receiver-message {
     margin-left: 0;
+    border-radius: 20px 20px 20px 0;
     background:  @secondary-grey;
   }
 }
