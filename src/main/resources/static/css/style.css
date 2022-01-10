@@ -842,9 +842,11 @@ footer .social-media a img {
   border-radius: 20px;
   padding: 20px;
   color: #ffffff;
+  margin-left: auto;
 }
 .all_chat_messages .receiver-message {
-  margin-left: auto;
+  margin-left: 0;
+  background: #444444;
 }
 .sendmes {
   padding: 30px;
@@ -885,7 +887,8 @@ footer .social-media a img {
   padding: 5px;
   width: 60px;
   border-radius: 20px;
-  background: greenyellow;
+  background: #008cff;
+  color: #ffffff;
   cursor: pointer;
 }
 @media (max-width: 576px) {
