@@ -949,6 +949,117 @@ footer {
   }
 }
 
+
+//Чаты
+.container-chat-pages {
+  width:           100vw;
+  height:          100vh;
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+
+  .chat-window {
+    width:         80%;
+    height:        80%;
+    box-shadow:    0 0 40px -12px rgba(34, 60, 80, 0.2);
+    border-radius: 20px;
+    padding:       30px;
+    overflow:      scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+}
+
+.receiver-info {
+  margin-top:    30px;
+  border-radius: 20px;
+  height:        100px;
+  width:         80%;
+  padding:       30px;
+  display:       flex;
+  align-items:   center;
+  box-shadow:    0 0 40px -12px rgba(34, 60, 80, 0.2);
+  margin-bottom: 30px;
+
+  img {
+    width:         60px;
+    height:        60px;
+    border-radius: 50%;
+    margin-right:  30px;
+  }
+
+  .receiver-name {
+    font-size: 30px;
+  }
+}
+
+.all_chat_messages {
+  .sender-message-block {
+    margin-bottom: 20px;
+    width:         40%;
+    font-size:     20px;
+    background:    @primary;
+    border-radius: 20px;
+    padding:       20px;
+    color:         @secondary-white;
+  }
+
+  .receiver-message {
+    margin-left: auto;
+  }
+}
+
+.sendmes {
+  padding:         30px;
+  border-radius:   20px;
+  box-shadow:      0 0 40px -12px rgba(34, 60, 80, 0.2);
+  width:           80%;
+  margin-top:      30px;
+  margin-bottom:   40px;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+
+  #chat_text {
+    display:       block;
+    width:         40%;
+    height:        58px;
+    max-height:    300px;
+    line-height:   20px;
+    resize:        none;
+    background:    #ececec;
+    border-radius: 20px;
+    padding:       10px;
+    border:        none;
+    outline:       none;
+    overflow:      scroll;
+
+    &:focus {
+      border:  none;
+      outline: none;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  #chat_send_button {
+    height:        40px;
+    margin-left:   20px;
+    border:        none;
+    padding:       5px;
+    width:         60px;
+    border-radius: 20px;
+    background:    greenyellow;
+    cursor: pointer;
+  }
+}
+
 @media (max-width: 576px) {
 
   .main {
