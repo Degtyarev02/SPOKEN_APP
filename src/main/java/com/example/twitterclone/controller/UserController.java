@@ -107,7 +107,9 @@ public class UserController {
 				&& !user.getSubscribers().contains(currentUser)) {
 			//То добавляемся в подписчики пользователя на которого подписываемся
 			user.getSubscribers().add(currentUser);
+			currentUser.getSubscriptions().add(user);
 			userRepo.save(user);
+			userRepo.save(currentUser);
 		}
 		//Получаем путь откуда мы пришли и возвращаемся туда
 		UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
@@ -125,6 +127,8 @@ public class UserController {
 				&& user.getSubscribers().contains(currentUser)) {
 			//Убираем себя из подписчиков
 			user.getSubscribers().remove(currentUser);
+			currentUser.getSubscriptions().remove(user);
+			userRepo.save(currentUser);
 			userRepo.save(user);
 		}
 		UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
