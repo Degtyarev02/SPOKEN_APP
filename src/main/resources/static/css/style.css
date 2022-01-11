@@ -308,7 +308,7 @@ body {
   margin-top: 40px;
   width: 50%;
   border-radius: 20px;
-  border: 2px solid #008cff;
+  outline: 2px solid #008cff;
   box-shadow: 0 0 82px -19px rgba(34, 60, 80, 0.4);
 }
 .message .delete {
@@ -784,6 +784,9 @@ footer .social-media a img {
 }
 .all-users-list {
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .user-from-users {
   width: fit-content;
@@ -890,6 +893,21 @@ footer .social-media a img {
   background: #008cff;
   color: #ffffff;
   cursor: pointer;
+}
+.chat-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.chat-list-container .chat-list-alert-message {
+  font-size: 25px;
+  color: #444444;
+  font-weight: lighter;
+  margin-top: 60px;
+  text-align: center;
+}
+.go-to-chat {
+  margin-top: 10px !important;
 }
 @media (max-width: 576px) {
   .main {
@@ -1050,6 +1068,11 @@ footer .social-media a img {
   }
   .user {
     max-width: 100%;
+  }
+  .chat-list-container .chat-list-alert-message {
+    font-size: 13px;
+    margin-bottom: -30px;
+    margin-top: 100px;
   }
 }
 /*# sourceMappingURL=style.css.map */

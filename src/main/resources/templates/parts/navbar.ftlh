@@ -4,7 +4,8 @@
             <ul class="menu">
                 <li><a class="navbar_elements" href="/main">Домой</a></li>
                 <li><a class="navbar_elements" href="/main/user/${currentUser.id}">Профиль</a></li>
-                <li><a class="navbar_elements" href="/main/users">Пользователи</a></li>
+                <li><a class="navbar_elements" href="/main/users">Найти пользователей</a></li>
+                <li><a class="navbar_elements" href="/chat">Сообщения</a></li>
                 <#if currentUser.isAdmin()>
                     <li><a class="navbar_elements" href="/admin/">Панель админа</a></li>
                 </#if>

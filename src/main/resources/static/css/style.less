@@ -365,7 +365,7 @@ body {
   margin-top:    40px;
   width:         50%;
   border-radius: 20px;
-  border:        2px solid @primary;
+  outline:       2px solid @primary;
   box-shadow:    0 0 82px -19px rgba(34, 60, 80, 0.4);
 
   .delete {
@@ -933,7 +933,10 @@ footer {
 }
 
 .all-users-list {
-  margin-bottom: 50px;
+  margin-bottom:  50px;
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
 }
 
 .user-from-users {
@@ -1009,9 +1012,9 @@ footer {
   }
 
   .receiver-message {
-    margin-left: 0;
+    margin-left:   0;
     border-radius: 20px 20px 20px 0;
-    background:  @secondary-grey;
+    background:    @secondary-grey;
   }
 }
 
@@ -1058,9 +1061,28 @@ footer {
     width:         60px;
     border-radius: 20px;
     background:    @primary;
-    color: @secondary-white;
+    color:         @secondary-white;
     cursor:        pointer;
   }
+}
+
+//Список подписок/сообщений
+.chat-list-container {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+
+  .chat-list-alert-message {
+    font-size:   25px;
+    color:       @secondary-grey;
+    font-weight: lighter;
+    margin-top:  60px;
+    text-align:  center;
+  }
+}
+
+.go-to-chat {
+  margin-top: 10px !important;
 }
 
 @media (max-width: 576px) {
@@ -1281,5 +1303,13 @@ footer {
 
   .user {
     max-width: 100%;
+  }
+
+  .chat-list-container {
+    .chat-list-alert-message {
+      font-size:     13px;
+      margin-bottom: -30px;
+      margin-top:    100px;
+    }
   }
 }

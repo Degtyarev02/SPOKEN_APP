@@ -14,12 +14,17 @@
             )}" alt="">
             <div class="receiver-name">${receiverUser.username}</div>
         </div>
-        <div class="chat-window">
+        <div class="chat-window" id="chat-window">
             <div class="all_chat_messages">
                 <div id="all_chat_messages" class="chat-messages-container">
                     <#list messages as message>
                         <div class="sender-message-block <#if message.senderUserId == receiverUser.id>receiver-message</#if>">
                             ${message.text}
+                            <div class="chat-message-time">
+                                <#if message.getDate()??>
+                                    ${message.returnReformatDate()}
+                                </#if>
+                            </div>
                         </div>
                     <#else>
                         <div id="no-messages">No messages</div>

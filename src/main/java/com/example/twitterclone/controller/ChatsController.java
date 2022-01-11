@@ -4,6 +4,7 @@ package com.example.twitterclone.controller;
 import com.example.twitterclone.domain.ChatMessage;
 import com.example.twitterclone.domain.User;
 import com.example.twitterclone.repos.ChatMessageRepository;
+import com.example.twitterclone.repos.UserRepo;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ChatsController {
@@ -28,6 +28,19 @@ public class ChatsController {
 	@Autowired
 	private SimpMessagingTemplate simpMessagingTemplate;
 
+	@Autowired
+	private UserRepo userRepo;
+
+
+	@GetMapping("chat")
+	public String chats(@AuthenticationPrincipal User currentUser, Model model) {
+		Set<User> subscriptions = currentUser.getSubscriptions();
+		model.addAttribute("currentUser", currentUser);
+		model.addAttribute("subscriptions", subscriptions);
+		return "chats_list";
+	}
+
+
 	/**
 	 * Здесь создаем новый список из всех сообщений.
 	 * <br>
@@ -37,6 +50,11 @@ public class ChatsController {
 	 */
 	@GetMapping("chat/{receiverUser}")
 	public String chatPage(@PathVariable User receiverUser, @AuthenticationPrincipal User senderUser, Model model) {
+
+		Set<User> subscriptions = senderUser.getSubscriptions();
+		if (!subscriptions.contains(receiverUser)) {
+			return "main";
+		}
 
 		List<ChatMessage> messages = chatMessageRepository.findAllBySenderUserIdAndReceiverUserId(senderUser.getId(), receiverUser.getId());
 		messages.addAll(chatMessageRepository.findAllBySenderUserIdAndReceiverUserId(receiverUser.getId(), senderUser.getId()));
@@ -59,8 +77,6 @@ public class ChatsController {
 	 */
 	@MessageMapping("/{to}")
 	public void greeting(@DestinationVariable Long to, String chatMessage) throws Exception {
-		ChatMessage message = new ChatMessage();
-
 		//Сообщение приходит в виде JSON
 		//Парсим JSON
 		Object obj = new JSONParser().parse(chatMessage);
@@ -71,9 +87,15 @@ public class ChatsController {
 		//Получаем того, от кого получили сообщение
 		String from = (String) jo.get("from");
 
+		//Добавление сообщения в БД.
+		ChatMessage message = new ChatMessage();
 		message.setText(messageText);
 		message.setSenderUserId(Long.valueOf(from));
 		message.setReceiverUserId(to);
+
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTimeZone(TimeZone.getTimeZone("Europe/Moscow"));
+		message.setDate(calendar);
 
 		chatMessageRepository.save(message);
 
