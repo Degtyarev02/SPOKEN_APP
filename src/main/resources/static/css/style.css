@@ -551,7 +551,7 @@ body {
   width: 256px;
   height: 256px;
   border-radius: 50%;
-  border: #008cff 2px solid;
+  outline: #008cff 2px solid;
   margin-bottom: 20px;
 }
 .profile-info .main-info {
@@ -841,14 +841,19 @@ footer .social-media a img {
   width: 40%;
   font-size: 20px;
   background: #008cff;
-  border-radius: 20px 20px 0 20px;
+  border-radius: 30px 30px 10px 30px;
   padding: 20px;
   color: #ffffff;
   margin-left: auto;
 }
+.all_chat_messages .sender-message-block .chat-message-time {
+  margin-left: auto;
+  width: fit-content;
+  margin-top: 10px;
+}
 .all_chat_messages .receiver-message {
   margin-left: 0;
-  border-radius: 20px 20px 20px 0;
+  border-radius: 30px 30px 30px 10px;
   background: #444444;
 }
 .sendmes {

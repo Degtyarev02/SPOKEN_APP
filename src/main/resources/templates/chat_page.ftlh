@@ -20,11 +20,7 @@
                     <#list messages as message>
                         <div class="sender-message-block <#if message.senderUserId == receiverUser.id>receiver-message</#if>">
                             ${message.text}
-                            <div class="chat-message-time">
-                                <#if message.getDate()??>
-                                    ${message.returnReformatDate()}
-                                </#if>
-                            </div>
+                            <div class="chat-message-time"><#if message.getDate()??>${message.returnReformatDate()}</#if></div>
                         </div>
                     <#else>
                         <div id="no-messages">No messages</div>
