@@ -107,6 +107,7 @@ public class UserController {
 				&& !user.getSubscribers().contains(currentUser)) {
 			//То добавляемся в подписчики пользователя на которого подписываемся
 			user.getSubscribers().add(currentUser);
+			//Добавляем пользователя в подписки
 			currentUser.getSubscriptions().add(user);
 			userRepo.save(user);
 			userRepo.save(currentUser);
@@ -127,6 +128,7 @@ public class UserController {
 				&& user.getSubscribers().contains(currentUser)) {
 			//Убираем себя из подписчиков
 			user.getSubscribers().remove(currentUser);
+			//Убираем пользователя из подписок
 			currentUser.getSubscriptions().remove(user);
 			userRepo.save(currentUser);
 			userRepo.save(user);
