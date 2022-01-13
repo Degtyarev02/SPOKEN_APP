@@ -12,7 +12,7 @@
             "https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${receiverUser.iconname}",
             "/static/img/serverimg/profile.png"
             )}" alt="">
-            <div class="receiver-name">${receiverUser.username}</div>
+            <a href="/main/user/${receiverUser.id}" class="receiver-name">${receiverUser.username}</a>
         </div>
         <div class="chat-window" id="chat-window">
             <div class="all_chat_messages">
