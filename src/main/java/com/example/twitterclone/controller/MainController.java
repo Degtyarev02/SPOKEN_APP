@@ -100,11 +100,14 @@ public class MainController {
 
 	}
 
+	//Фильтр ищет сообщения по указанному тегу
+	//Сообщения отображаются все (согласно тегу), не только сообщения подписок
 	@PostMapping("filter")
-	public String filter(@RequestParam String filter, Model model) {
+	public String filter(@RequestParam String filter, Model model, @AuthenticationPrincipal User currentUser) {
 		List<Message> byTag = messageRepository.findByTag(filter);
 		Collections.reverse(byTag);
 		model.addAttribute("messages", byTag);
+		model.addAttribute("currentUser", currentUser);
 		return "main";
 	}
 
