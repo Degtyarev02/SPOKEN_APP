@@ -1,44 +1,49 @@
 package com.example.twitterclone.service;
 
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import org.springframework.stereotype.Service;
-import org.apache.commons.io.IOUtils;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 
 @Service
 public class S3Wrapper {
 
+    private String uploadFile(File file, String fileName) throws IOException {
+        BlobId blobId = BlobId.of("spoken-3c30d.appspot.com", fileName);
+        String[] parts = fileName.split("\\.");
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/" + parts[parts.length - 1]).build();
+        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("src/main/resources/spoken-3c30d-firebase-adminsdk-wgzuf-def0cfc076.json"));
+        Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+        storage.create(blobInfo, Files.readAllBytes(file.toPath()));
+        return "gs://spoken-3c30d.appspot.com/";
+    }
 
-	private final AmazonS3Client s3Client;
-	private final String bucket;
+    private File convertToFile(MultipartFile multipartFile, String fileName) throws IOException {
+        File tempFile = new File(fileName);
+        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+            fos.write(multipartFile.getBytes());
+        }
+        return tempFile;
+    }
 
-	//создаем амазонклиент с помощью бина из StorageConfig конструктором
-	//Присваиваем названию bucket значение из application.properties
-	@Autowired
-	public S3Wrapper(AmazonS3Client s3Client, @Value("${aws.bucket.name}") String bucket) {
-		this.bucket = bucket;
-		this.s3Client = s3Client;
-	}
-
-	//Метод загрузки фоток на aws s3
-	public PutObjectResult upload(InputStream inputStream, String uploadKey) {
-		//Получаем запрос на добавление, передаем в параметры имя bucket'а, имя файла, поток файла
-		PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, uploadKey, inputStream, new ObjectMetadata());
-		putObjectRequest.setCannedAcl(CannedAccessControlList.PublicRead);
-		PutObjectResult putObjectResult = s3Client.putObject(putObjectRequest);
-		IOUtils.closeQuietly(inputStream);
-		return putObjectResult;
-	}
-
-	//Метод удаления файлов из aws s3
-	//Используется при удалении постов, где есть фотографии и при смене пользователем аватарки
-	public void deleteFile(final String keyName) {
-		final DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(bucket, keyName);
-		s3Client.deleteObject(deleteObjectRequest);
-	}
+    //Метод загрузки фоток на aws s3
+    public void upload(MultipartFile multipartFile, String fileName) {
+        try {
+            File file = this.convertToFile(multipartFile, fileName);                      // to convert multipartFile to File
+            String TEMP_URL = this.uploadFile(file, fileName);                                   // to get uploaded file link
+            file.delete();                                                                // to delete the copy of uploaded file stored in the project folder// Your customized response
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

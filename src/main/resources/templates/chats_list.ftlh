@@ -15,7 +15,7 @@
                     <div class="profile-info user-from-users">
                         <div class="icon-rewards">
                             <img class="icon"
-                                 src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
+                                 src="${userhasicon?then("https://firebasestorage.googleapis.com/v0/b/spoken-3c30d.appspot.com/o/${user.iconname}?alt=media&token=5e395e22-0dfd-464b-8653-d6dd58593417", "/static/img/serverimg/profile.png")}"
                                  alt="">
                         </div>
                         <div class="main-info">

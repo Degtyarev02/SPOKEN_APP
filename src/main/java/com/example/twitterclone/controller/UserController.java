@@ -75,16 +75,11 @@ public class UserController {
 		}
 
 		if (file != null && !file.getOriginalFilename().isEmpty()) {
-			//Если у пользователя уже стоит аватарка, то удаляем старую
-			if (user.getIconname() != null) {
-				s3Wrapper.deleteFile("profile/" + user.getIconname());
-			}
-
 			//Обезопасим коллизию и создадим уникальное имя для файла
 			String uuidFile = UUID.randomUUID().toString();
-			String fileName = uuidFile + "." + file.getOriginalFilename();
+			String fileName = uuidFile + file.getOriginalFilename();
 			//Перемещаем файл в папку
-			s3Wrapper.upload(file.getInputStream(), "profile/" + fileName);
+			s3Wrapper.upload(file, fileName);
 			//Устанавливаем имя файла для объекта message
 			user.setIconname(fileName);
 		}

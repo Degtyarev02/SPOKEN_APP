@@ -7,7 +7,7 @@
         <div class="editble">
             <h3>Редактирование профиля</h3>
             <input id="file" type="file" name="file"> <label for="file"><img width="200" height="200"
-                                                                             src="${userhasicon?then("https://spokenresourcesbucket.s3.us-east-2.amazonaws.com/profile/${user.iconname}", "/static/img/serverimg/profile.png")}"
+                                                                             src="${userhasicon?then("https://firebasestorage.googleapis.com/v0/b/spoken-3c30d.appspot.com/o/${user.iconname}?alt=media&token=5e395e22-0dfd-464b-8653-d6dd58593417", "/static/img/serverimg/profile.png")}"
                                                                              alt="" id="thumbnail"></label>
             <input type="text" name="username" placeholder="Username" value="${user.username}">
             <textarea class="status_edit_textarea" type="text" name="status"

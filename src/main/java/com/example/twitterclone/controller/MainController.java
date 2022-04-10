@@ -87,7 +87,7 @@ public class MainController {
 				String uuidFile = UUID.randomUUID().toString();
 				String fileName = uuidFile + "." + file.getOriginalFilename();
 				//Загружаем файл на амазоновское хранилище
-				wrapperService.upload(file.getInputStream(), fileName);
+				wrapperService.upload(file, fileName);
 				//Устанавливаем имя файла для объекта message
 				message.setFilename(fileName);
 			}
@@ -118,12 +118,9 @@ public class MainController {
 	public String deleteMessage(@PathVariable Message message) {
 		//Проверяем что удаляемое сообщение существует
 		if (message != null) {
-			if (message.getFilename() != null) {
-				//если есть прикрепленная картинка, то удаляем ее тоже
-				wrapperService.deleteFile(message.getFilename());
-			}
 			//Удаляем сообщения из БД
 			message.getUsersWhoLiked().clear();
+			message.getComments().clear();
 			messageRepository.delete(message);
 		}
 		return "redirect:/main";
