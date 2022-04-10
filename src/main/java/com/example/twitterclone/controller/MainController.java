@@ -119,6 +119,7 @@ public class MainController {
 		//Проверяем что удаляемое сообщение существует
 		if (message != null) {
 			//Удаляем сообщения из БД
+			message.setAuthor(null);
 			message.getUsersWhoLiked().clear();
 			message.getComments().clear();
 			messageRepository.delete(message);
