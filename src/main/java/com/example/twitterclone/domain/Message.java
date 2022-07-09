@@ -1,6 +1,7 @@
 package com.example.twitterclone.domain;
 
 
+import org.hibernate.annotations.OnDelete;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class Message {
     @JoinColumn(name = "user_id")
     private User author;
 
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = javax.persistence.CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Comment> comments;
 
     private Calendar date;
